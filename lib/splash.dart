@@ -22,7 +22,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
 
     return Container(
-            color: Colors.yellowAccent[400],
+            color: Color.fromRGBO(133, 0, 171, 100),
             child: Center(
               child: Container(
                 width: 150,
