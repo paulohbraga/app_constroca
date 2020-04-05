@@ -1,17 +1,15 @@
 # app_constroca
 
-A new Flutter project.
+Aplicativo Constroca para a disciplina de Projeto Integrador I do Curso Análise e Desenvolvimento de Sistemas - Uniceub
 
-## Getting Started
+Professor/Scrum Master: Sérgio Cozetti
 
-This project is a starting point for a Flutter application.
+Membros: Murilo, Paulo Henrique, Rafael, Marianny
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Descrição
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A app tem como objetivo permitar que os usuários se cadastrem e coloquem materiais de construção para troca ou doação.
+
+
 # app_constroca
