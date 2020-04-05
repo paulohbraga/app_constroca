@@ -8,28 +8,30 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
   @override
   void initState() {
     super.initState();
+
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 4)).then((_){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MyApp()));
+    Future.delayed(Duration(seconds: 4)).then((_) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MyApp()));
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(
-            color: Colors.greenAccent[900],
-            child: Center(
-              child: Container(
-                width: 150,
-                height: 150,
-                child: Image.asset("imgs/icon.png"),
-              ),
-            )
-        );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Container(
+        color: Colors.teal[900],
+          child: new Center(
+              widthFactor: 150.0,
+              heightFactor: 150.0,
+              child: new Image.asset('imgs/app_icon.png',
+                  width: 300.0, height: 300.0),
+          )
+      ),
+    );
   }
 }

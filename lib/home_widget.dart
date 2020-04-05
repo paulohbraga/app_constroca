@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'home2.dart';
 
 
 /// This Widget is the main application widget.
@@ -30,27 +31,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 @override
 Widget build(BuildContext context) {
   return new Scaffold(
+    
     body: new Stack(
       children: <Widget>[
         new Offstage(
           offstage: index != 0,
           child: new TickerMode(
             enabled: index == 0,
-            child: new MaterialApp(home: new MyHomePage()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage()),
           ),
         ),
         new Offstage(
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(home: new MyHomePage()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage2()),
           ),
         ),
         new Offstage(
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(home: new MyHomePage()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage()),
           ),
         ),
       ],
