@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'home_widget.dart';
 
 class Splash extends StatefulWidget {
@@ -28,8 +29,10 @@ class _SplashState extends State<Splash> {
           child: new Center(
               widthFactor: 150.0,
               heightFactor: 150.0,
-              child: new Image.asset('imgs/app_icon.png',
-                  width: 300.0, height: 300.0),
+              child: FlareActor(
+                'assets/carro.flr',
+                animation: 'carro',
+              )
           )
       ),
     );

@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage2> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Doações"),
+          title: Text("Trocas"),
           centerTitle: true,
           backgroundColor: Colors.teal[900],
         ),
