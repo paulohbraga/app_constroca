@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'home2.dart';
 import 'cadastro.dart';
+import 'perfilscreen.dart';
 import 'getUsers.dart';
 
 /// This Widget is the main application widget.
@@ -47,14 +48,14 @@ Widget build(BuildContext context) {
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new UserList()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage2()),
           ),
         ),
         new Offstage(
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Cadastro()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new PerfilScreen()),
           ),
         ),
       ],
@@ -74,7 +75,7 @@ Widget build(BuildContext context) {
         new BottomNavigationBarItem(
           
           icon: new Icon(Icons.face),
-          title: new Text("Cadastro", style: TextStyle(fontWeight: FontWeight.bold),),
+          title: new Text("Seu perfil", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
       ],
     ),

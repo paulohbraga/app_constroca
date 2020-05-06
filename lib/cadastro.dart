@@ -88,12 +88,7 @@ class TransfterDataWidget extends State {
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () {
-                Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => MyApp()),
-  );
-              },
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp())),
             ),
           ],
         );
@@ -131,7 +126,7 @@ class TransfterDataWidget extends State {
               child: TextField(
                   controller: loginUsuarioController,
                   autocorrect: true,
-                  decoration: InputDecoration(hintText: 'Login usuádio'),
+                  decoration: InputDecoration(hintText: 'Login usuário'),
                 )
               ),
  

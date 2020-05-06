@@ -46,7 +46,7 @@ flutter:
   assets:
     - imgs/icon.png
     - imgs/app_icon.png
-    - assets/carro.flr
+    - assets/logo.flr
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

@@ -14,7 +14,7 @@ class _SplashState extends State<Splash> {
     super.initState();
 
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 4)).then((_) {
+    Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MyApp()));
     });
@@ -25,15 +25,16 @@ class _SplashState extends State<Splash> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
+      
         color: Colors.teal[900],
-          child: new Center(
-              widthFactor: 150.0,
-              heightFactor: 150.0,
+
               child: FlareActor(
-                'assets/carro.flr',
+                'assets/logo.flr',
                 animation: 'carro',
-              )
-          )
+                sizeFromArtboard: true,
+                alignment: Alignment.centerRight,
+              ),
+          
       ),
     );
   }
