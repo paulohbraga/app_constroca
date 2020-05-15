@@ -53,7 +53,7 @@ class TransfterDataWidget extends State {
     String senha = senhaController.text;
 
     // API URL
-    var url = 'http://192.168.15.5/api/usuario/checkuser.php';
+    var url = 'http://192.168.15.6/api/usuario/checkuser.php';
 
     // Store all data with Param Name.
     var data = {

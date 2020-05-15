@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  flutter_launcher_icons: "^0.7.0"
   http: ^0.12.0+4
   flare_flutter: ^2.0.1
   flutter:
@@ -47,6 +48,16 @@ flutter:
     - imgs/icon.png
     - imgs/app_icon.png
     - assets/logo.flr
+    - imgs/back_button.png
+    - imgs/bag_button.png
+    - imgs/heart_icon.png
+    - imgs/shoe_blue.png
+    - imgs/shoe_green.png
+    - imgs/shoe_yellow.png
+    - imgs/shoe_pink.png
+    - imgs/checker.png
+    - imgs/heart_icon_disabled.png
+    - imgs/cano.png
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
@@ -75,3 +86,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icone.png"
+  image_path_android: "assets/launcher/icone.png"

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'detalhaProduto.dart';
+import 'home2.dart';
+import 'home_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -15,7 +18,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -31,54 +33,74 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisSpacing: 4.0,
               mainAxisSpacing: 8.0,
               children: <Widget>[
-                Image.network("http://www.someletras.com.br/paulo/assets/cano.png",
-  loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
-  if (loadingProgress == null) return child;
-    return Center(
-      child: CircularProgressIndicator(
-      value: loadingProgress.expectedTotalBytes != null ? 
-             loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
-             : null,
-      ),
-    );
-  },
-),
-                Image.network("http://www.someletras.com.br/paulo/assets/madeira.png",
-  loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
-  if (loadingProgress == null) return child;
-    return Center(
-      child: CircularProgressIndicator(
-      value: loadingProgress.expectedTotalBytes != null ? 
-             loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
-             : null,
-      ),
-    );
-  },
-),
-                Image.network("http://www.someletras.com.br/paulo/assets/areia.jpg",
-  loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
-  if (loadingProgress == null) return child;
-    return Center(
-      child: CircularProgressIndicator(
-      value: loadingProgress.expectedTotalBytes != null ? 
-             loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
-             : null,
-      ),
-    );
-  },
-),
-                Image.network("http://www.someletras.com.br/paulo/assets/telhas.png",
-  loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
-  if (loadingProgress == null) return child;
-    return Center(
-      child: CircularProgressIndicator(
-      value: loadingProgress.expectedTotalBytes != null ? 
-             loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
-             : null,
-      ),
-    );
-  },
-),
+                InkWell(
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DetalhaProduto())),
+                  child: Image.network(
+                    "http://www.someletras.com.br/paulo/assets/cano.png",
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                InkWell(
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DetalhaProduto())),
+                  child: Image.network(
+                    "http://www.someletras.com.br/paulo/assets/madeira.png",
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Image.network(
+                  "http://www.someletras.com.br/paulo/assets/areia.jpg",
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+                Image.network(
+                  "http://www.someletras.com.br/paulo/assets/telhas.png",
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes
+                            : null,
+                      ),
+                    );
+                  },
+                ),
               ],
             )),
       ),

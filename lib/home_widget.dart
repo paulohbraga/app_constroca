@@ -41,14 +41,14 @@ Widget build(BuildContext context) {
           offstage: index != 0,
           child: new TickerMode(
             enabled: index == 0,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage2()),
           ),
         ),
         new Offstage(
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage2()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage()),
           ),
         ),
         new Offstage(
@@ -65,12 +65,12 @@ Widget build(BuildContext context) {
       onTap: (int index) { setState((){ this.index = index; }); },
       items: <BottomNavigationBarItem>[
         new BottomNavigationBarItem(
-          icon: new Icon(Icons.vertical_align_top),
-          title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
-        ),
-        new BottomNavigationBarItem(
           icon: new Icon(Icons.vertical_align_center),
           title: new Text("Troca", style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
+        new BottomNavigationBarItem(
+          icon: new Icon(Icons.vertical_align_top),
+          title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         new BottomNavigationBarItem(
           
