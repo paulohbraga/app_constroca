@@ -4,7 +4,7 @@ Aplicativo Constroca para a disciplina de Projeto Integrador I do Curso Análise
 
 Professor/Scrum Master: Sérgio Cozetti
 
-Membros: Murilo, Paulo Henrique, Rafael, Marianny
+Membros: Murilo, Paulo Henrique.
 
 
 # Descrição
@@ -12,4 +12,7 @@ Membros: Murilo, Paulo Henrique, Rafael, Marianny
 A app tem como objetivo permitar que os usuários se cadastrem e coloquem materiais de construção para troca ou doação.
 
 
-# app_constroca
+# app_constroca 
+
+
+
