@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'home2.dart';
-import 'cadastro.dart';
-import 'perfilscreen.dart';
-import 'getUsers.dart';
+import 'doacao.dart';
+import 'troca.dart';
+import 'perfil.dart';
+import 'fotos.dart';
 
 /// This Widget is the main application widget.
-class MyApp extends StatelessWidget {
+class Inicio extends StatelessWidget {
   static const String _title = '';
   
 
@@ -41,21 +40,21 @@ Widget build(BuildContext context) {
           offstage: index != 0,
           child: new TickerMode(
             enabled: index == 0,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage2()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyApp()), // Ou Troca.() para voltar ao original
           ),
         ),
         new Offstage(
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyHomePage()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Doacao()),
           ),
         ),
         new Offstage(
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new PerfilScreen()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Perfil()),
           ),
         ),
       ],

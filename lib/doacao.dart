@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'detalhaProduto.dart';
-import 'home2.dart';
-import 'home_widget.dart';
 
-class MyHomePage extends StatefulWidget {
+class Doacao extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _DoacaoState createState() => _DoacaoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _DoacaoState extends State<Doacao> {
   @override
   void initState() {
     super.initState();

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'home.dart';
+import 'doacao.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'home2.dart';
-import 'home_widget.dart';
+import 'troca.dart';
+import 'inicio.dart';
 import 'cadastro.dart';
 
-class PerfilScreen extends StatelessWidget {
+class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,7 +53,7 @@ class TransfterDataWidget extends State {
     String senha = senhaController.text;
 
     // API URL
-    var url = 'http://192.168.15.6/api/usuario/checkuser.php';
+    var url = 'http://192.168.15.2/api/usuario/checkuser.php';
 
     // Store all data with Param Name.
     var data = {
@@ -90,7 +90,7 @@ class TransfterDataWidget extends State {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(builder: (context) => Inicio()),
                 );
               },
             ),

@@ -3,9 +3,9 @@ import 'package:app_constroca/splash.dart';
 
 import 'constants.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Constroca());
 
-class MyApp extends StatelessWidget {
+class Constroca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

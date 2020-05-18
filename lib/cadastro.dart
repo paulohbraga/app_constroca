@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'home2.dart';
-import 'home_widget.dart';
+import 'inicio.dart';
 
 
 class Cadastro extends StatelessWidget {
@@ -61,7 +58,7 @@ class TransfterDataWidget extends State {
     String senha = senhaController.text;
  
     // API URL
-    var url = 'http://192.168.15.6/api/usuario/create.php';
+    var url = 'http://192.168.15.2/api/usuario/create.php';
  
     // Store all data with Param Name.
     var data = {'nome': nome, 'login_usuario': login_usuario, 'email': email, 'telefone' : telefone, 'cidade': cidade, 'senha': senha };
@@ -88,7 +85,7 @@ class TransfterDataWidget extends State {
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp())),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio())),
             ),
           ],
         );
