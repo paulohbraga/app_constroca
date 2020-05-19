@@ -1,3 +1,4 @@
+import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -37,12 +38,12 @@ class TransfterDataWidget extends State {
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
-  final senhaController = TextEditingController();
+  final passwordController = TextEditingController();
  
   // Boolean variable for CircularProgressIndicator.
   bool visible = false ;
  
-  Future webCall() async{
+  Future cadastrar() async{
  
     // Showing CircularProgressIndicator using State.
     setState(() {
@@ -51,17 +52,17 @@ class TransfterDataWidget extends State {
  
     // Getting value from Controller
     String nome = nomeController.text;
-    String login_usuario = loginUsuarioController.text;
+    String login_Usuario = loginUsuarioController.text;
     String email = emailController.text;
     String telefone = telefoneController.text;
     String cidade = cidadeController.text;
-    String senha = senhaController.text;
+    String password = passwordController.text;
  
     // API URL
     var url = 'http://192.168.15.2/api/usuario/create.php';
  
     // Store all data with Param Name.
-    var data = {'nome': nome, 'login_usuario': login_usuario, 'email': email, 'telefone' : telefone, 'cidade': cidade, 'senha': senha };
+    var data = {'nome': nome, 'login_usuario': login_Usuario, 'email': email, 'telefone' : telefone, 'cidade': cidade, 'password': password };
  
     // Starting Web Call with data.
     var response = await http.post(url, body: json.encode(data));
@@ -85,7 +86,7 @@ class TransfterDataWidget extends State {
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio())),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Perfil())),
             ),
           ],
         );
@@ -161,14 +162,15 @@ class TransfterDataWidget extends State {
               width: 280,
               padding: EdgeInsets.all(10.0),
               child: TextField(
-                  controller: senhaController,
+                  controller: passwordController,
                   autocorrect: true,
+                  obscureText: true,
                   decoration: InputDecoration(hintText: 'Senha'),
                 )
               ),
  
               RaisedButton(
-                onPressed: webCall,
+                onPressed: cadastrar,
                 color: Colors.orange[400],
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(8, 8, 8, 8),

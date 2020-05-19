@@ -100,7 +100,7 @@ class PhotosList extends StatelessWidget {
             Container(
                 constraints: BoxConstraints.expand(
                   height: Theme.of(context).textTheme.display1.fontSize * 1.1 +
-                      150.0,
+                      200.0,
                 ),
                 color: Colors.white10,
                 alignment: Alignment.center,

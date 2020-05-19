@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'doacao.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'troca.dart';
 import 'inicio.dart';
 import 'cadastro.dart';
 
@@ -28,11 +25,7 @@ class TransfterData extends StatefulWidget {
 
 class TransfterDataWidget extends State {
   // Getting value from TextField widget.
-  final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
-  final emailController = TextEditingController();
-  final telefoneController = TextEditingController();
-  final cidadeController = TextEditingController();
   final senhaController = TextEditingController();
 
   // Boolean variable for CircularProgressIndicator.
@@ -45,11 +38,8 @@ class TransfterDataWidget extends State {
     });
 
     // Getting value from Controller
-    String nome = nomeController.text;
     String loginUsuario = loginUsuarioController.text;
-    String email = emailController.text;
-    String telefone = telefoneController.text;
-    String cidade = cidadeController.text;
+
     String senha = senhaController.text;
 
     // API URL
@@ -57,11 +47,7 @@ class TransfterDataWidget extends State {
 
     // Store all data with Param Name.
     var data = {
-      'nome': nome,
       'login_usuario': loginUsuario,
-      'email': email,
-      'telefone': telefone,
-      'cidade': cidade,
       'senha': senha
     };
 
@@ -123,6 +109,7 @@ class TransfterDataWidget extends State {
               padding: EdgeInsets.all(10.0),
               child: TextField(
                 controller: senhaController,
+                obscureText: true,
                 autocorrect: true,
                 decoration: InputDecoration(hintText: 'Senha'),
               )),
