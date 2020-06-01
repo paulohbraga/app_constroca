@@ -6,7 +6,6 @@ import 'perfil.dart';
 import 'fotos.dart';
 import 'login.dart';
 import 'cadastroproduto.dart';
-import 'upload.dart';
 
 /// This Widget is the main application widget.
 class Inicio extends StatelessWidget {
@@ -37,7 +36,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 @override
 Widget build(BuildContext context) {
   return new Scaffold(
-    
+    resizeToAvoidBottomInset: true,
     body: new Stack(
       children: <Widget>[
         new Offstage(

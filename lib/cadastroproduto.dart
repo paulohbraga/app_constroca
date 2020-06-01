@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'inicio.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 
 class CadastroProduto extends StatelessWidget {
   @override

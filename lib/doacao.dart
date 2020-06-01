@@ -35,7 +35,7 @@ class _DoacaoState extends State<Doacao> {
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DetalhaProduto())),
                   child: Image.network(
-                    "http://186.224.101.193/paulo/assets/cano.png",
+                    "http://www.someletras.com.br/paulo/assets/cano.png",
                     loadingBuilder: (BuildContext context, Widget child,
                         ImageChunkEvent loadingProgress) {
                       if (loadingProgress == null) return child;
@@ -54,7 +54,7 @@ class _DoacaoState extends State<Doacao> {
                   onTap: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DetalhaProduto())),
                   child: Image.network(
-                    "http://186.224.101.193/paulo/assets/madeira.png",
+                    "http://www.someletras.com.br/paulo/assets/madeira.png",
                     loadingBuilder: (BuildContext context, Widget child,
                         ImageChunkEvent loadingProgress) {
                       if (loadingProgress == null) return child;
@@ -70,7 +70,7 @@ class _DoacaoState extends State<Doacao> {
                   ),
                 ),
                 Image.network(
-                  "http://186.224.101.193/paulo/assets/areia.jpg",
+                  "http://www.someletras.com.br/paulo/assets/areia.jpg",
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent loadingProgress) {
                     if (loadingProgress == null) return child;
@@ -85,7 +85,7 @@ class _DoacaoState extends State<Doacao> {
                   },
                 ),
                 Image.network(
-                  "http://186.224.101.193/paulo/assets/telhas.png",
+                  "http://www.someletras.com.br/paulo/assets/telhas.png",
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent loadingProgress) {
                     if (loadingProgress == null) return child;

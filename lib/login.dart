@@ -11,18 +11,7 @@ Widget build(BuildContext context) {
 return MaterialApp(
           debugShowCheckedModeBanner: false,
 
-  home: Scaffold(
-    
-      appBar: AppBar(
-        backgroundColor: Colors.teal[900],
-        centerTitle: true,
-        title: Text('Login do usuário'
-        
-      )),
-      body: Center(
-        child: LoginUser()
-        )
-      )
+  home: LoginUser(),
     );
 }
 }
@@ -110,6 +99,13 @@ Future userLogin() async{
 @override
 Widget build(BuildContext context) {
 return Scaffold(
+  appBar: AppBar(
+        backgroundColor: Colors.teal[900],
+        centerTitle: true,
+        title: Text('Login do usuário'
+        
+      )),
+  resizeToAvoidBottomInset: true,
   body: SingleChildScrollView(
     child: Center(
     child: Column(
