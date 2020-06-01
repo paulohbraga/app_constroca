@@ -5,6 +5,8 @@ import 'troca.dart';
 import 'perfil.dart';
 import 'fotos.dart';
 import 'login.dart';
+import 'cadastroproduto.dart';
+import 'upload.dart';
 
 /// This Widget is the main application widget.
 class Inicio extends StatelessWidget {
@@ -56,12 +58,20 @@ Widget build(BuildContext context) {
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new CadastroProduto()),
+          ),
+        ),
+        new Offstage(
+          offstage: index != 3,
+          child: new TickerMode(
+            enabled: index == 3,
             child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Logar()),
           ),
         ),
       ],
     ),
     bottomNavigationBar: new BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
       currentIndex: index,
       onTap: (int index) { setState((){ this.index = index; }); },
       items: <BottomNavigationBarItem>[
@@ -74,7 +84,10 @@ Widget build(BuildContext context) {
           title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         new BottomNavigationBarItem(
-          
+          icon: new Icon(Icons.add_to_photos),
+          title: new Text("Novo item", style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
+        new BottomNavigationBarItem(
           icon: new Icon(Icons.face),
           title: new Text("Seu perfil", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
