@@ -103,7 +103,7 @@ class TransfterDataWidget extends State {
       child: Column(
         children: <Widget>[
           Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(15.0),
               child: Text('Preencha todos os campos',
                   style: TextStyle(fontSize: 22))),
           Container(
