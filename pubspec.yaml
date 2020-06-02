@@ -48,6 +48,11 @@ flutter:
     - imgs/icon.png
     - imgs/app_icon.png
     - assets/logo.flr
+    - imgs/1.jpg
+    - imgs/2.jpg
+    - imgs/3.jpg
+    - imgs/4.png
+    - imgs/5.jpg
     - imgs/back_button.png
     - imgs/bag_button.png
     - imgs/heart_icon.png

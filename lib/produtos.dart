@@ -99,13 +99,16 @@ class PhotosList extends StatelessWidget {
         return Column(
           children: <Widget>[
             Container(
+              decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
                 constraints: BoxConstraints.expand(
                   height: Theme.of(context).textTheme.display1.fontSize * 1.1 +
                       200.0,
                 ),
-                color: Colors.white10,
                 alignment: Alignment.center,
                 child: Card(
+                  color: Color.fromARGB(200, 255, 255, 255),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[

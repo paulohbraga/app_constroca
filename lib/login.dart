@@ -107,6 +107,7 @@ return Scaffold(
       )),
   resizeToAvoidBottomInset: true,
   body: SingleChildScrollView(
+    
     child: Center(
     child: Column(
       children: <Widget>[
@@ -167,7 +168,7 @@ return Scaffold(
                           borderRadius: BorderRadius.circular(30.0)),
                       child: Container(
                         constraints:
-                            BoxConstraints(maxWidth: 80.0, minHeight: 50.0),
+                            BoxConstraints(maxWidth: 80.0, minHeight: 40.0),
                         alignment: Alignment.center,
                         child: Text(
                           "Login",
@@ -194,7 +195,7 @@ return Scaffold(
                           borderRadius: BorderRadius.circular(30.0)),
                       child: Container(
                         constraints:
-                            BoxConstraints(maxWidth: 130.0, minHeight: 50.0),
+                            BoxConstraints(maxWidth: 130.0, minHeight: 40.0),
                         alignment: Alignment.center,
                         child: Text(
                           "Cadastrar",
@@ -221,7 +222,7 @@ return Scaffold(
                           borderRadius: BorderRadius.circular(30.0)),
                       child: Container(
                         constraints:
-                            BoxConstraints(maxWidth: 140.0, minHeight: 50.0),
+                            BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
                         alignment: Alignment.center,
                         child: Text(
                           "Esqueci a senha",
