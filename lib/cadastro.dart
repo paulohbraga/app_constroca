@@ -36,19 +36,19 @@ class TransfterDataWidget extends State {
 
     // Getting value from Controller
     String nome = nomeController.text;
-    String login_Usuario = loginUsuarioController.text;
+    String login_usuario = loginUsuarioController.text;
     String email = emailController.text;
     String telefone = telefoneController.text;
     String cidade = cidadeController.text;
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.2/api/usuario/create.php';
+    var url = 'http://192.168.15.8/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
       'nome': nome,
-      'login_usuario': login_Usuario,
+      'login_usuario': login_usuario,
       'email': email,
       'telefone': telefone,
       'cidade': cidade,
@@ -89,7 +89,7 @@ class TransfterDataWidget extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              resizeToAvoidBottomPadding: true,
+        resizeToAvoidBottomPadding: true,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text('Cadastro de usuário'),
@@ -97,95 +97,121 @@ class TransfterDataWidget extends State {
           backgroundColor: Colors.teal[900],
         ),
         body: SingleChildScrollView(
-          reverse: true,
+            reverse: true,
             child: Center(
-          child: Column(
-            children: <Widget>[
-
-              Divider(
-                color: null,
-              ),
-              
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: nomeController,
-                    autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Seu nome',
-                    border: OutlineInputBorder(),
-                    ),
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: loginUsuarioController,
-                    autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Login usuário',
-                    border: OutlineInputBorder(),
-                    ),
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: emailController,
-                    autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Seu e-mail',
-                    border: OutlineInputBorder(),
-                    ),
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: telefoneController,
-                    autocorrect: true,
-                    decoration:
-                        InputDecoration(hintText: 'Seu número de celular',
-                        border: OutlineInputBorder(),
+              child: Column(
+                children: <Widget>[
+                  Divider(
+                    color: null,
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: nomeController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Seu nome',
+                          labelText: 'Seu nome',
+                          border: OutlineInputBorder(),
                         ),
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: cidadeController,
-                    autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Cidade',
-                    border: OutlineInputBorder(),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: loginUsuarioController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Login',
+                          labelText: 'Login',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: emailController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Seu e-mail',
+                          labelText: 'e-mail',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: telefoneController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Seu número de celular',
+                          labelText: 'Celular',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: cidadeController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Cidade',
+                          labelText: 'Cidade',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: passwordController,
+                        autocorrect: true,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'Senha',
+                          labelText: 'Senha',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  RaisedButton(
+                    onPressed: cadastrar,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(30.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Cadastrar",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width / 1.2,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: passwordController,
-                    autocorrect: true,
-                    obscureText: true,
-                    decoration: InputDecoration(hintText: 'Senha',
-                    border: OutlineInputBorder(),
-                    ),
-                  )),
-                  
-              RaisedButton(
-                onPressed: cadastrar,
-                color: Colors.orange[400],
-                textColor: Colors.white,
-                padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                child: Text('Cadastrar'),
+                  ),
+                  Visibility(
+                      visible: visible,
+                      child: Container(
+                          margin: EdgeInsets.only(bottom: 30, top: 10),
+                          child: CircularProgressIndicator())),
+                  Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom)),
+                ],
               ),
-              Visibility(
-                  visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30, top: 10),
-                      child: CircularProgressIndicator())),
-              Padding(
-             padding: EdgeInsets.only(
-             bottom: MediaQuery.of(context).viewInsets.bottom)),
-            ],
-          ),
-        )));
+            )));
   }
 }

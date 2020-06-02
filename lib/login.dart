@@ -43,7 +43,7 @@ Future userLogin() async{
   String password = passwordController.text;
 
   // SERVER LOGIN API URL
-  var url = 'http://192.168.15.2/api/login/login.php';
+  var url = 'http://192.168.15.8/api/login/login.php';
 
   // Store all data with Param Name.
   var data = {'email': email, 'password' : password};
@@ -112,7 +112,7 @@ return Scaffold(
       children: <Widget>[
 
         
-        Divider(),          
+        Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.width / 2.8 ),),          
 
         Container(
         width: 280,
@@ -121,6 +121,7 @@ return Scaffold(
             controller: emailController,
             autocorrect: true,
             decoration: InputDecoration(hintText: 'Email',
+            labelText: 'e-mail',
             border: OutlineInputBorder(),
             ),
           )
@@ -134,6 +135,7 @@ return Scaffold(
             autocorrect: true,
             obscureText: true,
             decoration: InputDecoration(hintText: 'Senha',
+            labelText: 'Senha',
             border: OutlineInputBorder(),
             ),
           )
@@ -146,23 +148,87 @@ return Scaffold(
               
               children:
              <Widget>[
-                        RaisedButton(
-                          color: Colors.orange,
-                          child: Text("Entrar"),
-                          onPressed: userLogin,
-                        ),
-                      
-                        RaisedButton(
-                          color: Colors.orange,
-                          child: Text("Cadastrar"),
-                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro())),
-                        ),
+                
 
-                        RaisedButton(
-                          color: Colors.orange,
-                          child: Text("Esqueci a senha"),
-                          onPressed: () => null,
+                         RaisedButton(
+                    onPressed: userLogin,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(30.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 80.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Login",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
                         ),
+                      ),
+                    ),
+                  ),
+
+
+                         RaisedButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro())),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(30.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 130.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Cadastrar",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                      
+
+                 RaisedButton(
+                    onPressed: () => null,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(30.0)),
+                      child: Container(
+                        constraints:
+                            BoxConstraints(maxWidth: 140.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Esqueci a senha",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
                       
                     ]),
           ),
@@ -199,6 +265,8 @@ logout(BuildContext context){
 @override
 Widget build(BuildContext context) {
 return MaterialApp(
+  debugShowCheckedModeBanner: false,
+
   home: Scaffold(
       appBar: AppBar(title: Text('Nova tela'),
       automaticallyImplyLeading: false),
