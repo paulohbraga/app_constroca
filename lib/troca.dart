@@ -69,7 +69,7 @@ class _TrocaState extends State<Troca> {
           semanticContainer: true,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Image.network(
-            'http://www.someletras.com.br/paulo/assets/telhas.png',
+            'http://186.224.101.193/paulo/assets/telhas.png',
             fit: BoxFit.fill,
           ),
           shape: RoundedRectangleBorder(

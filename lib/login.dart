@@ -120,7 +120,9 @@ return Scaffold(
         child: TextField(
             controller: emailController,
             autocorrect: true,
-            decoration: InputDecoration(hintText: 'Email'),
+            decoration: InputDecoration(hintText: 'Email',
+            border: OutlineInputBorder(),
+            ),
           )
         ),
 
@@ -131,7 +133,9 @@ return Scaffold(
             controller: passwordController,
             autocorrect: true,
             obscureText: true,
-            decoration: InputDecoration(hintText: 'Senha'),
+            decoration: InputDecoration(hintText: 'Senha',
+            border: OutlineInputBorder(),
+            ),
           )
         ),
 

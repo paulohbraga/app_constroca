@@ -101,56 +101,72 @@ class TransfterDataWidget extends State {
             child: Center(
           child: Column(
             children: <Widget>[
+
+              Divider(
+                color: null,
+              ),
               
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: nomeController,
                     autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Seu nome'),
+                    decoration: InputDecoration(hintText: 'Seu nome',
+                    border: OutlineInputBorder(),
+                    ),
                   )),
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: loginUsuarioController,
                     autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Login usuário'),
+                    decoration: InputDecoration(hintText: 'Login usuário',
+                    border: OutlineInputBorder(),
+                    ),
                   )),
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: emailController,
                     autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Seu e-mail'),
+                    decoration: InputDecoration(hintText: 'Seu e-mail',
+                    border: OutlineInputBorder(),
+                    ),
                   )),
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: telefoneController,
                     autocorrect: true,
                     decoration:
-                        InputDecoration(hintText: 'Seu número de celular'),
+                        InputDecoration(hintText: 'Seu número de celular',
+                        border: OutlineInputBorder(),
+                        ),
                   )),
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: cidadeController,
                     autocorrect: true,
-                    decoration: InputDecoration(hintText: 'Cidade'),
+                    decoration: InputDecoration(hintText: 'Cidade',
+                    border: OutlineInputBorder(),
+                    ),
                   )),
               Container(
-                  width: 280,
+                  width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     controller: passwordController,
                     autocorrect: true,
                     obscureText: true,
-                    decoration: InputDecoration(hintText: 'Senha'),
+                    decoration: InputDecoration(hintText: 'Senha',
+                    border: OutlineInputBorder(),
+                    ),
                   )),
                   
               RaisedButton(
