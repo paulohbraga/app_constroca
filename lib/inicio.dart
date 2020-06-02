@@ -5,7 +5,6 @@ import 'troca.dart';
 import 'perfil.dart';
 import 'fotos.dart';
 import 'login.dart';
-import 'cadastroproduto.dart';
 
 /// This Widget is the main application widget.
 class Inicio extends StatelessWidget {
@@ -36,7 +35,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 @override
 Widget build(BuildContext context) {
   return new Scaffold(
-    resizeToAvoidBottomInset: true,
+    
     body: new Stack(
       children: <Widget>[
         new Offstage(
@@ -57,7 +56,7 @@ Widget build(BuildContext context) {
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new CadastroProduto()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Doacao()),
           ),
         ),
         new Offstage(
@@ -70,7 +69,6 @@ Widget build(BuildContext context) {
       ],
     ),
     bottomNavigationBar: new BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
       currentIndex: index,
       onTap: (int index) { setState((){ this.index = index; }); },
       items: <BottomNavigationBarItem>[
@@ -83,8 +81,8 @@ Widget build(BuildContext context) {
           title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         new BottomNavigationBarItem(
-          icon: new Icon(Icons.add_to_photos),
-          title: new Text("Novo item", style: TextStyle(fontWeight: FontWeight.bold),),
+          icon: new Icon(Icons.vertical_align_top),
+          title: new Text("Novo item", style: TextStyle(fontWeight: FontWeight.bold),),  
         ),
         new BottomNavigationBarItem(
           icon: new Icon(Icons.face),
