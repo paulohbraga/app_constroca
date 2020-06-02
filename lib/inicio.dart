@@ -69,6 +69,7 @@ Widget build(BuildContext context) {
       ],
     ),
     bottomNavigationBar: new BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
       currentIndex: index,
       onTap: (int index) { setState((){ this.index = index; }); },
       items: <BottomNavigationBarItem>[
@@ -81,7 +82,7 @@ Widget build(BuildContext context) {
           title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         new BottomNavigationBarItem(
-          icon: new Icon(Icons.vertical_align_top),
+          icon: new Icon(Icons.add),
           title: new Text("Novo item", style: TextStyle(fontWeight: FontWeight.bold),),  
         ),
         new BottomNavigationBarItem(
