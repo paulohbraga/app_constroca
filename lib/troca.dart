@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'constants.dart';
+
 
 class Troca extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _TrocaState extends State<Troca> {
         appBar: AppBar(
           title: Text("Trocas"),
           centerTitle: true,
-          backgroundColor: Colors.teal[900],
+          backgroundColor: APP_BAR_COLOR,
         ),
         body: Container(
             padding: EdgeInsets.all(16.0),

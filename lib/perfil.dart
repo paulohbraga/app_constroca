@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'inicio.dart';
 import 'cadastro.dart';
+import 'constants.dart';
+
 
 class Perfil extends StatelessWidget {
   @override
@@ -13,7 +15,7 @@ class Perfil extends StatelessWidget {
             appBar: AppBar(
               title: Text('Login'),
               centerTitle: true,
-              backgroundColor: Colors.teal[900],
+              backgroundColor: APP_BAR_COLOR,
             ),
             body: Center(child: TransfterData())));
   }

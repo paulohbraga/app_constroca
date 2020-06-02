@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'detalhaProduto.dart';
+import 'constants.dart';
+
 
 class Doacao extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _DoacaoState extends State<Doacao> {
         appBar: AppBar(
           title: Text("Doações"),
           centerTitle: true,
-          backgroundColor: Colors.teal[900],
+          backgroundColor: APP_BAR_COLOR,
         ),
         body: Container(
             padding: EdgeInsets.all(16.0),

@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'constants.dart';
+
 
 Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
-      await client.get('http://jsonplaceholder.typicode.com/photos');
+      await client.get('http://192.168.15.8/api/produto/read.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parsePhotos, response.body);
@@ -20,21 +22,21 @@ List<Photo> parsePhotos(String responseBody) {
 }
 
 class Photo {
-  final int albumId;
-  final int id;
-  final String title;
-  final String url;
-  final String thumbnailUrl;
+  final String id_produto;
+  final String fk_id_usuario;
+  final String nome_produto;
+  final String descricao_produto;
+  final String imagem;
 
-  Photo({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
+  Photo({this.id_produto, this.fk_id_usuario, this.nome_produto, this.descricao_produto, this.imagem});
 
   factory Photo.fromJson(Map<String, dynamic> json) {
     return Photo(
-      albumId: json['albumId'] as int,
-      id: json['id'] as int,
-      title: json['title'] as String,
-      url: json['url'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
+      id_produto: json['id_produto'] as String,
+      fk_id_usuario: json['fk_id_usuario'] as String,
+      nome_produto: json['nome_produto'] as String,
+      descricao_produto: json['descricao_produto'] as String,
+      imagem: json['imagem'] as String,
     );
   }
 }
@@ -64,7 +66,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.teal[900],
+        backgroundColor: APP_BAR_COLOR,
         title: Text(title),
       ),
       body: Padding(
@@ -105,15 +107,15 @@ class PhotosList extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Card(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       ListTile(
                         leading: Image.network(
-                          photos[index].thumbnailUrl,
-                          fit: BoxFit.fitWidth,
+                          'https://amgestoroutput.s3.amazonaws.com/jcmateriais/img_produtos/1005-08391925.jpg',
+                          fit: BoxFit.fitHeight,
                         ),
-                        title: Text(photos[index].title),
-                        subtitle: Text(photos[index].title),
+                        title: Text(photos[index].nome_produto),
+                        subtitle: Text(photos[index].descricao_produto),
                       ),
                       ButtonTheme.bar(
                         // make buttons use the appropriate styles for cards

@@ -6,7 +6,7 @@ import 'inicio.dart';
 import 'constants.dart';
 
 
-class Cadastro extends StatelessWidget {
+class CadastroProduto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -94,9 +94,7 @@ class TransfterDataWidget extends State {
         resizeToAvoidBottomPadding: true,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          
-          automaticallyImplyLeading: false,
-          title: Text('Cadastro de usuário'),
+          title: Text('Cadastro de produtos'),
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
         ),
@@ -116,8 +114,8 @@ class TransfterDataWidget extends State {
                         controller: nomeController,
                         autocorrect: true,
                         decoration: InputDecoration(
-                          hintText: 'Seu nome',
-                          labelText: 'Seu nome',
+                          hintText: 'Produto',
+                          labelText: 'Nome do produto',
                           border: OutlineInputBorder(),
                         ),
                       )),
@@ -128,9 +126,10 @@ class TransfterDataWidget extends State {
                         style: TextStyle(fontSize: 20, color: Colors.black),
                         controller: loginUsuarioController,
                         autocorrect: true,
+                        maxLines: null,
                         decoration: InputDecoration(
-                          hintText: 'Login',
-                          labelText: 'Login',
+                          hintText: 'Descrição',
+                          labelText: 'Detalhe seu produto',
                           border: OutlineInputBorder(),
                         ),
                       )),
@@ -142,51 +141,12 @@ class TransfterDataWidget extends State {
                         controller: emailController,
                         autocorrect: true,
                         decoration: InputDecoration(
-                          hintText: 'Seu e-mail',
-                          labelText: 'e-mail',
+                          hintText: 'Doação ou troca',
+                          labelText: 'será um campo combobox',
                           border: OutlineInputBorder(),
                         ),
                       )),
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: telefoneController,
-                        autocorrect: true,
-                        decoration: InputDecoration(
-                          hintText: 'Seu número de celular',
-                          labelText: 'Celular',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: cidadeController,
-                        autocorrect: true,
-                        decoration: InputDecoration(
-                          hintText: 'Cidade',
-                          labelText: 'Cidade',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: passwordController,
-                        autocorrect: true,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Senha',
-                          labelText: 'Senha',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
+                  Padding(padding: EdgeInsets.only(top: 50),),
                   RaisedButton(
                     onPressed: cadastrar,
                     shape: RoundedRectangleBorder(
@@ -205,7 +165,7 @@ class TransfterDataWidget extends State {
                             BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                         alignment: Alignment.center,
                         child: Text(
-                          "Cadastrar",
+                          "Cadastrar novo item",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),

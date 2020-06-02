@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'doacao.dart';
 import 'troca.dart';
 import 'perfil.dart';
-import 'fotos.dart';
+import 'produtos.dart';
 import 'login.dart';
+import 'cadastroProduto.dart';
 
 /// This Widget is the main application widget.
 class Inicio extends StatelessWidget {
@@ -56,7 +57,7 @@ Widget build(BuildContext context) {
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Doacao()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new CadastroProduto()),
           ),
         ),
         new Offstage(

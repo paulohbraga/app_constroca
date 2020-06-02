@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'constants.dart';
 import 'cadastro.dart';
 
 
@@ -100,7 +100,7 @@ Future userLogin() async{
 Widget build(BuildContext context) {
 return Scaffold(
   appBar: AppBar(
-        backgroundColor: Colors.teal[900],
+        backgroundColor: APP_BAR_COLOR,
         centerTitle: true,
         title: Text('Login do usuário'
         
@@ -112,16 +112,17 @@ return Scaffold(
       children: <Widget>[
 
         
-        Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.width / 2.8 ),),          
+        Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.width / 3.5),),          
 
         Container(
         width: 280,
         padding: EdgeInsets.all(10.0),
         child: TextField(
+            style: TextStyle(fontSize: 20, color: Colors.black),
             controller: emailController,
             autocorrect: true,
-            decoration: InputDecoration(hintText: 'Email',
-            labelText: 'e-mail',
+            decoration: InputDecoration(hintText: 'e-mail',
+            labelText: 'Digite seu e-mail',
             border: OutlineInputBorder(),
             ),
           )
@@ -131,6 +132,7 @@ return Scaffold(
         width: 280,
         padding: EdgeInsets.all(10.0),
         child: TextField(
+            style: TextStyle(fontSize: 20, color: Colors.black),
             controller: passwordController,
             autocorrect: true,
             obscureText: true,
