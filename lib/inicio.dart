@@ -1,3 +1,4 @@
+import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:flutter/material.dart';
 import 'doacao.dart';
@@ -69,6 +70,9 @@ Widget build(BuildContext context) {
       ],
     ),
     bottomNavigationBar: new BottomNavigationBar(
+        backgroundColor: APP_BAR_COLOR,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.lightBlueAccent,
         type: BottomNavigationBarType.fixed,
       currentIndex: index,
       onTap: (int index) { setState((){ this.index = index; }); },
