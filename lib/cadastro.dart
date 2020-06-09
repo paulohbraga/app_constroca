@@ -10,7 +10,10 @@ class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: TransfterData());
+      debugShowCheckedModeBanner: false,
+      home:  TransfterData());
+      
+      
   }
 }
 
@@ -22,6 +25,7 @@ class TransfterDataWidget extends State {
   // Getting value from TextField widget.
   final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
+  final cpfController = TextEditingController();
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
@@ -39,19 +43,21 @@ class TransfterDataWidget extends State {
     // Getting value from Controller
     String nome = nomeController.text;
     String login_usuario = loginUsuarioController.text;
+    String cpf_usuario = cpfController.text;
     String email = emailController.text;
     String telefone = telefoneController.text;
     String cidade = cidadeController.text;
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.8/api/usuario/create.php';
+    var url = 'http://192.168.15.4/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
       'nome': nome,
       'login_usuario': login_usuario,
       'email': email,
+      'cpf': cpf_usuario,
       'telefone': telefone,
       'cidade': cidade,
       'password': password
@@ -75,6 +81,7 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          
           title: new Text(message),
           actions: <Widget>[
             FlatButton(
@@ -91,18 +98,16 @@ class TransfterDataWidget extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: true,
-        resizeToAvoidBottomInset: true,
+      
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          
-          automaticallyImplyLeading: false,
           title: Text('Cadastro de usuário'),
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
         ),
         body: SingleChildScrollView(
-            reverse: true,
-            child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height + 200),
               child: Column(
                 children: <Widget>[
                   Divider(
@@ -112,7 +117,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: nomeController,
                         autocorrect: true,
                         decoration: InputDecoration(
@@ -125,7 +130,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: loginUsuarioController,
                         autocorrect: true,
                         decoration: InputDecoration(
@@ -138,7 +143,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: emailController,
                         autocorrect: true,
                         decoration: InputDecoration(
@@ -147,11 +152,24 @@ class TransfterDataWidget extends State {
                           border: OutlineInputBorder(),
                         ),
                       )),
+                      Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        controller: cpfController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Digite o CPF',
+                          labelText: 'CPF',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
                   Container(
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: telefoneController,
                         autocorrect: true,
                         decoration: InputDecoration(
@@ -164,7 +182,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: cidadeController,
                         autocorrect: true,
                         decoration: InputDecoration(
@@ -177,7 +195,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: passwordController,
                         autocorrect: true,
                         obscureText: true,
@@ -217,11 +235,14 @@ class TransfterDataWidget extends State {
                       child: Container(
                           margin: EdgeInsets.only(bottom: 30, top: 10),
                           child: CircularProgressIndicator())),
-                  Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom)),
+                  
                 ],
+
               ),
-            )));
+            ),
+              
+
+                              ),
+            );
   }
 }

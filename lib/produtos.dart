@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'constants.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.8/api/produto/read.php');
+  final response = await client.get('http://192.168.15.4/api/produto/read.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
