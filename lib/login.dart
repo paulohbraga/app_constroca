@@ -1,8 +1,10 @@
+import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'constants.dart';
 import 'cadastro.dart';
+import 'inicio.dart';
 
 class Logar extends StatelessWidget {
   @override
@@ -165,7 +167,7 @@ class LoginUserState extends State {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Cadastro())),
+                                builder: (context) => Perfil())),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),

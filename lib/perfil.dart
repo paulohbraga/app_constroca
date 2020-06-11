@@ -133,7 +133,7 @@ class TransfterDataWidget extends State {
                         RaisedButton(
                           color: Colors.orange,
                           child: Text("Cadastrar"),
-                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro())),
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro())), // edit 10-06 - can cause error
                         ),
 
                         RaisedButton(

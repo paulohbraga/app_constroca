@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'inicio.dart';
 import 'constants.dart';
+import 'package:cpfcnpj/cpfcnpj.dart';
+
+import 'login.dart';
 
 
 class Cadastro extends StatelessWidget {
@@ -23,6 +26,7 @@ class TransfterData extends StatefulWidget {
 
 class TransfterDataWidget extends State {
   // Getting value from TextField widget.
+  String _valid_cpf = "";
   final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
   final cpfController = TextEditingController();
@@ -87,7 +91,7 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Perfil())),
+                  context, MaterialPageRoute(builder: (context) => Logar())), // edit 10-06 - can cause error
             ),
           ],
         );
@@ -148,7 +152,7 @@ class TransfterDataWidget extends State {
                         autocorrect: true,
                         decoration: InputDecoration(
                           hintText: 'Seu e-mail',
-                          labelText: 'e-mail',
+                          labelText: "e-mail",
                           border: OutlineInputBorder(),
                         ),
                       )),
@@ -156,6 +160,25 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
+                        onChanged: (cpf_usuario){
+
+                          if(cpf_usuario == ""){
+                            setState(() {
+                              _valid_cpf = "Digite o CPF";
+                            });
+                          }else{
+
+                            if (CPF.isValid(cpf_usuario)){
+                              setState(() {
+                                _valid_cpf = "CPF válido";
+                              });
+                            }else{
+                              setState(() {
+                                _valid_cpf = "CPF inválido";
+                              });
+                            }
+                          }
+                        } ,
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: cpfController,
                         autocorrect: true,
@@ -165,6 +188,7 @@ class TransfterDataWidget extends State {
                           border: OutlineInputBorder(),
                         ),
                       )),
+                      Text(_valid_cpf),
                   Container(
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
@@ -206,6 +230,7 @@ class TransfterDataWidget extends State {
                         ),
                       )),
                   RaisedButton(
+                    
                     onPressed: cadastrar,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
