@@ -1,10 +1,8 @@
-import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'constants.dart';
 import 'cadastro.dart';
-import 'inicio.dart';
 
 class Logar extends StatelessWidget {
   @override
@@ -29,7 +27,7 @@ class LoginUserState extends State {
   final passwordController = TextEditingController();
 
   Future userLogin() async {
-    // Showing CircularProgressIndicator.
+    // Showing CircularProgressIrndicator.
     setState(() {
       visible = true;
     });
@@ -39,7 +37,7 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.8/api/login/login.php';
+    var url = 'http://192.168.15.4/api/login/login.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -51,7 +49,7 @@ class LoginUserState extends State {
     var message = jsonDecode(response.body);
 
     // If the Response Message is Matched.
-    if (message == 'OK') {
+    if (message == 'Usuario existe') {
       // Hiding the CircularProgressIndicator.
       setState(() {
         visible = false;
@@ -167,7 +165,7 @@ class LoginUserState extends State {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Perfil())),
+                                builder: (context) => Cadastro())),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),

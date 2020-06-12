@@ -1,9 +1,9 @@
-import 'package:app_constroca/perfil.dart';
+import 'package:app_constroca/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'inicio.dart';
 import 'constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class CadastroProduto extends StatelessWidget {
@@ -12,13 +12,17 @@ class CadastroProduto extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false, home: TransfterData());
   }
+
+
 }
 
 class TransfterData extends StatefulWidget {
   TransfterDataWidget createState() => TransfterDataWidget();
+
 }
 
 class TransfterDataWidget extends State {
+
   // Getting value from TextField widget.
   final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
@@ -26,9 +30,11 @@ class TransfterDataWidget extends State {
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
   final passwordController = TextEditingController();
+  int contador;
 
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
+
 
   Future cadastrar() async {
     // Showing CircularProgressIndicator using State.
@@ -80,11 +86,12 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Perfil())),
+                  context, MaterialPageRoute(builder: (context) => Logar())),
             ),
           ],
         );
       },
+      
     );
   }
 
@@ -147,6 +154,7 @@ class TransfterDataWidget extends State {
                           border: OutlineInputBorder(),
                         ),
                       )),
+     
                   Padding(padding: EdgeInsets.only(top: 50),),
                   RaisedButton(
                     onPressed: cadastrar,

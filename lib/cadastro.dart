@@ -1,10 +1,9 @@
-import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'inicio.dart';
 import 'constants.dart';
 import 'package:cpfcnpj/cpfcnpj.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 import 'login.dart';
 
@@ -29,7 +28,7 @@ class TransfterDataWidget extends State {
   String _valid_cpf = "";
   final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
-  final cpfController = TextEditingController();
+  var cpfController = MaskedTextController(mask: '000.000.000-00');
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
