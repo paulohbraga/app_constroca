@@ -24,11 +24,18 @@ class TransfterData extends StatefulWidget {
 }
 
 class TransfterDataWidget extends State {
+
+
+    @override
+  void dispose() {
+    this.dispose();
+    super.dispose();
+  }
   // Getting value from TextField widget.
   String _valid_cpf = "";
   final nomeController = TextEditingController();
   final loginUsuarioController = TextEditingController();
-  var cpfController = MaskedTextController(mask: '000.000.000-00');
+  final cpfController =   MaskedTextController(mask: '000.000.000-00');
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
@@ -36,6 +43,7 @@ class TransfterDataWidget extends State {
 
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
+  bool _validate = false;
 
   Future cadastrar() async {
     // Showing CircularProgressIndicator using State.
@@ -120,6 +128,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
+                        
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: nomeController,
                         autocorrect: true,
@@ -181,6 +190,7 @@ class TransfterDataWidget extends State {
                         style: TextStyle(fontSize: 16, color: Colors.black),
                         controller: cpfController,
                         autocorrect: true,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           hintText: 'Digite o CPF',
                           labelText: 'CPF',

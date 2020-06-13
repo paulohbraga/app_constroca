@@ -26,13 +26,14 @@ class _SplashState extends State<Splash> {
       debugShowCheckedModeBanner: false,
       home: Container(
       
-        color: Colors.teal[900],
+        color: Colors.blue[900],
 
               child: FlareActor(
-                'assets/logo.flr',
+                'assets/logo2.flr',
                 animation: 'carro',
                 sizeFromArtboard: true,
                 alignment: Alignment.centerRight,
+                fit: BoxFit.cover,
               ),
           
       ),
