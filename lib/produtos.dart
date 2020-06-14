@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'constants.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.4/api/produto/read.php');
+  final response = await client.get('http://192.168.15.2/api/produto/read.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -115,8 +115,8 @@ class ProdutosList extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         leading: Image.network(
-                          'https://amgestoroutput.s3.amazonaws.com/jcmateriais/img_produtos/1005-08391925.jpg',
-                          fit: BoxFit.fitHeight,
+                          'http://192.168.15.2/api/produto/' + produtos[index].imagem + '',
+                          fit: BoxFit.fill,
                         ),
                         title: Text(produtos[index].nome_produto,
                             style: TextStyle(fontSize: 25)),

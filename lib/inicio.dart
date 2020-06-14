@@ -1,3 +1,4 @@
+import 'package:app_constroca/camera.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +93,7 @@ Widget build(BuildContext context) {
           icon: new Icon(Icons.face),
           title: new Text("Seu perfil", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
+        
       ],
     ),
   );

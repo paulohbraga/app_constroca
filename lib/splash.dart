@@ -13,6 +13,8 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
+    
+
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.pushReplacement(
@@ -26,10 +28,14 @@ class _SplashState extends State<Splash> {
       debugShowCheckedModeBanner: false,
       home: Container(
       
-        color: Colors.blue[900],
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.blue, Colors.deepOrangeAccent])),
 
               child: FlareActor(
-                'assets/logo2.flr',
+                'assets/logo3.flr',
                 animation: 'carro',
                 sizeFromArtboard: true,
                 alignment: Alignment.centerRight,

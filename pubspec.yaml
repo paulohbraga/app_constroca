@@ -23,6 +23,7 @@ dependencies:
   cpfcnpj: ^1.0.3
   shared_preferences: 0.5.0
   flutter_masked_text: ^0.8.0
+  image_picker: ^0.4.10
   flutter:
     sdk: flutter
 
@@ -52,6 +53,7 @@ flutter:
     - imgs/app_icon.png
     - assets/logo.flr
     - assets/logo2.flr
+    - assets/logo3.flr
     - imgs/1.jpg
     - imgs/2.jpg
     - imgs/3.jpg
