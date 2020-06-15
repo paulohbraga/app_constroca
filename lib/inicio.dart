@@ -2,6 +2,7 @@ import 'package:app_constroca/camera.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'doacao.dart';
 import 'produtos.dart';
 import 'login.dart';
@@ -27,11 +28,44 @@ class MyStatefulWidget extends StatefulWidget {
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+
+  
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
+      @override
+    void initState() {
+        // This is the proper place to make the async calls
+        // This way they only get called once
+
+        // During development, if you change this code,
+        // you will need to do a full restart instead of just a hot reload
+        
+        // You can't use async/await here,
+        // We can't mark this method as async because of the @override
+        main().then((result) {
+            // If we need to rebuild the widget with the resulting data,
+            // make sure to use `setState`
+            setState(() {
+                
+            });
+            
+        });
+    }
+
+    Future<void> main() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var email = prefs.getString('email');
+      String result = (prefs.getString("email")) ?? "";
+      email_logado = result;
+      print(email_logado);
+      //runApp(MaterialApp(home: email == null ? Login() : Home()));
+    }
   int index = 0;
+  var email_logado; 
+
 
 @override
 Widget build(BuildContext context) {
@@ -53,18 +87,12 @@ Widget build(BuildContext context) {
             child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Doacao()),
           ),
         ),
+        
         new Offstage(
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new CadastroProduto()),
-          ),
-        ),
-        new Offstage(
-          offstage: index != 3,
-          child: new TickerMode(
-            enabled: index == 3,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Logar()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: Logar()),
           ),
         ),
       ],
@@ -85,10 +113,7 @@ Widget build(BuildContext context) {
           icon: new Icon(Icons.vertical_align_top),
           title: new Text("Doações", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
-        new BottomNavigationBarItem(
-          icon: new Icon(Icons.add),
-          title: new Text("Novo item", style: TextStyle(fontWeight: FontWeight.bold),),  
-        ),
+        
         new BottomNavigationBarItem(
           icon: new Icon(Icons.face),
           title: new Text("Seu perfil", style: TextStyle(fontWeight: FontWeight.bold),),

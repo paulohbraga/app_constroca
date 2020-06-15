@@ -1,8 +1,12 @@
+import 'package:app_constroca/cadastroProduto.dart';
+import 'package:app_constroca/inicio.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'cadastro.dart';
+import 'package:requests/requests.dart';
 
 class Logar extends StatelessWidget {
   @override
@@ -39,14 +43,19 @@ class LoginUserState extends State {
     // SERVER LOGIN API URL
     var url = 'http://192.168.15.4/api/login/login.php';
 
+    var url_id_usuario = 'http://192.168.15.4/api/usuario/getidusuario.php';
+
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
-
+    
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
+    var response_id = await http.post(url_id_usuario, body: json.encode(data));
+
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
+    var id = jsonDecode(response_id.body);
 
     // If the Response Message is Matched.
     if (message == 'Usuario existe') {
@@ -55,12 +64,15 @@ class LoginUserState extends State {
         visible = false;
       });
 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', 'logado');
+
       // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  ProfileScreen(email: emailController.text)));
+                  CadastroProduto( id: id)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.

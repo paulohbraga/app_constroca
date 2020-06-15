@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'constants.dart';
 import 'package:cpfcnpj/cpfcnpj.dart';
@@ -55,7 +56,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.2/api/usuario/create.php';
+    var url = 'http://192.168.15.4/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
@@ -124,6 +125,7 @@ class TransfterDataWidget extends State {
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(fontSize: 16, color: Colors.black),
                     controller: nomeController,
                     autocorrect: true,
@@ -195,6 +197,7 @@ class TransfterDataWidget extends State {
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
+                    keyboardType: TextInputType.number,
                     style: TextStyle(fontSize: 16, color: Colors.black),
                     controller: telefoneController,
                     autocorrect: true,
@@ -208,6 +211,7 @@ class TransfterDataWidget extends State {
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
+                    textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(fontSize: 16, color: Colors.black),
                     controller: cidadeController,
                     autocorrect: true,

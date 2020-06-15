@@ -1,4 +1,7 @@
+import 'package:app_constroca/produtos.dart';
 import 'package:flutter/material.dart';
+
+import 'constants.dart';
 
 
 class DetalhaProduto extends StatelessWidget {
@@ -34,6 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: APP_BAR_COLOR,
+        title: Text("Informações do produto"),
+        leading: IconButton(
+    icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyApp())),
+  ), 
+      ),
       //The whole application area
       body:SafeArea(
           child: Column(

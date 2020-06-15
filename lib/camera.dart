@@ -34,7 +34,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
     String tipo = tipoController.text;
 
     // API URL
-    var url = 'http://192.168.15.2/api/produto/create.php';
+    var url = 'http://192.168.15.4/api/produto/create.php';
 
     // Store all data with Param Name.
     var data = {
@@ -74,7 +74,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
     );
   }
 
-  static final String uploadEndPoint = 'http://192.168.15.2/api/produto/image_save.php';
+  static final String uploadEndPoint = 'http://192.168.15.4/api/produto/image_save.php';
 
   Future<File> file;
   String status = '';

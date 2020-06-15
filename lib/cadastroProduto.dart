@@ -1,28 +1,57 @@
 import 'dart:io';
 
+import 'package:app_constroca/inicio.dart';
 import 'package:app_constroca/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'constants.dart';
 
+class User {
+  const User(this.name, this.tipo);
+
+  final String name;
+  final String tipo;
+}
+
 class CadastroProduto extends StatelessWidget {
+    
+    final String id;
+
+    CadastroProduto({Key key, @required this.id}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: TransfterData());
+        debugShowCheckedModeBanner: false, home: TransfterData(id: id));
   }
 }
 
 class TransfterData extends StatefulWidget {
-  TransfterDataWidget createState() => TransfterDataWidget();
+
+  TransfterDataWidget createState() => TransfterDataWidget(id: id);
+  
+  var id;
+
+  TransfterData({Key key, @required this.id}) : super(key: key);
+  
 }
 
 class TransfterDataWidget extends State {
+
+  String id;
+
+  TransfterDataWidget({Key key, @required this.id});
+
+  User selectedUser;
+  List<User> users = <User>[const User('Troca','T'), const User('Doação','D')];
+  
   // Getting value from TextField widget.
+  String tipoProduto = '';
   final nomeController = TextEditingController();
-  final loginUsuarioController = TextEditingController();
+  final descricaoController = TextEditingController();
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
@@ -33,7 +62,7 @@ class TransfterDataWidget extends State {
   bool visible = false;
 
   static final String uploadEndPoint =
-      'http://192.168.15.2/api/produto/image_save.php';
+      'http://192.168.15.4/api/produto/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -42,6 +71,7 @@ class TransfterDataWidget extends State {
   String errMessage = 'Erro ao carregar imagem';
 
   chooseImage() {
+    print(id);
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
     });
@@ -124,23 +154,31 @@ class TransfterDataWidget extends State {
       visible = true;
     });
 
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var email_logado = prefs.getString('email');
+    print(email_logado);
+
     // Getting value from Controller
     String nome = nomeController.text;
-    String login_usuario = loginUsuarioController.text;
-    String email = emailController.text;
+    String tipo = tipoProduto;
+    String descricao = descricaoController.text;
     String telefone = telefoneController.text;
     String cidade = cidadeController.text;
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.2/api/produto/create.php';
-
+    var url = 'http://192.168.15.4/api/produto/create.php';
     // Store all data with Param Name.
     var data = {
       'nome_produto': nome,
-      'imagem': nome_imagem
+      'descricao_produto': descricao,
+      'imagem': nome_imagem,
+      'tipo': tipo,
+      'fk_id_usuario': id
 
     };
+
 
     // Starting Web Call with data.
     var response = await http.post(url, body: json.encode(data));
@@ -165,7 +203,10 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Logar())),
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  Inicio())),
             ),
           ],
         );
@@ -184,55 +225,13 @@ class TransfterDataWidget extends State {
           backgroundColor: APP_BAR_COLOR,
         ),
         body: SingleChildScrollView(
-            reverse: true,
-            child: Center(
+            child: ConstrainedBox(
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height + 200),
               child: Column(
                 children: <Widget>[
                   Divider(
                     color: null,
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: nomeController,
-                        autocorrect: true,
-                        decoration: InputDecoration(
-                          hintText: 'Produto',
-                          labelText: 'Nome do produto',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
-                  // Container(
-                  //     width: MediaQuery.of(context).size.width / 1.2,
-                  //     padding: EdgeInsets.all(10.0),
-                  //     child: TextField(
-                  //       style: TextStyle(fontSize: 20, color: Colors.black),
-                  //       controller: loginUsuarioController,
-                  //       autocorrect: true,
-                  //       maxLines: null,
-                  //       decoration: InputDecoration(
-                  //         hintText: 'Descrição',
-                  //         labelText: 'Detalhe seu produto',
-                  //         border: OutlineInputBorder(),
-                  //       ),
-                  //     )),
-                  // Container(
-                  //     width: MediaQuery.of(context).size.width / 1.2,
-                  //     padding: EdgeInsets.all(10.0),
-                  //     child: TextField(
-                  //       style: TextStyle(fontSize: 20, color: Colors.black),
-                  //       controller: emailController,
-                  //       autocorrect: true,
-                  //       decoration: InputDecoration(
-                  //         hintText: 'Doação ou troca',
-                  //         labelText: 'será um campo combobox',
-                  //         border: OutlineInputBorder(),
-                  //       ),
-                  //     )),
-                  Padding(
-                    padding: EdgeInsets.only(top: 50),
                   ),
                   OutlineButton(
                     onPressed: chooseImage,
@@ -261,10 +260,56 @@ class TransfterDataWidget extends State {
                       fontSize: 15.0,
                     ),
                   ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  RaisedButton(
+
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        controller: nomeController,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          hintText: 'Produto',
+                          labelText: 'Nome do produto',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                  Container(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      padding: EdgeInsets.all(10.0),
+                      child: TextField(
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                        controller: descricaoController,
+                        autocorrect: true,
+                        keyboardType: TextInputType.multiline,
+                        maxLength: 100,
+                        maxLines: null,
+                        decoration: InputDecoration(  
+                          labelText: 'Descrição do produto',
+                          border: OutlineInputBorder(),
+                        ),
+                      )),
+                      DropdownButton<User>(
+                        
+            hint: new Text("Troca ou doação?"),
+            value: selectedUser,
+            onChanged: (User newValue) {
+              setState(() {
+                
+                selectedUser = newValue;
+              tipoProduto = selectedUser.tipo;
+              });
+            },
+            items: users.map((User user) {
+              return new DropdownMenuItem<User>(
+                value: user,
+                child: new Text(
+                  user.name,
+                  style: new TextStyle(color: Colors.black),
+                ),
+              );
+            }).toList()),
+            RaisedButton(
                     onPressed: cadastrar,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80.0)),
@@ -289,14 +334,41 @@ class TransfterDataWidget extends State {
                       ),
                     ),
                   ),
+                  // Container(
+                  //     width: MediaQuery.of(context).size.width / 1.2,
+                  //     padding: EdgeInsets.all(10.0),
+                  //     child: TextField(
+                  //       style: TextStyle(fontSize: 20, color: Colors.black),
+                  //       controller: loginUsuarioController,
+                  //       autocorrect: true,
+                  //       maxLines: null,
+                  //       decoration: InputDecoration(
+                  //         hintText: 'Descrição',
+                  //         labelText: 'Detalhe seu produto',
+                  //         border: OutlineInputBorder(),
+                  //       ),
+                  //     )),
+                  // Container(
+                  //     width: MediaQuery.of(context).size.width / 1.2,
+                  //     padding: EdgeInsets.all(10.0),
+                  //     child: TextField(
+                  //       style: TextStyle(fontSize: 20, color: Colors.black),
+                  //       controller: emailController,
+                  //       autocorrect: true,
+                  //       decoration: InputDecoration(
+                  //         hintText: 'Doação ou troca',
+                  //         labelText: 'será um campo combobox',
+                  //         border: OutlineInputBorder(),
+                  //       ),
+                  //     )),
+                  
+                  
                   Visibility(
                       visible: visible,
                       child: Container(
                           margin: EdgeInsets.only(bottom: 30, top: 10),
                           child: CircularProgressIndicator())),
-                  Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom)),
+                  
                 ],
               ),
             )));

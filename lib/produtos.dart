@@ -3,10 +3,16 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
+import 'detalhaProduto.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.2/api/produto/read.php');
+  final response = await client.get('http://192.168.15.4/api/produto/read.php');
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var email = prefs.getString('email');
+  //print(email);
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -60,7 +66,10 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final String title;
 
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({
+    Key key,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +101,13 @@ class ProdutosList extends StatelessWidget {
 
   ProdutosList({Key key, this.produtos}) : super(key: key);
 
+  Future<void> main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var email = prefs.getString('email');
+    print(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -104,40 +120,55 @@ class ProdutosList extends StatelessWidget {
                     image: DecorationImage(
                         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
                 constraints: BoxConstraints.expand(
-                  height: Theme.of(context).textTheme.display1.fontSize * 1.1 +
+                  height: Theme.of(context).textTheme.display1.fontSize * 3.9 +
                       250.0,
                 ),
                 alignment: Alignment.center,
                 child: Card(
-                  color: Color.fromARGB(220, 255, 255, 255),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      ListTile(
-                        leading: Image.network(
-                          'http://192.168.15.2/api/produto/' + produtos[index].imagem + '',
-                          fit: BoxFit.fill,
-                        ),
-                        title: Text(produtos[index].nome_produto,
-                            style: TextStyle(fontSize: 25)),
-                        subtitle: Text(
-                          produtos[index].descricao_produto,
-                          style: TextStyle(fontSize: 25),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ),
-                      ButtonTheme.bar(
-                        // make buttons use the appropriate styles for cards
-                        child: ButtonBar(
-                          children: <Widget>[
-                            FlatButton(
-                              child: const Text('Abrir'),
-                              onPressed: () {/* ... */},
+                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  color: Colors.grey[100],
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Image.network(
+                            'http://192.168.15.4/api/produto/imagens/' +
+                                produtos[index].imagem +
+                                '',
+                            height: 190,
+                            width: 400,
+                            fit: BoxFit.cover,
+                          ),
+                          Divider(),
+                          Center(
+                            child: Text(
+                              produtos[index].nome_produto,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.blue),
                             ),
-                          ],
-                        ),
-                      ),
-                    ],
+                          ),
+                          Divider(),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              produtos[index].descricao_produto,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          ButtonTheme.bar(
+                              child: ButtonBar(
+                            children: <Widget>[
+                              FlatButton(
+                                child: const Text('DETALHES'),
+                                onPressed: () {/* ... */},
+                              ),
+                            ],
+                          ))
+                        ]),
                   ),
                 )),
           ],
