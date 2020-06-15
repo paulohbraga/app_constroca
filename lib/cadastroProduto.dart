@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'constants.dart';
+import 'package:crypto/crypto.dart' as crypto;
 
 class User {
   const User(this.name, this.tipo);
@@ -93,8 +94,10 @@ class TransfterDataWidget extends State {
     }
     String fileName = tmpFile.path.split('/').last;
     nome_imagem = fileName;
+    var md5 = crypto.md5;
+    var digest = md5.convert(utf8.encode(fileName)).toString();
 
-    upload(fileName);
+    upload(digest);
   }
 
   upload(String fileName) {
@@ -282,7 +285,7 @@ class TransfterDataWidget extends State {
                         controller: descricaoController,
                         autocorrect: true,
                         keyboardType: TextInputType.multiline,
-                        maxLength: 100,
+                        maxLength: 200,
                         maxLines: null,
                         decoration: InputDecoration(  
                           labelText: 'Descrição do produto',

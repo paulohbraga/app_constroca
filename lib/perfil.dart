@@ -1,6 +1,5 @@
 import 'package:app_constroca/cadastroProduto.dart';
 import 'package:app_constroca/inicio.dart';
-import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -9,25 +8,26 @@ import 'constants.dart';
 import 'cadastro.dart';
 import 'package:requests/requests.dart';
 import 'appdata.dart';
-import 'perfil.dart';
 
-class Logar extends StatelessWidget {
+class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginUser(),
+      home: PerfilUser(),
     );
   }
 }
 
-class LoginUser extends StatefulWidget {
-  LoginUserState createState() => LoginUserState();
+class PerfilUser extends StatefulWidget {
+  PerfilUserState createState() => PerfilUserState();
 }
 
-class LoginUserState extends State {
+class PerfilUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
+
+  final appdata = AppData();
 
   // Getting value from TextField widget.
   final emailController = TextEditingController();
@@ -52,11 +52,12 @@ class LoginUserState extends State {
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
-    
+
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
     var response_id = await http.post(url_id_usuario, body: json.encode(data));
-    var response_img = await http.post(url_img_usuario, body: json.encode(data));
+    var response_img =
+        await http.post(url_img_usuario, body: json.encode(data));
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
@@ -76,12 +77,8 @@ class LoginUserState extends State {
       prefs.setString('id', id);
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  PerfilUser()));
-                  //CadastroProduto( id: id)));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => CadastroProduto(id: id)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -115,7 +112,7 @@ class LoginUserState extends State {
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
-            title: Text('Login do usuário')),
+            title: Text('Perfil')),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
             child: Center(
@@ -125,68 +122,17 @@ class LoginUserState extends State {
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.width / 3.5),
               ),
-              Container(
-                  width: 280,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                    controller: emailController,
-                    autocorrect: true,
-                    decoration: InputDecoration(
-                      hintText: 'e-mail',
-                      labelText: 'Digite seu e-mail',
-                      border: OutlineInputBorder(),
-                    ),
-                  )),
-              Container(
-                  width: 280,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                    controller: passwordController,
-                    autocorrect: true,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Senha',
-                      labelText: 'Senha',
-                      border: OutlineInputBorder(),
-                    ),
-                  )),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       RaisedButton(
-                        onPressed: userLogin,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Container(
-                            constraints:
-                                BoxConstraints(maxWidth: 80.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Login",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                      RaisedButton(
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Cadastro())),
+                                builder: (context) =>
+                                    CadastroProduto(id: appdata.id_usuario))),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),
@@ -200,10 +146,10 @@ class LoginUserState extends State {
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
                             constraints: BoxConstraints(
-                                maxWidth: 130.0, minHeight: 40.0),
+                                maxWidth: 180.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
-                              "Cadastrar",
+                              "Cadastrar novo produto",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white),
                             ),
@@ -211,7 +157,14 @@ class LoginUserState extends State {
                         ),
                       ),
                       RaisedButton(
-                        onPressed: () => null,
+                        onPressed: () => {
+                          appData.id_usuario = null,
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CadastroProduto(id: appdata.id_usuario))),
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),
@@ -228,7 +181,7 @@ class LoginUserState extends State {
                                 maxWidth: 140.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
-                              "Esqueci a senha",
+                              "Sair",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white),
                             ),

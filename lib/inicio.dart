@@ -1,16 +1,21 @@
+import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/camera.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
+import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'doacao.dart';
 import 'produtos.dart';
 import 'login.dart';
 import 'cadastroProduto.dart';
+import 'perfil.dart';
 
 /// This Widget is the main application widget.
 class Inicio extends StatelessWidget {
   static const String _title = '';
+
+  final appData = AppData();
   
 
   @override
@@ -28,6 +33,7 @@ class MyStatefulWidget extends StatefulWidget {
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  
 
   
 }
@@ -48,6 +54,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             // If we need to rebuild the widget with the resulting data,
             // make sure to use `setState`
             setState(() {
+
+              print(appData.id_usuario);
                 
             });
             
@@ -57,10 +65,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Future<void> main() async {
       WidgetsFlutterBinding.ensureInitialized();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var email = prefs.getString('email');
-      String result = (prefs.getString("email")) ?? "";
+      var email = prefs.getString('id');
+      String result = (prefs.getString("id")) ?? "";
       email_logado = result;
-      print(email_logado);
+      print(email_logado + "=================================");
       //runApp(MaterialApp(home: email == null ? Login() : Home()));
     }
   int index = 0;
@@ -84,7 +92,7 @@ Widget build(BuildContext context) {
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: new Doacao()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home:  new Doacao()),
           ),
         ),
         
@@ -92,7 +100,7 @@ Widget build(BuildContext context) {
           offstage: index != 2,
           child: new TickerMode(
             enabled: index == 2,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home: Logar()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home: appData.id_usuario == null ? Logar() : Perfil() ), // Agora deve ir para a pagina de perfil
           ),
         ),
       ],

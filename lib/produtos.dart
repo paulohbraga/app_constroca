@@ -4,15 +4,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'appdata.dart';
 import 'constants.dart';
 import 'detalhaProduto.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
   final response = await client.get('http://192.168.15.4/api/produto/read.php');
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var email = prefs.getString('email');
-  //print(email);
+  var email = prefs.getString('id');
+  print(email+"========================================");
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -31,13 +33,15 @@ class Produto {
   final String nome_produto;
   final String descricao_produto;
   final String imagem;
+  final String tipo;
 
   Produto(
       {this.id_produto,
       this.fk_id_usuario,
       this.nome_produto,
       this.descricao_produto,
-      this.imagem});
+      this.imagem,
+      this.tipo});
 
   factory Produto.fromJson(Map<String, dynamic> json) {
     return Produto(
@@ -46,11 +50,16 @@ class Produto {
       nome_produto: json['nome_produto'] as String,
       descricao_produto: json['descricao_produto'] as String,
       imagem: json['imagem'] as String,
+      tipo: json['tipo'] as String,
     );
   }
 }
 
 class MyApp extends StatelessWidget {
+
+
+  final appData = AppData();
+
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Troca';
@@ -58,7 +67,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appTitle,
-      home: MyHomePage(title: appTitle),
+      home: MyHomePage(),
     );
   }
 }
@@ -77,8 +86,21 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
-        title: Text(title),
-      ),
+        title: Text("Produtos"),
+         actions: <Widget>[
+                InkWell(
+                  onTap: () {
+                    print ('Click Profile Pic');
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    
+                    child: Image.network('http://192.168.15.4/api/produto/imagens/' +
+                                appData.avatar + ""),
+                  )
+
+                )
+         ]),
       body: Padding(
         child: FutureBuilder<List<Produto>>(
           future: fetchProdutos(http.Client()),
@@ -101,13 +123,6 @@ class ProdutosList extends StatelessWidget {
 
   ProdutosList({Key key, this.produtos}) : super(key: key);
 
-  Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var email = prefs.getString('email');
-    print(email);
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -120,7 +135,7 @@ class ProdutosList extends StatelessWidget {
                     image: DecorationImage(
                         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
                 constraints: BoxConstraints.expand(
-                  height: Theme.of(context).textTheme.display1.fontSize * 3.9 +
+                  height: Theme.of(context).textTheme.display1.fontSize * 4.9 +
                       250.0,
                 ),
                 alignment: Alignment.center,
@@ -155,13 +170,54 @@ class ProdutosList extends StatelessWidget {
                             padding: EdgeInsets.all(10),
                             child: Text(
                               produtos[index].descricao_produto,
+                              textAlign: TextAlign.justify,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold),
                             ),
                           ),
                           ButtonTheme.bar(
                               child: ButtonBar(
+                            alignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
+                              // Text(
+                              //   produtos[index].tipo == "D"
+                              //       ? "DOACAO"
+                              //       : "TROCA",
+                              //   style: TextStyle(color: Colors.black87),
+                              // ),
+                              Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Ink(
+                                  decoration: const ShapeDecoration(
+                                    shape: CircleBorder(),
+                                  ),
+                                  child: IconButton(
+                                    icon: Image.asset('assets/w.png',
+                                        width: 322, height: 322),
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      FlutterOpenWhatsapp.sendSingleMessage(
+                                          "5561998753273",
+                                          "Olá, tenho interesse no produto: " +
+                                              produtos[index].nome_produto +
+                                              ", vi o anúncio no App Constroca.");
+                                    },
+                                  )),
+                                  Text("Chat")
+                                ],
+                              ),
+                              
+                              // FlatButton(
+                              //   child: const Text('Mensagem'),
+                              //   onPressed: () {
+                              //     FlutterOpenWhatsapp.sendSingleMessage(
+                              //         "5561998753273",
+                              //         "Olá, tenho interesse no produto: " +
+                              //             produtos[index].nome_produto +
+                              //             ", vi o anúncio no App Constroca.");
+                              //   },
+                              // ),
                               FlatButton(
                                 child: const Text('DETALHES'),
                                 onPressed: () {/* ... */},

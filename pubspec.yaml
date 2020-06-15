@@ -24,6 +24,7 @@ dependencies:
   requests: ^1.0.0
   shared_preferences: ^0.4.3
   flutter_masked_text: ^0.8.0
+  flutter_open_whatsapp: 0.1.2
   image_picker: ^0.4.10
   flutter:
     sdk: flutter
@@ -55,6 +56,8 @@ flutter:
     - assets/logo.flr
     - assets/logo2.flr
     - assets/logo3.flr
+    - assets/w.png
+    - assets/avatar.png
     - imgs/1.jpg
     - imgs/2.jpg
     - imgs/3.jpg
