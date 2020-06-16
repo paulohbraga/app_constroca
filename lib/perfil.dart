@@ -1,12 +1,10 @@
 import 'package:app_constroca/cadastroProduto.dart';
-import 'package:app_constroca/inicio.dart';
+import 'package:app_constroca/produtos.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
-import 'cadastro.dart';
-import 'package:requests/requests.dart';
 import 'appdata.dart';
 
 class Perfil extends StatelessWidget {
@@ -27,7 +25,6 @@ class PerfilUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
 
-  final appdata = AppData();
 
   // Getting value from TextField widget.
   final emailController = TextEditingController();
@@ -118,6 +115,59 @@ class PerfilUserState extends State {
             child: Center(
           child: Column(
             children: <Widget>[
+              Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(padding: EdgeInsets.all(10),),
+                      InkWell(
+
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    
+                    child: Image.network('http://192.168.15.4/api/produto/imagens/' +
+                                appData.avatar + "",
+                                height: 100, width: 100,fit: BoxFit.cover,),
+                  )
+
+                ),
+                Padding(padding: EdgeInsets.all(20),
+                  child: Text("Nome: " + appData.nome_usuario , style: TextStyle( fontSize: 20 ),),
+                ),
+                
+                      
+                      
+                    ]),
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                constraints: BoxConstraints.expand(
+                  height: Theme.of(context).textTheme.display1.fontSize * 1 +
+                      100.0,
+                )),
+                Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      
+                Padding(padding: EdgeInsets.all(10),
+                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ),),
+                ),
+                
+                Padding(padding: EdgeInsets.all(10),
+                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20 ),),
+                ),
+                
+                      
+                      
+                    ]),
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                constraints: BoxConstraints.expand(
+                  height: Theme.of(context).textTheme.display1.fontSize * 1 +
+                      150.0,
+                )),
               Padding(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.width / 3.5),
@@ -127,12 +177,14 @@ class PerfilUserState extends State {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      
+                      
                       RaisedButton(
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    CadastroProduto(id: appdata.id_usuario))),
+                                    CadastroProduto(id: appData.id_usuario))),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),
@@ -159,11 +211,13 @@ class PerfilUserState extends State {
                       RaisedButton(
                         onPressed: () => {
                           appData.id_usuario = null,
+                          appData.cidade = null,
+                          appData.nome_usuario = null,
+                          appData.telefone = null,
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      CadastroProduto(id: appdata.id_usuario))),
+                                  builder: (context) => MyHomePage())),
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),

@@ -279,7 +279,7 @@ class TransfterDataWidget extends State {
                       )),
                   Container(
                       width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(25.0), // 
                       child: TextField(
                         style: TextStyle(fontSize: 20, color: Colors.black),
                         controller: descricaoController,
@@ -293,7 +293,8 @@ class TransfterDataWidget extends State {
                         ),
                       )),
                       DropdownButton<User>(
-                        
+            elevation: 8,
+            isExpanded: true,
             hint: new Text("Troca ou doação?"),
             value: selectedUser,
             onChanged: (User newValue) {
@@ -305,6 +306,7 @@ class TransfterDataWidget extends State {
             },
             items: users.map((User user) {
               return new DropdownMenuItem<User>(
+
                 value: user,
                 child: new Text(
                   user.name,
@@ -312,6 +314,7 @@ class TransfterDataWidget extends State {
                 ),
               );
             }).toList()),
+            Padding(padding: EdgeInsets.only(bottom: 45) ),
             RaisedButton(
                     onPressed: cadastrar,
                     shape: RoundedRectangleBorder(

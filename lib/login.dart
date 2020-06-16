@@ -49,6 +49,9 @@ class LoginUserState extends State {
 
     var url_id_usuario = 'http://192.168.15.4/api/usuario/getidusuario.php';
     var url_img_usuario = 'http://192.168.15.4/api/usuario/getimgusuario.php';
+    var url_nome_usuario = 'http://192.168.15.4/api/usuario/getnomeusuario.php';
+    var url_cidade = 'http://192.168.15.4/api/usuario/getcidadeusuario.php';
+    var url_telefone = 'http://192.168.15.4/api/usuario/gettelefoneusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -57,13 +60,23 @@ class LoginUserState extends State {
     var response = await http.post(url, body: json.encode(data));
     var response_id = await http.post(url_id_usuario, body: json.encode(data));
     var response_img = await http.post(url_img_usuario, body: json.encode(data));
+    var response_nome = await http.post(url_nome_usuario, body: json.encode(data));
+    var response_cidade = await http.post(url_cidade, body: json.encode(data));
+    var response_telefone = await http.post(url_telefone, body: json.encode(data));
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
     var id = jsonDecode(response_id.body);
     var avatar = jsonDecode(response_img.body);
+    var nome = jsonDecode(response_nome.body);
+    var cidade = jsonDecode(response_cidade.body);
+    var telefone = jsonDecode(response_telefone.body);
+    
     appData.id_usuario = id;
     appData.avatar = avatar;
+    appData.nome_usuario = nome;
+    appData.cidade = cidade;
+    appData.telefone = telefone;
 
     // If the Response Message is Matched.
     if (message == 'Usuario existe') {
