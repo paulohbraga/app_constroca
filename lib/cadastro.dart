@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,6 +8,7 @@ import 'constants.dart';
 import 'package:cpfcnpj/cpfcnpj.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'login.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Cadastro extends StatelessWidget {
   @override
@@ -40,6 +43,97 @@ class TransfterDataWidget extends State {
   bool visible = false;
   bool _validate = false;
 
+    String nome_imagem;
+  // Boolean variable for CircularProgressIndicator.
+
+  static final String uploadEndPoint =
+      'http://192.168.15.7/api/usuario/image_save.php';
+
+  Future<File> file;
+  String status = '';
+  String base64Image;
+  File tmpFile;
+  String errMessage = 'Erro ao carregar imagem';
+
+  chooseImage() {
+    setState(() {
+      file = ImagePicker.pickImage(source: ImageSource.gallery);
+    });
+    setStatus('');
+  }
+
+  setStatus(String message) {
+    setState(() {
+      status = message;
+    });
+  }
+
+  startUpload() {
+    
+    setStatus('Enviando imagem...');
+    if (null == tmpFile) {
+      setStatus(errMessage);
+      return;
+    }
+    String fileName = tmpFile.path.split('/').last;
+    nome_imagem = fileName;
+    var md5 = crypto.md5;
+    var digest = md5.convert(utf8.encode(fileName)).toString();
+
+    upload(digest);
+  }
+
+  upload(String fileName) {
+    nome_imagem = fileName;
+    http.post(uploadEndPoint, body: {
+      "image": base64Image,
+      "name": fileName,
+    }).then((result) {
+      setStatus(result.statusCode == 200 ? result.body : errMessage);
+    }).catchError((error) {
+      setStatus(error);
+    });
+  }
+
+  Widget showImage() {
+    return FutureBuilder<File>(
+      future: file,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            null != snapshot.data) {
+          tmpFile = snapshot.data;
+          base64Image = base64Encode(snapshot.data.readAsBytesSync());
+          return Container(
+              width: 150.0,
+              height: 150.0,
+              decoration: new BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  image: new DecorationImage(
+                    fit: BoxFit.cover,
+                    image: new FileImage(snapshot.data),
+                  )));
+
+          // return Flexible(
+          //   child: Image.file(
+          //     snapshot.data,
+          //     fit: BoxFit.fill,
+          //   ),
+          // );
+        } else if (null != snapshot.error) {
+          return const Text(
+            'Erro ao carregar image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'Não foi selecionada uma imagem',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
+  }
+
   Future cadastrar() async {
     // Showing CircularProgressIndicator using State.
     setState(() {
@@ -56,7 +150,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.4/api/usuario/create.php';
+    var url = 'http://192.168.15.7/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
@@ -66,7 +160,8 @@ class TransfterDataWidget extends State {
       'cpf': cpf_usuario,
       'telefone': telefone,
       'cidade': cidade,
-      'password': password
+      'password': password,
+      'avatar': nome_imagem
     };
 
     // Starting Web Call with data.
@@ -115,12 +210,42 @@ class TransfterDataWidget extends State {
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height + 200),
+              maxHeight: MediaQuery.of(context).size.height + 300),
           child: Column(
             children: <Widget>[
               Divider(
                 color: null,
               ),
+              Divider(
+                    color: null,
+                  ),
+                  OutlineButton(
+                    onPressed: chooseImage,
+                    child: Text('Selecionar imagem'),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  showImage(),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  OutlineButton(
+                    onPressed: startUpload,
+                    child: Text('Enviar'),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    status,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.blue[900],
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15.0,
+                    ),
+                  ),
               Container(
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),

@@ -12,8 +12,8 @@ import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'perfil.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.4/api/produto/read.php');
-  WidgetsFlutterBinding.ensureInitialized();
+  
+  final response = await client.get('http://192.168.15.7/api/produto/read.php');
  
 
   // Use the compute function to run parsePhotos in a separate isolate
@@ -87,6 +87,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
         title: Text("Produtos"),
@@ -100,8 +101,8 @@ class MyHomePage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     
-                    child: Image.network('http://192.168.15.4/api/produto/imagens/' +
-                                appData.avatar + ""),
+                    child: Image.network('http://192.168.15.7/api/usuario/imagens/' +
+                                appData.avatar + "", fit: BoxFit.cover),
                   )
 
                 ) : Divider(),
@@ -153,7 +154,7 @@ class ProdutosList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image.network(
-                            'http://192.168.15.4/api/produto/imagens/' +
+                            'http://192.168.15.7/api/produto/imagens/' +
                                 produtos[index].imagem +
                                 '',
                             height: 190,

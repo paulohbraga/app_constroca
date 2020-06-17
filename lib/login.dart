@@ -45,13 +45,13 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.4/api/login/login.php';
+    var url = 'http://192.168.15.7/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.4/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.4/api/usuario/getimgusuario.php';
-    var url_nome_usuario = 'http://192.168.15.4/api/usuario/getnomeusuario.php';
-    var url_cidade = 'http://192.168.15.4/api/usuario/getcidadeusuario.php';
-    var url_telefone = 'http://192.168.15.4/api/usuario/gettelefoneusuario.php';
+    var url_id_usuario = 'http://192.168.15.7/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.7/api/usuario/getimgusuario.php';
+    var url_nome_usuario = 'http://192.168.15.7/api/usuario/getnomeusuario.php';
+    var url_cidade = 'http://192.168.15.7/api/usuario/getcidadeusuario.php';
+    var url_telefone = 'http://192.168.15.7/api/usuario/gettelefoneusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};

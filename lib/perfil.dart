@@ -1,4 +1,5 @@
 import 'package:app_constroca/cadastroProduto.dart';
+import 'package:app_constroca/login.dart';
 import 'package:app_constroca/produtos.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'appdata.dart';
+import 'login.dart';
 
 class Perfil extends StatelessWidget {
   @override
@@ -42,10 +44,10 @@ class PerfilUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.4/api/login/login.php';
+    var url = 'http://192.168.15.7/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.4/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.4/api/usuario/getimgusuario.php';
+    var url_id_usuario = 'http://192.168.15.7/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.7/api/usuario/getimgusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -107,6 +109,7 @@ class PerfilUserState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
             title: Text('Perfil')),
@@ -125,7 +128,7 @@ class PerfilUserState extends State {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     
-                    child: Image.network('http://192.168.15.4/api/produto/imagens/' +
+                    child: Image.network('http://192.168.15.7/api/usuario/imagens/' +
                                 appData.avatar + "",
                                 height: 100, width: 100,fit: BoxFit.cover,),
                   )
@@ -217,7 +220,7 @@ class PerfilUserState extends State {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage())),
+                                  builder: (context) => Logar())),
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
