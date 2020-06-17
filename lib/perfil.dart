@@ -108,6 +108,7 @@ class PerfilUserState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor: APP_BAR_COLOR,
@@ -115,10 +116,16 @@ class PerfilUserState extends State {
             title: Text('Perfil')),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
+          
             child: Center(
+              
           child: Column(
+            
             children: <Widget>[
               Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("imgs/3.jpg"), fit: BoxFit.cover, )),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -135,7 +142,7 @@ class PerfilUserState extends State {
 
                 ),
                 Padding(padding: EdgeInsets.all(20),
-                  child: Text("Nome: " + appData.nome_usuario , style: TextStyle( fontSize: 20 ),),
+                  child: Text("Nome: " + appData.nome_usuario , style: TextStyle( fontSize: 25, color: Colors.black),),
                 ),
                 
                       

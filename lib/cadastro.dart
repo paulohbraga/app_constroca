@@ -107,7 +107,7 @@ class TransfterDataWidget extends State {
               width: 150.0,
               height: 150.0,
               decoration: new BoxDecoration(
-                  shape: BoxShape.rectangle,
+                  shape: BoxShape.circle,
                   image: new DecorationImage(
                     fit: BoxFit.cover,
                     image: new FileImage(snapshot.data),
@@ -203,6 +203,13 @@ class TransfterDataWidget extends State {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(
+    icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Logar())),
+  ),
         title: Text('Cadastro de usuário'),
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,

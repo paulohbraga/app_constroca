@@ -174,18 +174,18 @@ class LoginUserState extends State {
                         onPressed: userLogin,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
+                        padding: EdgeInsets.all(0.2),
                         child: Ink(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                                colors: [Colors.blue[900], Colors.blue[600]],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
                             constraints:
-                                BoxConstraints(maxWidth: 80.0, minHeight: 40.0),
+                                BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
                               "Login",
@@ -206,14 +206,14 @@ class LoginUserState extends State {
                         child: Ink(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                                colors: [Colors.blue[900], Colors.blue[600]],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
                             constraints: BoxConstraints(
-                                maxWidth: 130.0, minHeight: 40.0),
+                                maxWidth: 100.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
                               "Cadastrar",
@@ -231,7 +231,7 @@ class LoginUserState extends State {
                         child: Ink(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                                colors: [Colors.blue[900], Colors.blue[600]],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),

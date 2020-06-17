@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:app_constroca/inicio.dart';
 import 'package:app_constroca/login.dart';
+import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -121,8 +122,8 @@ class TransfterDataWidget extends State {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
-              width: 150.0,
-              height: 150.0,
+              width: MediaQuery.of(context).size.width -10,
+              height: 200.0,
               decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
                   image: new DecorationImage(
@@ -223,6 +224,13 @@ class TransfterDataWidget extends State {
         resizeToAvoidBottomPadding: true,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          leading: IconButton(
+    icon: Icon(Icons.arrow_back, color: Colors.white),
+    onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PerfilUser())),
+  ),
           title: Text('Cadastro de produtos'),
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
@@ -294,7 +302,6 @@ class TransfterDataWidget extends State {
                       )),
                       DropdownButton<User>(
             elevation: 8,
-            isExpanded: true,
             hint: new Text("Troca ou doação?"),
             value: selectedUser,
             onChanged: (User newValue) {

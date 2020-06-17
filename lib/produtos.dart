@@ -99,10 +99,10 @@ class MyHomePage extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => PerfilUser())),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(50),
                     
                     child: Image.network('http://192.168.15.7/api/usuario/imagens/' +
-                                appData.avatar + "", fit: BoxFit.cover),
+                                appData.avatar + "", ),
                   )
 
                 ) : Divider(),
@@ -139,7 +139,7 @@ class ProdutosList extends StatelessWidget {
             Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                        image: AssetImage("imgs/1.jpg"), fit: BoxFit.cover)),
                 constraints: BoxConstraints.expand(
                   height: Theme.of(context).textTheme.display1.fontSize * 4.9 +
                       250.0,
