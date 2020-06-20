@@ -73,11 +73,11 @@ class PerfilUserState extends State {
       });
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('id', id);
+      prefs.setString('id', appData.id_usuario);
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => CadastroProduto(id: id)));
+          MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.

@@ -277,6 +277,7 @@ class TransfterDataWidget extends State {
                       width: MediaQuery.of(context).size.width / 1.2,
                       padding: EdgeInsets.all(10.0),
                       child: TextField(
+                        onTap: startUpload(),
                         style: TextStyle(fontSize: 20, color: Colors.black),
                         controller: nomeController,
                         autocorrect: true,
