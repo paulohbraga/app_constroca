@@ -1,14 +1,10 @@
-import 'package:app_constroca/cadastroProduto.dart';
-import 'package:app_constroca/inicio.dart';
 import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
-import 'cadastro.dart';
 import 'cadastro2.dart';
-import 'package:requests/requests.dart';
 import 'appdata.dart';
 import 'perfil.dart';
 
@@ -27,6 +23,10 @@ class LoginUser extends StatefulWidget {
 }
 
 class LoginUserState extends State {
+
+
+
+  
   // For CircularProgressIndicator.
   bool visible = false;
 

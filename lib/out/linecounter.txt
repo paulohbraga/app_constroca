@@ -1,0 +1,66 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-06-19 23:44:26
+count workspace : /Users/paulobraga/Dropbox/TADS/Matérias/3º Semestre 1-2020/PIDI - Projeto Integrador/Aplicativo Constroca/Constroca/app_constroca/lib
+total files : 16
+total code lines : 2843
+total comment lines : 231
+total blank lines : 346
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |          .dart|           2843|            231|            346| 1.0e+2|
+   -------------------------------------------------------------------------
+appdata.dart, code is 13, comment is 0, blank is 3.
+cadastro.dart, code is 367, comment is 18, blank is 25.
+cadastro2.dart, code is 374, comment is 20, blank is 40.
+cadastroProduto.dart, code is 303, comment is 44, blank is 45.
+camera.dart, code is 248, comment is 14, blank is 22.
+constants.dart, code is 3, comment is 0, blank is 2.
+detalhaProduto.dart, code is 227, comment is 16, blank is 44.
+doacao.dart, code is 275, comment is 31, blank is 23.
+getUsers.dart, code is 57, comment is 0, blank is 14.
+inicio.dart, code is 101, comment is 12, blank is 23.
+login.dart, code is 264, comment is 18, blank is 21.
+main.dart, code is 17, comment is 0, blank is 4.
+models/Usuarios.dart, code is 36, comment is 3, blank is 7.
+perfil.dart, code is 244, comment is 23, blank is 39.
+produtos.dart, code is 275, comment is 32, blank is 25.
+splash.dart, code is 39, comment is 0, blank is 9.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-06-19 23:49:32
+count workspace : /Users/paulobraga/Dropbox/TADS/Matérias/3º Semestre 1-2020/PIDI - Projeto Integrador/Aplicativo Constroca/Constroca/app_constroca/lib
+total files : 16
+total code lines : 2829
+total comment lines : 231
+total blank lines : 345
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |          .dart|           2829|            231|            345| 1.0e+2|
+   -------------------------------------------------------------------------
+appdata.dart, code is 13, comment is 0, blank is 3.
+cadastro.dart, code is 367, comment is 18, blank is 25.
+cadastro2.dart, code is 372, comment is 20, blank is 40.
+cadastroProduto.dart, code is 302, comment is 44, blank is 44.
+camera.dart, code is 248, comment is 14, blank is 22.
+constants.dart, code is 3, comment is 0, blank is 2.
+detalhaProduto.dart, code is 227, comment is 16, blank is 44.
+doacao.dart, code is 273, comment is 31, blank is 23.
+getUsers.dart, code is 57, comment is 0, blank is 14.
+inicio.dart, code is 99, comment is 12, blank is 23.
+login.dart, code is 260, comment is 18, blank is 21.
+main.dart, code is 17, comment is 0, blank is 4.
+models/Usuarios.dart, code is 36, comment is 3, blank is 7.
+perfil.dart, code is 243, comment is 23, blank is 39.
+produtos.dart, code is 273, comment is 32, blank is 25.
+splash.dart, code is 39, comment is 0, blank is 9.
+===============================================================================

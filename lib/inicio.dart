@@ -1,5 +1,4 @@
 import 'package:app_constroca/appdata.dart';
-import 'package:app_constroca/camera.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:app_constroca/perfil.dart';
@@ -8,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'doacao.dart';
 import 'produtos.dart';
 import 'login.dart';
-import 'cadastroProduto.dart';
 import 'perfil.dart';
 
 /// This Widget is the main application widget.

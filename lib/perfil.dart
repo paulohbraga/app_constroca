@@ -1,6 +1,5 @@
 import 'package:app_constroca/cadastroProduto.dart';
 import 'package:app_constroca/login.dart';
-import 'package:app_constroca/produtos.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;

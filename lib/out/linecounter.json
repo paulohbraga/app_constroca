@@ -1,0 +1,233 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/Users/paulobraga/Dropbox/TADS/Matérias/3º Semestre 1-2020/PIDI - Projeto Integrador/Aplicativo Constroca/Constroca/app_constroca/lib",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2020-06-19 23:44:26",
+            "filesum": 16,
+            "codesum": 2843,
+            "commentsum": 231,
+            "blanksum": 346,
+            "statistics": {
+                ".dart": {
+                    "code": 2843,
+                    "comment": 231,
+                    "blank": 346
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "appdata.dart"
+                },
+                {
+                    "blank": 25,
+                    "code": 367,
+                    "comment": 18,
+                    "filename": "cadastro.dart"
+                },
+                {
+                    "blank": 40,
+                    "code": 374,
+                    "comment": 20,
+                    "filename": "cadastro2.dart"
+                },
+                {
+                    "blank": 45,
+                    "code": 303,
+                    "comment": 44,
+                    "filename": "cadastroProduto.dart"
+                },
+                {
+                    "blank": 22,
+                    "code": 248,
+                    "comment": 14,
+                    "filename": "camera.dart"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "constants.dart"
+                },
+                {
+                    "blank": 44,
+                    "code": 227,
+                    "comment": 16,
+                    "filename": "detalhaProduto.dart"
+                },
+                {
+                    "blank": 23,
+                    "code": 275,
+                    "comment": 31,
+                    "filename": "doacao.dart"
+                },
+                {
+                    "blank": 14,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "getUsers.dart"
+                },
+                {
+                    "blank": 23,
+                    "code": 101,
+                    "comment": 12,
+                    "filename": "inicio.dart"
+                },
+                {
+                    "blank": 21,
+                    "code": 264,
+                    "comment": 18,
+                    "filename": "login.dart"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "main.dart"
+                },
+                {
+                    "blank": 7,
+                    "code": 36,
+                    "comment": 3,
+                    "filename": "models/Usuarios.dart"
+                },
+                {
+                    "blank": 39,
+                    "code": 244,
+                    "comment": 23,
+                    "filename": "perfil.dart"
+                },
+                {
+                    "blank": 25,
+                    "code": 275,
+                    "comment": 32,
+                    "filename": "produtos.dart"
+                },
+                {
+                    "blank": 9,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "splash.dart"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2020-06-19 23:49:32",
+            "filesum": 16,
+            "codesum": 2829,
+            "commentsum": 231,
+            "blanksum": 345,
+            "statistics": {
+                ".dart": {
+                    "code": 2829,
+                    "comment": 231,
+                    "blank": 345
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "appdata.dart"
+                },
+                {
+                    "blank": 25,
+                    "code": 367,
+                    "comment": 18,
+                    "filename": "cadastro.dart"
+                },
+                {
+                    "blank": 40,
+                    "code": 372,
+                    "comment": 20,
+                    "filename": "cadastro2.dart"
+                },
+                {
+                    "blank": 44,
+                    "code": 302,
+                    "comment": 44,
+                    "filename": "cadastroProduto.dart"
+                },
+                {
+                    "blank": 22,
+                    "code": 248,
+                    "comment": 14,
+                    "filename": "camera.dart"
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "constants.dart"
+                },
+                {
+                    "blank": 44,
+                    "code": 227,
+                    "comment": 16,
+                    "filename": "detalhaProduto.dart"
+                },
+                {
+                    "blank": 23,
+                    "code": 273,
+                    "comment": 31,
+                    "filename": "doacao.dart"
+                },
+                {
+                    "blank": 14,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "getUsers.dart"
+                },
+                {
+                    "blank": 23,
+                    "code": 99,
+                    "comment": 12,
+                    "filename": "inicio.dart"
+                },
+                {
+                    "blank": 21,
+                    "code": 260,
+                    "comment": 18,
+                    "filename": "login.dart"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "main.dart"
+                },
+                {
+                    "blank": 7,
+                    "code": 36,
+                    "comment": 3,
+                    "filename": "models/Usuarios.dart"
+                },
+                {
+                    "blank": 39,
+                    "code": 243,
+                    "comment": 23,
+                    "filename": "perfil.dart"
+                },
+                {
+                    "blank": 25,
+                    "code": 273,
+                    "comment": 32,
+                    "filename": "produtos.dart"
+                },
+                {
+                    "blank": 9,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "splash.dart"
+                }
+            ]
+        }
+    ]
+}
