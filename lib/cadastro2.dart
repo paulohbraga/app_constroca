@@ -37,7 +37,7 @@ class TransfterDataWidget extends State {
   bool visible = false;
   bool _validate = false;
   String nome, login_usuario, email, cpf, telefone, cidade, password;
-  String nome_imagem = "default.jpg";
+  String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
   static final String uploadEndPoint =
