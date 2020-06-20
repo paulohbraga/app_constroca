@@ -151,7 +151,7 @@ class ProdutosList extends StatelessWidget {
                         image: AssetImage("imgs/1.jpg"), fit: BoxFit.cover)),
                 constraints: BoxConstraints.expand(
                   height:
-                      Theme.of(context).textTheme.display1.fontSize * 5 + 350.0,
+                      Theme.of(context).textTheme.display1.fontSize * 5 + 400.0,
                 ),
                 alignment: Alignment.center,
                 child: Card(
@@ -187,12 +187,12 @@ class ProdutosList extends StatelessWidget {
                               produtos[index].descricao_produto,
                               textAlign: TextAlign.justify,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
+                                  fontSize: 16, fontWeight: FontWeight.normal),
                             ),
                           ),
                           ButtonTheme.bar(
                               child: ButtonBar(
-                            alignment: MainAxisAlignment.spaceBetween,
+                            alignment: MainAxisAlignment.center,
                             children: <Widget>[
                               // Text(
                               //   produtos[index].tipo == "D"
@@ -209,55 +209,55 @@ class ProdutosList extends StatelessWidget {
                               //         fontSize: 18, fontWeight: FontWeight.normal),
                               //   ),
                               // ),
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Ink(
-                                      decoration: const ShapeDecoration(
-                                        shape: CircleBorder(),
-                                      ),
-                                      child: IconButton(
-                                        icon: Image.asset('assets/m.png',
-                                            width: 322, height: 322),
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          FlutterOpenWhatsapp.sendSingleMessage(
-                                              "55" + produtos[index].telefone,
-                                              "Olá, " +
-                                                  produtos[index].nome_usuario +
-                                                  ", tenho interesse no produto: " +
-                                                  produtos[index].nome_produto +
-                                                  ", vi o seu anúncio no App Constroca.");
-                                        },
-                                      )),
-                                  Text("Email"),
-                                ],
-                              ),
+                              // Column(
+                              //   mainAxisSize: MainAxisSize.min,
+                              //   children: <Widget>[
+                              //     Ink(
+                              //         decoration: const ShapeDecoration(
+                              //           shape: CircleBorder(),
+                              //         ),
+                              //         child: IconButton(
+                              //           icon: Image.asset('assets/m.png',
+                              //               width: 322, height: 322),
+                              //           color: Colors.white,
+                              //           onPressed: () {
+                              //             FlutterOpenWhatsapp.sendSingleMessage(
+                              //                 "55" + produtos[index].telefone,
+                              //                 "Olá, " +
+                              //                     produtos[index].nome_usuario +
+                              //                     ", tenho interesse no produto: " +
+                              //                     produtos[index].nome_produto +
+                              //                     ", vi o seu anúncio no App Constroca.");
+                              //           },
+                              //         )),
+                              //     Text("Email"),
+                              //   ],
+                              // ),
 
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Ink(
-                                      decoration: const ShapeDecoration(
-                                        shape: CircleBorder(),
-                                      ),
-                                      child: IconButton(
-                                        icon: Image.asset('assets/c.png',
-                                            width: 322, height: 322),
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          FlutterOpenWhatsapp.sendSingleMessage(
-                                              "55" + produtos[index].telefone,
-                                              "Olá, " +
-                                                  produtos[index].nome_usuario +
-                                                  ", tenho interesse no produto: " +
-                                                  produtos[index].nome_produto +
-                                                  ", vi o seu anúncio no App Constroca.");
-                                        },
-                                      )),
-                                  Text("Ligar"),
-                                ],
-                              ),
+                              // Column(
+                              //   mainAxisSize: MainAxisSize.min,
+                              //   children: <Widget>[
+                              //     Ink(
+                              //         decoration: const ShapeDecoration(
+                              //           shape: CircleBorder(),
+                              //         ),
+                              //         child: IconButton(
+                              //           icon: Image.asset('assets/c.png',
+                              //               width: 322, height: 322),
+                              //           color: Colors.white,
+                              //           onPressed: () {
+                              //             FlutterOpenWhatsapp.sendSingleMessage(
+                              //                 "55" + produtos[index].telefone,
+                              //                 "Olá, " +
+                              //                     produtos[index].nome_usuario +
+                              //                     ", tenho interesse no produto: " +
+                              //                     produtos[index].nome_produto +
+                              //                     ", vi o seu anúncio no App Constroca.");
+                              //           },
+                              //         )),
+                              //     Text("Ligar"),
+                              //   ],
+                              // ),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
@@ -297,25 +297,22 @@ class ProdutosList extends StatelessWidget {
                             ],
                           )),
                           Padding(padding:EdgeInsets.all(15) ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              InkWell(
-                                  child: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.network(
-                                  'http://192.168.15.7/api/usuario/imagens/' +
-                                      produtos[index].avatar +
-                                      "",
-                                  height: 40,
-                                  width: 40,
-                                  fit: BoxFit.cover,
+                          ListTile(
+                                leading: CircleAvatar(backgroundImage: NetworkImage('http://192.168.15.7/api/usuario/imagens/' +
+                                      produtos[index].avatar) ),
+                                title: Text("Anunciante: " + produtos[index].nome_usuario),
+                                subtitle: Text("Telefone: " + produtos[index].telefone),
+                                trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    IconButton(icon: Icon(Icons.person_add), onPressed: null)
+                                  ]
                                 ),
-                              )),
-                              Padding(padding: EdgeInsets.only(left: 10),),
-                              Text("Doador: " + produtos[index].nome_usuario),
-                            ],
-                          ),
+                                  
+                              ),
+                          Padding(padding:EdgeInsets.only(left: 20), child: 
+                          Text("Email: " + produtos[index].email)
+                          , ),
                         ]),
                   ),
                 )),

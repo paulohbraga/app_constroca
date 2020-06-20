@@ -106,7 +106,7 @@ Widget build(BuildContext context) {
     bottomNavigationBar: new BottomNavigationBar(
         backgroundColor: APP_BAR_COLOR,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.lightBlueAccent,
+        selectedItemColor: Colors.yellow[800],
         type: BottomNavigationBarType.fixed,
       currentIndex: index,
       onTap: (int index) { setState((){ this.index = index; }); },

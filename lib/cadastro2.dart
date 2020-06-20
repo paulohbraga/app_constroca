@@ -255,6 +255,7 @@ class TransfterDataWidget extends State {
                       border: OutlineInputBorder(),),
           maxLength: 40,
           validator: _validarNome,
+          onEditingComplete: startUpload(),
           onSaved: (String val) {
             nome = val;
           },
@@ -328,10 +329,35 @@ class TransfterDataWidget extends State {
             }),
         new SizedBox(height: 100.0),
         new RaisedButton(
-          onPressed: _sendForm,
-          child: new Text('Enviar'),
+                        onPressed:  _sendForm,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80.0)),
+                        padding: EdgeInsets.all(0.0),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Colors.blue[900], Colors.blue[600]],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Container(
+                            constraints: BoxConstraints(
+                                maxWidth: 200.0, minHeight: 40.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Cadastrar usuário",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+        // new RaisedButton(
+        //   onPressed: _sendForm,
+        //   child: new Text('Enviar'),
           
-        ),
+        // ),
         new Container(
                           margin: EdgeInsets.only(bottom: 200, top: 10),
         ),

@@ -181,6 +181,27 @@ class PerfilUserState extends State {
                   height: Theme.of(context).textTheme.display1.fontSize * 1 +
                       150.0,
                 )),
+                Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      
+                Padding(padding: EdgeInsets.all(10),
+                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ,color: Colors.black),),
+                ),
+                
+                Padding(padding: EdgeInsets.all(10),
+                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20,color: Colors.black ),),
+                ),
+                
+                      
+                      
+                    ]),
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                
+                ),
               Padding(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.width / 3.5),
