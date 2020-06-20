@@ -177,7 +177,7 @@ class TransfterDataWidget extends State {
       });
     }
 
-    // Showing Alert Dialog with Response JSON.
+    // mostrar mensagem json na dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -190,7 +190,7 @@ class TransfterDataWidget extends State {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          Logar())), // edit 10-06 - can cause error
+                          Logar())), // editado 10-06 - tinha erro de rota
             ),
           ],
         );
@@ -217,7 +217,7 @@ class TransfterDataWidget extends State {
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height + 300),
+              maxHeight: MediaQuery.of(context).size.height + 400),
           child: Column(
             children: <Widget>[
               Divider(
@@ -367,6 +367,9 @@ class TransfterDataWidget extends State {
                       border: OutlineInputBorder(),
                     ),
                   )),
+                  Divider(
+                color: null,
+              ),
               RaisedButton(
                 onPressed: cadastrar,
                 shape: RoundedRectangleBorder(
@@ -379,7 +382,7 @@ class TransfterDataWidget extends State {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
-                      borderRadius: BorderRadius.circular(30.0)),
+                      borderRadius: BorderRadius.circular(10.0)),
                   child: Container(
                     constraints:
                         BoxConstraints(maxWidth: 300.0, minHeight: 50.0),

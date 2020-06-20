@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'cadastro.dart';
+import 'cadastro2.dart';
 import 'package:requests/requests.dart';
 import 'appdata.dart';
 import 'perfil.dart';
@@ -199,7 +200,7 @@ class LoginUserState extends State {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Cadastro())),
+                                builder: (context) => Cadastro2())),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),
@@ -216,7 +217,7 @@ class LoginUserState extends State {
                                 maxWidth: 100.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
-                              "Cadastrar",
+                              "Cadastro",
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white),
                             ),

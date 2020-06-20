@@ -117,15 +117,19 @@ class PerfilUserState extends State {
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           
-            child: Center(
-              
+            child: Container(
+              decoration: BoxDecoration(
+                    image: DecorationImage(
+                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+                        image: AssetImage("imgs/5.jpg"), fit: BoxFit.fill, )),
+                        constraints: BoxConstraints.expand(
+                  height: MediaQuery.of(context).size.height
+                ),
           child: Column(
             
             children: <Widget>[
               Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("imgs/3.jpg"), fit: BoxFit.cover, )),
+                
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -161,11 +165,11 @@ class PerfilUserState extends State {
                     children: <Widget>[
                       
                 Padding(padding: EdgeInsets.all(10),
-                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ),),
+                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ,color: Colors.black),),
                 ),
                 
                 Padding(padding: EdgeInsets.all(10),
-                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20 ),),
+                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20,color: Colors.black ),),
                 ),
                 
                       
@@ -254,11 +258,7 @@ class PerfilUserState extends State {
                       ),
                     ]),
               ),
-              Visibility(
-                  visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30),
-                      child: CircularProgressIndicator())),
+              
             ],
           ),
         )));

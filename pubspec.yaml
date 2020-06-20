@@ -57,6 +57,8 @@ flutter:
     - assets/logo2.flr
     - assets/logo3.flr
     - assets/w.png
+    - assets/m.png
+    - assets/c.png
     - assets/avatar.png
     - imgs/1.jpg
     - imgs/2.jpg
@@ -104,8 +106,10 @@ flutter:
 
 flutter_icons:
   ios: true
-  android: true
-  image_path_ios: "assets/launcher/icone.png"
-  image_path_android: "assets/launcher/icone.png"
-  adaptive_icon_background: "assets/launcher/round.png"
-  adaptive_icon_foreground: "assets/launcher/foreground.png"
+  android: "launcher_icon"
+  image_path: "assets/launcher/ic_launcher.png"
+  adaptive_icon_background: "assets/launcher/ic_launcher_round.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/launcher/ic_launcher_foreground.png" 
+  #image_path_android: "assets/launcher/icone.png"
+  #adaptive_icon_background: "assets/launcher/round.png"
+  #adaptive_icon_foreground: "assets/launcher/foreground.png"

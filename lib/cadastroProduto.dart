@@ -11,8 +11,8 @@ import 'dart:convert';
 import 'constants.dart';
 import 'package:crypto/crypto.dart' as crypto;
 
-class User {
-  const User(this.name, this.tipo);
+class Tipo {
+  const Tipo(this.name, this.tipo);
 
   final String name;
   final String tipo;
@@ -47,8 +47,8 @@ class TransfterDataWidget extends State {
 
   TransfterDataWidget({Key key, @required this.id});
 
-  User selectedUser;
-  List<User> users = <User>[const User('Troca','T'), const User('Doação','D')];
+  Tipo selectedUser;
+  List<Tipo> users = <Tipo>[const Tipo('Troca','T'), const Tipo('Doação','D')];
   
   // Getting value from TextField widget.
   String tipoProduto = '';
@@ -74,6 +74,7 @@ class TransfterDataWidget extends State {
 
   chooseImage() {
     print(id);
+    
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
     });
@@ -287,7 +288,7 @@ class TransfterDataWidget extends State {
                       )),
                   Container(
                       width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(25.0), // 
+                      padding: EdgeInsets.all(10.0), // 
                       child: TextField(
                         style: TextStyle(fontSize: 20, color: Colors.black),
                         controller: descricaoController,
@@ -300,24 +301,24 @@ class TransfterDataWidget extends State {
                           border: OutlineInputBorder(),
                         ),
                       )),
-                      DropdownButton<User>(
+                      DropdownButton<Tipo>(
             elevation: 8,
-            hint: new Text("Troca ou doação?"),
+            hint: new Text("        Troca ou doação?        "),
             value: selectedUser,
-            onChanged: (User newValue) {
+            onChanged: (Tipo newValue) {
               setState(() {
                 
                 selectedUser = newValue;
               tipoProduto = selectedUser.tipo;
               });
             },
-            items: users.map((User user) {
-              return new DropdownMenuItem<User>(
+            items: users.map((Tipo user) {
+              return new DropdownMenuItem<Tipo>(
 
                 value: user,
                 child: new Text(
                   user.name,
-                  style: new TextStyle(color: Colors.black),
+                  style: new TextStyle(color: Colors.black87, fontSize: 20),
                 ),
               );
             }).toList()),
@@ -334,7 +335,7 @@ class TransfterDataWidget extends State {
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
-                          borderRadius: BorderRadius.circular(30.0)),
+                          borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
                         constraints:
                             BoxConstraints(maxWidth: 300.0, minHeight: 50.0),

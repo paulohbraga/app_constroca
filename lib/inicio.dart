@@ -92,7 +92,7 @@ Widget build(BuildContext context) {
           offstage: index != 1,
           child: new TickerMode(
             enabled: index == 1,
-            child: new MaterialApp(debugShowCheckedModeBanner: false, home:  new Doacao()),
+            child: new MaterialApp(debugShowCheckedModeBanner: false, home:  new MyApp2()),
           ),
         ),
         
@@ -124,7 +124,7 @@ Widget build(BuildContext context) {
         
         new BottomNavigationBarItem(
           icon: new Icon(Icons.face),
-          title: new Text("Seu perfil", style: TextStyle(fontWeight: FontWeight.bold),),
+          title: new Text("Perfil", style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         
       ],

@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> {
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.lightBlue[900], Colors.indigo[500]])),
+              colors: [Colors.lightBlueAccent[400], Colors.indigo[900]])),
 
               child: FlareActor(
                 'assets/logo3.flr',
