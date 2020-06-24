@@ -26,7 +26,6 @@ class PerfilUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
 
-
   // Getting value from TextField widget.
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -43,10 +42,10 @@ class PerfilUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.7/api/login/login.php';
+    var url = 'http://192.168.15.6/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.7/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.7/api/usuario/getimgusuario.php';
+    var url_id_usuario = 'http://192.168.15.6/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.6/api/usuario/getimgusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -75,8 +74,10 @@ class PerfilUserState extends State {
       prefs.setString('id', appData.id_usuario);
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CadastroProduto(id: appData.id_usuario)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -107,7 +108,6 @@ class PerfilUserState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor: APP_BAR_COLOR,
@@ -115,104 +115,101 @@ class PerfilUserState extends State {
             title: Text('Perfil')),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
-          
             child: Container(
-              decoration: BoxDecoration(
-                    image: DecorationImage(
-                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-                        image: AssetImage("imgs/5.jpg"), fit: BoxFit.fill, )),
-                        constraints: BoxConstraints.expand(
-                  height: MediaQuery.of(context).size.height
-                ),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            colorFilter: new ColorFilter.mode(
+                Colors.black.withOpacity(0.2), BlendMode.dstATop),
+            image: AssetImage("imgs/5.jpg"),
+            fit: BoxFit.fill,
+          )),
+          constraints:
+              BoxConstraints.expand(height: MediaQuery.of(context).size.height),
           child: Column(
-            
             children: <Widget>[
               Container(
-                
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.all(10),),
-                      InkWell(
-
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    
-                    child: Image.network('http://192.168.15.7/api/usuario/imagens/' +
-                                appData.avatar + "",
-                                height: 100, width: 100,fit: BoxFit.cover,),
-                  )
-
-                ),
-                Padding(padding: EdgeInsets.all(20),
-                  child: Text("Nome: " + appData.nome_usuario , style: TextStyle( fontSize: 25, color: Colors.black),),
-                ),
-                
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                        ),
+                        InkWell(
+                            child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.network(
+                            'http://192.168.15.6/api/usuario/imagens/' +
+                                appData.avatar +
+                                "",
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                        Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                            appData.nome_usuario,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                      ]),
+                  // decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                  constraints: BoxConstraints.expand(
+                    height: Theme.of(context).textTheme.display1.fontSize * 1 +
+                        100.0,
+                  )),
+              Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       
-                      
-                    ]),
-                // decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
-                constraints: BoxConstraints.expand(
-                  height: Theme.of(context).textTheme.display1.fontSize * 1 +
-                      100.0,
-                )),
-                Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      
-                Padding(padding: EdgeInsets.all(10),
-                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ,color: Colors.black),),
-                ),
-                
-                Padding(padding: EdgeInsets.all(10),
-                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20,color: Colors.black ),),
-                ),
-                
-                      
-                      
-                    ]),
-                // decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
-                constraints: BoxConstraints.expand(
-                  height: Theme.of(context).textTheme.display1.fontSize * 1 +
-                      150.0,
-                )),
-                Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      
-                Padding(padding: EdgeInsets.all(10),
-                  child: Text("Cidade: " + appData.cidade, style: TextStyle( fontSize: 20 ,color: Colors.black),),
-                ),
-                
-                Padding(padding: EdgeInsets.all(10),
-                  child: Text("Telefone: " + appData.telefone, style: TextStyle( fontSize: 20,color: Colors.black ),),
-                ),
-                
-                      
-                      
-                    ]),
-                // decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
-                
-                ),
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 5, top: 25),
+                          child: Text(
+                            "Cidade: " + appData.cidade,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5, top: 25),
+                          child: Text(
+                            "Telefone: " + appData.telefone,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5, top: 25),
+                        child: Text(
+                          "e-mail: " + appData.email,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 5, top: 25),
+                        child: Text(
+                          "Produtos cadastrados: " + appData.count_produtos,
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                      ]),
+                  // decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+                  ),
+              
               Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width / 3.5),
+                    top: MediaQuery.of(context).size.width / 4),
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      
-                      
                       RaisedButton(
                         onPressed: () => Navigator.push(
                             context,
@@ -248,10 +245,8 @@ class PerfilUserState extends State {
                           appData.cidade = null,
                           appData.nome_usuario = null,
                           appData.telefone = null,
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Logar())),
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Logar())),
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(80.0)),
@@ -278,49 +273,9 @@ class PerfilUserState extends State {
                       ),
                     ]),
               ),
-              
             ],
           ),
         )));
   }
 }
 
-class ProfileScreen extends StatelessWidget {
-// Creating String Var to Hold sent Email.
-  final String email;
-
-// Receiving Email using Constructor.
-  ProfileScreen({Key key, @required this.email}) : super(key: key);
-
-// User Logout Function.
-  logout(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: AppBar(
-                title: Text('Nova tela'), automaticallyImplyLeading: false),
-            body: Center(
-                child: Column(
-              children: <Widget>[
-                Container(
-                    width: 280,
-                    padding: EdgeInsets.all(10.0),
-                    child: Text('Email = ' + '\n' + email,
-                        style: TextStyle(fontSize: 20))),
-                RaisedButton(
-                  onPressed: () {
-                    logout(context);
-                  },
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: Text('Clique pra sair'),
-                ),
-              ],
-            ))));
-  }
-}

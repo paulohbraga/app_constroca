@@ -46,13 +46,15 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.7/api/login/login.php';
+    var url = 'http://192.168.15.6/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.7/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.7/api/usuario/getimgusuario.php';
-    var url_nome_usuario = 'http://192.168.15.7/api/usuario/getnomeusuario.php';
-    var url_cidade = 'http://192.168.15.7/api/usuario/getcidadeusuario.php';
-    var url_telefone = 'http://192.168.15.7/api/usuario/gettelefoneusuario.php';
+    var url_id_usuario = 'http://192.168.15.6/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.6/api/usuario/getimgusuario.php';
+    var url_nome_usuario = 'http://192.168.15.6/api/usuario/getnomeusuario.php';
+    var url_cidade = 'http://192.168.15.6/api/usuario/getcidadeusuario.php';
+    var url_telefone = 'http://192.168.15.6/api/usuario/gettelefoneusuario.php';
+    var url_email = 'http://192.168.15.6/api/usuario/getemailusuario.php';
+    var url_count = 'http://192.168.15.6/api/usuario/getprodutosusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -64,6 +66,8 @@ class LoginUserState extends State {
     var response_nome = await http.post(url_nome_usuario, body: json.encode(data));
     var response_cidade = await http.post(url_cidade, body: json.encode(data));
     var response_telefone = await http.post(url_telefone, body: json.encode(data));
+    var response_email = await http.post(url_email, body: json.encode(data));
+    var response_produtos = await http.post(url_count, body: json.encode(data));
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
@@ -72,12 +76,17 @@ class LoginUserState extends State {
     var nome = jsonDecode(response_nome.body);
     var cidade = jsonDecode(response_cidade.body);
     var telefone = jsonDecode(response_telefone.body);
+    var email_user = jsonDecode(response_email.body);
+    var user_prod_count = jsonDecode(response_produtos.body);
+
     
     appData.id_usuario = id;
     appData.avatar = avatar;
     appData.nome_usuario = nome;
     appData.cidade = cidade;
     appData.telefone = telefone;
+    appData.email = email_user;
+    appData.count_produtos = user_prod_count;
 
     // If the Response Message is Matched.
     if (message == 'Usuario existe') {
@@ -100,6 +109,10 @@ class LoginUserState extends State {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
       setState(() {
+        appData.id_usuario = null;
+        appData.cidade = null;
+        appData.nome_usuario = null;
+        appData.telefone = null;
         visible = false;
       });
 

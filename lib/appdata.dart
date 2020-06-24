@@ -6,6 +6,8 @@ class AppData {
   String nome_usuario;
   String cidade;
   String telefone; 
+  String email; 
+  String count_produtos; 
   
   factory AppData() {
     return _appData;

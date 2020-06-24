@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
     
 
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 5)).then((_) {
+    Future.delayed(Duration(seconds: 4)).then((_) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Inicio()));
     });

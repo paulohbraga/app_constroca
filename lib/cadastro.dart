@@ -47,7 +47,7 @@ class TransfterDataWidget extends State {
   // Boolean variable for CircularProgressIndicator.
 
   static final String uploadEndPoint =
-      'http://192.168.15.7/api/usuario/image_save.php';
+      'http://192.168.15.6/api/usuario/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -150,7 +150,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.7/api/usuario/create.php';
+    var url = 'http://192.168.15.6/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {

@@ -12,7 +12,7 @@ import 'perfil.dart';
 
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.7/api/produto/read.php');
+  final response = await client.get('http://192.168.15.6/api/produto/read.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -112,7 +112,7 @@ class MyHomePage extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'http://192.168.15.7/api/usuario/imagens/' +
+                        'http://192.168.15.6/api/usuario/imagens/' +
                             appData.avatar +
                             "",
                       ),
@@ -158,19 +158,19 @@ class ProdutosList extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Card(
-                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
                   color: Colors.grey[100],
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Image.network(
-                            'http://192.168.15.7/api/produto/imagens/' +
+                            'http://192.168.15.6/api/produto/imagens/' +
                                 produtos[index].imagem +
                                 '',
                             height: 190,
-                            width: 400,
+                            width: MediaQuery.of(context).size.width,
                             fit: BoxFit.cover,
                           ),
                           Divider(),
@@ -302,7 +302,7 @@ class ProdutosList extends StatelessWidget {
                           )),
                           Padding(padding:EdgeInsets.all(15) ),
                           ListTile(
-                                leading: CircleAvatar(backgroundImage: NetworkImage('http://192.168.15.7/api/usuario/imagens/' +
+                                leading: CircleAvatar(backgroundImage: NetworkImage('http://192.168.15.6/api/usuario/imagens/' +
                                       produtos[index].avatar) ),
                                 title: Text("Anunciante: " + produtos[index].nome_usuario),
                                 subtitle: Text("Telefone: " + produtos[index].telefone),

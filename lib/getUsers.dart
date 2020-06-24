@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class UserList extends StatelessWidget{
 
-  final String apiUrl = "http://192.168.15.5/api/usuario/read.php";
+  final String apiUrl = "http://192.168.15.6/api/usuario/read.php";
 
   Future<List<dynamic>> fetchUsers() async {
 
