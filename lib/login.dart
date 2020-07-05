@@ -109,7 +109,6 @@ class LoginUserState extends State {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
       setState(() {
-        appData.id_usuario = null;
         appData.cidade = null;
         appData.nome_usuario = null;
         appData.telefone = null;
@@ -142,7 +141,17 @@ class LoginUserState extends State {
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
-            title: Text('Login do usuário')),
+            title: Text("Login do usuário"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+              Colors.blue[800],
+              Colors.blue
+            ])          
+         ))), 
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
             child: Center(

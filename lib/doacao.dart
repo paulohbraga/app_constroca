@@ -100,7 +100,17 @@ class MyHomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
-          title: Text("Doações"),
+          title: Text("Doação"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+              Colors.blue[800],
+              Colors.blue
+            ])          
+         )), 
           actions: <Widget>[
             appData.id_usuario != null
                 ? InkWell(

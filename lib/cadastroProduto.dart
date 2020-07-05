@@ -57,7 +57,7 @@ class TransfterDataWidget extends State {
   final cidadeController = TextEditingController();
   final passwordController = TextEditingController();
   int contador;
-  String nome_imagem = 'default.png';
+  String nome_imagem = 'default.jpng';
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
 
@@ -386,5 +386,9 @@ class TransfterDataWidget extends State {
                 ],
               ),
             )));
+  
   }
+
+  
 }
+

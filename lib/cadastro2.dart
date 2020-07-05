@@ -197,7 +197,17 @@ class TransfterDataWidget extends State {
                             MaterialPageRoute(
                                 builder: (context) => Logar())),
   ),
-        title: Text('Cadastro de usuário'),
+        title: Text("Cadastro de usuário"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+              Colors.blue[800],
+              Colors.blue
+            ])          
+         )), 
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
       ),
