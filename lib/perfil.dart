@@ -42,10 +42,10 @@ class PerfilUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.6/api/login/login.php';
+    var url = 'http://192.168.15.10/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.6/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.6/api/usuario/getimgusuario.php';
+    var url_id_usuario = 'http://192.168.15.10/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.10/api/usuario/getimgusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
@@ -138,7 +138,7 @@ class PerfilUserState extends State {
                             child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.network(
-                            'http://192.168.15.6/api/usuario/imagens/' +
+                            'http://192.168.15.10/api/usuario/imagens/' +
                                 appData.avatar +
                                 "",
                             height: 100,
@@ -162,48 +162,46 @@ class PerfilUserState extends State {
                         100.0,
                   )),
               Container(
-                  child: Column(
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(left: 5, top: 25),
-                          child: Text(
-                            "Cidade: " + appData.cidade,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 5, top: 25),
+                        child: Text(
+                          "Cidade: " + appData.cidade,
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5, top: 25),
-                          child: Text(
-                            "Telefone: " + appData.telefone,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5, top: 25),
+                        child: Text(
+                          "Telefone: " + appData.telefone,
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5, top: 25),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
                           "e-mail: " + appData.email,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 5, top: 25),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
                           "Produtos cadastrados: " + appData.count_produtos,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
-                      ]),
-                  // decoration: BoxDecoration(
-                  //     image: DecorationImage(
-                  //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
-                  ),
-              
+                      ),
+                    ]),
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
+              ),
               Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width / 4),
+                padding:
+                    EdgeInsets.only(top: MediaQuery.of(context).size.width / 4),
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -278,4 +276,3 @@ class PerfilUserState extends State {
         )));
   }
 }
-

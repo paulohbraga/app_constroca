@@ -17,10 +17,9 @@ class Tipo {
 }
 
 class CadastroProduto extends StatelessWidget {
-    
-    final String id;
+  final String id;
 
-    CadastroProduto({Key key, @required this.id}) : super(key: key);
+  CadastroProduto({Key key, @required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +29,24 @@ class CadastroProduto extends StatelessWidget {
 }
 
 class TransfterData extends StatefulWidget {
-
   TransfterDataWidget createState() => TransfterDataWidget(id: id);
-  
+
   var id;
 
   TransfterData({Key key, @required this.id}) : super(key: key);
-  
 }
 
 class TransfterDataWidget extends State {
-
   String id;
 
   TransfterDataWidget({Key key, @required this.id});
 
   Tipo selectedUser;
-  List<Tipo> users = <Tipo>[const Tipo('Troca','T'), const Tipo('Doação','D')];
-  
+  List<Tipo> users = <Tipo>[
+    const Tipo('Troca', 'T'),
+    const Tipo('Doação', 'D')
+  ];
+
   // Getting value from TextField widget.
   String tipoProduto = '';
   final nomeController = TextEditingController();
@@ -62,7 +61,7 @@ class TransfterDataWidget extends State {
   bool visible = false;
 
   static final String uploadEndPoint =
-      'http://192.168.15.6/api/produto/image_save.php';
+      'http://192.168.15.10/api/produto/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -72,7 +71,7 @@ class TransfterDataWidget extends State {
 
   chooseImage() {
     print(id);
-    
+
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
     });
@@ -86,7 +85,6 @@ class TransfterDataWidget extends State {
   }
 
   startUpload() {
-    
     setStatus('Enviando imagem...');
     if (null == tmpFile) {
       setStatus(errMessage);
@@ -121,7 +119,7 @@ class TransfterDataWidget extends State {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
-              width: MediaQuery.of(context).size.width -10,
+              width: MediaQuery.of(context).size.width - 10,
               height: 200.0,
               decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
@@ -171,7 +169,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.6/api/produto/create.php';
+    var url = 'http://192.168.15.10/api/produto/create.php';
     // Store all data with Param Name.
     var data = {
       'nome_produto': nome,
@@ -179,9 +177,7 @@ class TransfterDataWidget extends State {
       'imagem': nome_imagem,
       'tipo': tipo,
       'fk_id_usuario': id
-
     };
-
 
     // Starting Web Call with data.
     var response = await http.post(url, body: json.encode(data));
@@ -206,10 +202,7 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  Inicio())),
+                  context, MaterialPageRoute(builder: (context) => Inicio())),
             ),
           ],
         );
@@ -224,12 +217,10 @@ class TransfterDataWidget extends State {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           leading: IconButton(
-    icon: Icon(Icons.arrow_back, color: Colors.white),
-    onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PerfilUser())),
-  ),
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => PerfilUser())),
+          ),
           title: Text('Cadastro de produtos'),
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
@@ -238,157 +229,150 @@ class TransfterDataWidget extends State {
             child: ConstrainedBox(
           constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height + 200),
-              child: Column(
-                children: <Widget>[
-                  Divider(
-                    color: null,
-                  ),
-                  OutlineButton(
-                    onPressed: chooseImage,
-                    child: Text('Selecionar imagem'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  showImage(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  OutlineButton(
-                    onPressed: startUpload,
-                    child: Text('Enviar'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    status,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.blue[900],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0,
-                    ),
-                  ),
-
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        onSubmitted: startUpload(),
-                        //onTap: startUpload(),
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: nomeController,
-                        autocorrect: true,
-                        decoration: InputDecoration(
-                          hintText: 'Produto',
-                          labelText: 'Nome do produto',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
-                  Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      padding: EdgeInsets.all(10.0), // 
-                      child: TextField(
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                        controller: descricaoController,
-                        autocorrect: true,
-                        keyboardType: TextInputType.multiline,
-                        maxLength: 200,
-                        maxLines: null,
-                        decoration: InputDecoration(  
-                          labelText: 'Descrição do produto',
-                          border: OutlineInputBorder(),
-                        ),
-                      )),
-                      DropdownButton<Tipo>(
-            elevation: 8,
-            hint: new Text("        Troca ou doação?        "),
-            value: selectedUser,
-            onChanged: (Tipo newValue) {
-              setState(() {
-                
-                selectedUser = newValue;
-              tipoProduto = selectedUser.tipo;
-              });
-            },
-            items: users.map((Tipo user) {
-              return new DropdownMenuItem<Tipo>(
-
-                value: user,
-                child: new Text(
-                  user.name,
-                  style: new TextStyle(color: Colors.black87, fontSize: 20),
-                ),
-              );
-            }).toList()),
-            Padding(padding: EdgeInsets.only(bottom: 45) ),
-            RaisedButton(
-                    onPressed: cadastrar,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Cadastrar novo item",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Container(
-                  //     width: MediaQuery.of(context).size.width / 1.2,
-                  //     padding: EdgeInsets.all(10.0),
-                  //     child: TextField(
-                  //       style: TextStyle(fontSize: 20, color: Colors.black),
-                  //       controller: loginUsuarioController,
-                  //       autocorrect: true,
-                  //       maxLines: null,
-                  //       decoration: InputDecoration(
-                  //         hintText: 'Descrição',
-                  //         labelText: 'Detalhe seu produto',
-                  //         border: OutlineInputBorder(),
-                  //       ),
-                  //     )),
-                  // Container(
-                  //     width: MediaQuery.of(context).size.width / 1.2,
-                  //     padding: EdgeInsets.all(10.0),
-                  //     child: TextField(
-                  //       style: TextStyle(fontSize: 20, color: Colors.black),
-                  //       controller: emailController,
-                  //       autocorrect: true,
-                  //       decoration: InputDecoration(
-                  //         hintText: 'Doação ou troca',
-                  //         labelText: 'será um campo combobox',
-                  //         border: OutlineInputBorder(),
-                  //       ),
-                  //     )),
-                  
-                  
-                  Visibility(
-                      visible: visible,
-                      child: Container(
-                          margin: EdgeInsets.only(bottom: 30, top: 10),
-                          child: CircularProgressIndicator())),
-                  
-                ],
+          child: Column(
+            children: <Widget>[
+              Divider(
+                color: null,
               ),
-            )));
-  
+              OutlineButton(
+                onPressed: chooseImage,
+                child: Text('Selecionar imagem'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              showImage(),
+              SizedBox(
+                height: 20.0,
+              ),
+              OutlineButton(
+                onPressed: startUpload,
+                child: Text('Enviar'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                status,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.blue[900],
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                ),
+              ),
+
+              Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    onSubmitted: startUpload(),
+                    //onTap: startUpload(),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    controller: nomeController,
+                    autocorrect: true,
+                    decoration: InputDecoration(
+                      hintText: 'Produto',
+                      labelText: 'Nome do produto',
+                      border: OutlineInputBorder(),
+                    ),
+                  )),
+              Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: EdgeInsets.all(10.0), //
+                  child: TextField(
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    controller: descricaoController,
+                    autocorrect: true,
+                    keyboardType: TextInputType.multiline,
+                    maxLength: 200,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      labelText: 'Descrição do produto',
+                      border: OutlineInputBorder(),
+                    ),
+                  )),
+              DropdownButton<Tipo>(
+                  elevation: 8,
+                  hint: new Text("        Troca ou doação?        "),
+                  value: selectedUser,
+                  onChanged: (Tipo newValue) {
+                    setState(() {
+                      selectedUser = newValue;
+                      tipoProduto = selectedUser.tipo;
+                    });
+                  },
+                  items: users.map((Tipo user) {
+                    return new DropdownMenuItem<Tipo>(
+                      value: user,
+                      child: new Text(
+                        user.name,
+                        style:
+                            new TextStyle(color: Colors.black87, fontSize: 20),
+                      ),
+                    );
+                  }).toList()),
+              Padding(padding: EdgeInsets.only(bottom: 45)),
+              RaisedButton(
+                onPressed: cadastrar,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80.0)),
+                padding: EdgeInsets.all(0.0),
+                child: Ink(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Container(
+                    constraints:
+                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Cadastrar novo item",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              // Container(
+              //     width: MediaQuery.of(context).size.width / 1.2,
+              //     padding: EdgeInsets.all(10.0),
+              //     child: TextField(
+              //       style: TextStyle(fontSize: 20, color: Colors.black),
+              //       controller: loginUsuarioController,
+              //       autocorrect: true,
+              //       maxLines: null,
+              //       decoration: InputDecoration(
+              //         hintText: 'Descrição',
+              //         labelText: 'Detalhe seu produto',
+              //         border: OutlineInputBorder(),
+              //       ),
+              //     )),
+              // Container(
+              //     width: MediaQuery.of(context).size.width / 1.2,
+              //     padding: EdgeInsets.all(10.0),
+              //     child: TextField(
+              //       style: TextStyle(fontSize: 20, color: Colors.black),
+              //       controller: emailController,
+              //       autocorrect: true,
+              //       decoration: InputDecoration(
+              //         hintText: 'Doação ou troca',
+              //         labelText: 'será um campo combobox',
+              //         border: OutlineInputBorder(),
+              //       ),
+              //     )),
+
+              Visibility(
+                  visible: visible,
+                  child: Container(
+                      margin: EdgeInsets.only(bottom: 30, top: 10),
+                      child: CircularProgressIndicator())),
+            ],
+          ),
+        )));
   }
-
-  
 }
-

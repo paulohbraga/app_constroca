@@ -43,11 +43,11 @@ class TransfterDataWidget extends State {
   bool visible = false;
   bool _validate = false;
 
-    String nome_imagem;
+  String nome_imagem;
   // Boolean variable for CircularProgressIndicator.
 
   static final String uploadEndPoint =
-      'http://192.168.15.6/api/usuario/image_save.php';
+      "http://192.168.15.10/api/usuario/image_save.php";
 
   Future<File> file;
   String status = '';
@@ -69,7 +69,6 @@ class TransfterDataWidget extends State {
   }
 
   startUpload() {
-    
     setStatus('Enviando imagem...');
     if (null == tmpFile) {
       setStatus(errMessage);
@@ -150,7 +149,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
 
     // API URL
-    var url = 'http://192.168.15.6/api/usuario/create.php';
+    var url = 'http://192.168.15.10/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
@@ -204,12 +203,10 @@ class TransfterDataWidget extends State {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-    icon: Icon(Icons.arrow_back, color: Colors.white),
-    onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Logar())),
-  ),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Logar())),
+        ),
         title: Text('Cadastro de usuário'),
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
@@ -224,35 +221,35 @@ class TransfterDataWidget extends State {
                 color: null,
               ),
               Divider(
-                    color: null,
-                  ),
-                  OutlineButton(
-                    onPressed: chooseImage,
-                    child: Text('Selecionar imagem'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  showImage(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  OutlineButton(
-                    onPressed: startUpload,
-                    child: Text('Enviar'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    status,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.blue[900],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0,
-                    ),
-                  ),
+                color: null,
+              ),
+              OutlineButton(
+                onPressed: chooseImage,
+                child: Text('Selecionar imagem'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              showImage(),
+              SizedBox(
+                height: 20.0,
+              ),
+              OutlineButton(
+                onPressed: startUpload,
+                child: Text('Enviar'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                status,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.blue[900],
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                ),
+              ),
               Container(
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
@@ -367,7 +364,7 @@ class TransfterDataWidget extends State {
                       border: OutlineInputBorder(),
                     ),
                   )),
-                  Divider(
+              Divider(
                 color: null,
               ),
               RaisedButton(

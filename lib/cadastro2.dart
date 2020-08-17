@@ -23,13 +23,11 @@ class TransfterData extends StatefulWidget {
 }
 
 class TransfterDataWidget extends State {
-
   GlobalKey<FormState> _key = new GlobalKey();
 
   // Getting value from TextField widget.
   String _valid_cpf = "";
   final cpfController = MaskedTextController(mask: '000.000.000-00');
-
 
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
@@ -39,7 +37,7 @@ class TransfterDataWidget extends State {
   // Boolean variable for CircularProgressIndicator.
 
   static final String uploadEndPoint =
-      'http://192.168.15.6/api/usuario/image_save.php';
+      'http://192.168.15.10/api/usuario/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -61,7 +59,6 @@ class TransfterDataWidget extends State {
   }
 
   startUpload() {
-    
     setStatus('Enviando imagem...');
     if (null == tmpFile) {
       setStatus(errMessage);
@@ -128,16 +125,16 @@ class TransfterDataWidget extends State {
 
   Future cadastrar() async {
     // Showing CircularProgressIndicator using State.
-    key: ValueKey("teste");
+    key:
+    ValueKey("teste");
     setState(() {
       visible = true;
     });
 
     // Getting value from Controller
 
-
     // API URL
-    var url = 'http://192.168.15.6/api/usuario/create.php';
+    var url = 'http://192.168.15.10/api/usuario/create.php';
 
     // Store all data with Param Name.
     var data = {
@@ -191,79 +188,72 @@ class TransfterDataWidget extends State {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-    icon: Icon(Icons.arrow_back, color: Colors.white),
-    onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Logar())),
-  ),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Logar())),
+        ),
         title: Text("Cadastro de usuário"),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-              Colors.blue[800],
-              Colors.blue
-            ])          
-         )), 
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Colors.blue[800], Colors.blue]))),
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
       ),
       body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
-            child: new Form(
-              key: _key,
-              autovalidate: _validate,
-              child: _formUI(),
-            ),
+        child: new Container(
+          margin: new EdgeInsets.all(15.0),
+          child: new Form(
+            key: _key,
+            autovalidate: _validate,
+            child: _formUI(),
           ),
-        ), 
-      
+        ),
+      ),
     );
-
-    
   }
 
   Widget _formUI() {
     return new Column(
       children: <Widget>[
         Divider(
-                    color: null,
-                  ),
-                  OutlineButton(
-                    onPressed: chooseImage,
-                    child: Text('Selecionar imagem'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  showImage(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  OutlineButton(
-                    onPressed: startUpload,
-                    child: Text('Enviar'),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    status,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.blue[900],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0,
-                    ),
-                  ),
+          color: null,
+        ),
+        OutlineButton(
+          onPressed: chooseImage,
+          child: Text('Selecionar imagem'),
+        ),
+        SizedBox(
+          height: 20.0,
+        ),
+        showImage(),
+        SizedBox(
+          height: 20.0,
+        ),
+        OutlineButton(
+          onPressed: startUpload,
+          child: Text('Enviar'),
+        ),
+        SizedBox(
+          height: 20.0,
+        ),
+        Text(
+          status,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.blue[900],
+            fontWeight: FontWeight.w500,
+            fontSize: 15.0,
+          ),
+        ),
         new TextFormField(
-          decoration: new InputDecoration(hintText: 'Nome Completo',
-                      labelText: 'Seu nome',
-                      border: OutlineInputBorder(),),
+          decoration: new InputDecoration(
+            hintText: 'Nome Completo',
+            labelText: 'Seu nome',
+            border: OutlineInputBorder(),
+          ),
           maxLength: 40,
           validator: _validarNome,
           onEditingComplete: startUpload(),
@@ -272,9 +262,11 @@ class TransfterDataWidget extends State {
           },
         ),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Login/Nickname', 
-                      labelText: 'Login',
-                      border: OutlineInputBorder(),),
+            decoration: new InputDecoration(
+              hintText: 'Login/Nickname',
+              labelText: 'Login',
+              border: OutlineInputBorder(),
+            ),
             keyboardType: TextInputType.text,
             maxLength: 11,
             validator: _validarNome,
@@ -282,9 +274,11 @@ class TransfterDataWidget extends State {
               login_usuario = val;
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'DDD/Telefone',
-                      labelText: 'Telefone',
-                      border: OutlineInputBorder(),),
+            decoration: new InputDecoration(
+              hintText: 'DDD/Telefone',
+              labelText: 'Telefone',
+              border: OutlineInputBorder(),
+            ),
             keyboardType: TextInputType.phone,
             maxLength: 11,
             validator: _validarTelefone,
@@ -292,9 +286,10 @@ class TransfterDataWidget extends State {
               telefone = val;
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Email',
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
+            decoration: new InputDecoration(
+              hintText: 'Email',
+              labelText: 'Email',
+              border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.emailAddress,
             maxLength: 40,
@@ -303,9 +298,10 @@ class TransfterDataWidget extends State {
               email = val;
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'CPF',
-                      labelText: 'CPF',
-                      border: OutlineInputBorder(),
+            decoration: new InputDecoration(
+              hintText: 'CPF',
+              labelText: 'CPF',
+              border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
             maxLength: 14,
@@ -316,9 +312,10 @@ class TransfterDataWidget extends State {
             }),
 
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Cidade',
-                      labelText: 'Cidade',
-                      border: OutlineInputBorder(),
+            decoration: new InputDecoration(
+              hintText: 'Cidade',
+              labelText: 'Cidade',
+              border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.text,
             maxLength: 11,
@@ -327,9 +324,10 @@ class TransfterDataWidget extends State {
               cidade = val;
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Senha',
-                      labelText: 'Senha',
-                      border: OutlineInputBorder(),
+            decoration: new InputDecoration(
+              hintText: 'Senha',
+              labelText: 'Senha',
+              border: OutlineInputBorder(),
             ),
             obscureText: true,
             keyboardType: TextInputType.text,
@@ -340,44 +338,42 @@ class TransfterDataWidget extends State {
             }),
         new SizedBox(height: 100.0),
         new RaisedButton(
-                        onPressed:  _sendForm,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue[900], Colors.blue[600]],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 200.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Cadastrar usuário",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
+          onPressed: _sendForm,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+          padding: EdgeInsets.all(0.0),
+          child: Ink(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blue[900], Colors.blue[600]],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                borderRadius: BorderRadius.circular(10.0)),
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 200.0, minHeight: 40.0),
+              alignment: Alignment.center,
+              child: Text(
+                "Cadastrar usuário",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
         // new RaisedButton(
         //   onPressed: _sendForm,
         //   child: new Text('Enviar'),
-          
+
         // ),
         new Container(
-                          margin: EdgeInsets.only(bottom: 200, top: 10),
+          margin: EdgeInsets.only(bottom: 200, top: 10),
         ),
       ],
     );
   }
 
   String _validarNome(String value) {
-    
     String patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
@@ -415,9 +411,9 @@ class TransfterDataWidget extends State {
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe o celular";
-    } else if(value.length != 11){
+    } else if (value.length != 11) {
       return "O celular deve ter 11 dígitos";
-    }else if (!regExp.hasMatch(value)) {
+    } else if (!regExp.hasMatch(value)) {
       return "O número do celular so deve conter dígitos";
     }
     return null;
@@ -428,20 +424,22 @@ class TransfterDataWidget extends State {
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe a senha";
-    } else if(!regExp.hasMatch(value)){
+    } else if (!regExp.hasMatch(value)) {
       return "Senha inválida";
-    }else {
+    } else {
       return null;
     }
   }
+
   String _validarEmail(String value) {
-    String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regExp = new RegExp(pattern);
     if (value.length == 0) {
       return "Informe o Email";
-    } else if(!regExp.hasMatch(value)){
+    } else if (!regExp.hasMatch(value)) {
       return "Email inválido";
-    }else {
+    } else {
       return null;
     }
   }

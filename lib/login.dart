@@ -23,10 +23,6 @@ class LoginUser extends StatefulWidget {
 }
 
 class LoginUserState extends State {
-
-
-
-  
   // For CircularProgressIndicator.
   bool visible = false;
 
@@ -46,26 +42,31 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.6/api/login/login.php';
+    var url = 'http://192.168.15.10/api/login/login.php';
 
-    var url_id_usuario = 'http://192.168.15.6/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.6/api/usuario/getimgusuario.php';
-    var url_nome_usuario = 'http://192.168.15.6/api/usuario/getnomeusuario.php';
-    var url_cidade = 'http://192.168.15.6/api/usuario/getcidadeusuario.php';
-    var url_telefone = 'http://192.168.15.6/api/usuario/gettelefoneusuario.php';
-    var url_email = 'http://192.168.15.6/api/usuario/getemailusuario.php';
-    var url_count = 'http://192.168.15.6/api/usuario/getprodutosusuario.php';
+    var url_id_usuario = 'http://192.168.15.10/api/usuario/getidusuario.php';
+    var url_img_usuario = 'http://192.168.15.10/api/usuario/getimgusuario.php';
+    var url_nome_usuario =
+        'http://192.168.15.10/api/usuario/getnomeusuario.php';
+    var url_cidade = 'http://192.168.15.10/api/usuario/getcidadeusuario.php';
+    var url_telefone =
+        'http://192.168.15.10/api/usuario/gettelefoneusuario.php';
+    var url_email = 'http://192.168.15.10/api/usuario/getemailusuario.php';
+    var url_count = 'http://192.168.15.10/api/usuario/getprodutosusuario.php';
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
-    
+
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
     var response_id = await http.post(url_id_usuario, body: json.encode(data));
-    var response_img = await http.post(url_img_usuario, body: json.encode(data));
-    var response_nome = await http.post(url_nome_usuario, body: json.encode(data));
+    var response_img =
+        await http.post(url_img_usuario, body: json.encode(data));
+    var response_nome =
+        await http.post(url_nome_usuario, body: json.encode(data));
     var response_cidade = await http.post(url_cidade, body: json.encode(data));
-    var response_telefone = await http.post(url_telefone, body: json.encode(data));
+    var response_telefone =
+        await http.post(url_telefone, body: json.encode(data));
     var response_email = await http.post(url_email, body: json.encode(data));
     var response_produtos = await http.post(url_count, body: json.encode(data));
 
@@ -79,7 +80,6 @@ class LoginUserState extends State {
     var email_user = jsonDecode(response_email.body);
     var user_prod_count = jsonDecode(response_produtos.body);
 
-    
     appData.id_usuario = id;
     appData.avatar = avatar;
     appData.nome_usuario = nome;
@@ -100,11 +100,8 @@ class LoginUserState extends State {
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  PerfilUser()));
-                  //CadastroProduto( id: id)));
+          context, MaterialPageRoute(builder: (context) => PerfilUser()));
+      //CadastroProduto( id: id)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -142,16 +139,12 @@ class LoginUserState extends State {
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
             title: Text("Login do usuário"),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-              Colors.blue[800],
-              Colors.blue
-            ])          
-         ))), 
+            flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Colors.blue[800], Colors.blue])))),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
             child: Center(
@@ -207,8 +200,8 @@ class LoginUserState extends State {
                               ),
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
-                            constraints:
-                                BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
+                            constraints: BoxConstraints(
+                                maxWidth: 100.0, minHeight: 40.0),
                             alignment: Alignment.center,
                             child: Text(
                               "Login",

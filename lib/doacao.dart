@@ -10,7 +10,8 @@ import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'perfil.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get('http://192.168.15.6/api/produto/readDonation.php');
+  final response =
+      await client.get('http://192.168.15.10/api/produto/readDonation.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -70,9 +71,6 @@ class Produto {
 class MyApp2 extends StatelessWidget {
   final appData = AppData();
 
-
-  
-
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Doações';
@@ -101,16 +99,12 @@ class MyHomePage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           title: Text("Doação"),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-              Colors.blue[800],
-              Colors.blue
-            ])          
-         )), 
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: <Color>[Colors.blue[800], Colors.blue]))),
           actions: <Widget>[
             appData.id_usuario != null
                 ? InkWell(
@@ -119,7 +113,7 @@ class MyHomePage extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'http://192.168.15.6/api/usuario/imagens/' +
+                        'http://192.168.15.10/api/usuario/imagens/' +
                             appData.avatar +
                             "",
                       ),
@@ -157,15 +151,18 @@ class ProdutosList extends StatelessWidget {
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)),
+                  color: Colors.green[400],
+                  // image: DecorationImage(
+                  //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
+                ),
                 constraints: BoxConstraints.expand(
                   height:
                       Theme.of(context).textTheme.display1.fontSize * 5 + 400.0,
                 ),
                 alignment: Alignment.center,
                 child: Card(
-                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
+                  margin:
+                      EdgeInsets.only(left: 15, right: 15, bottom: 10, top: 5),
                   color: Colors.white,
                   child: Container(
                     padding: EdgeInsets.all(5),
@@ -173,7 +170,7 @@ class ProdutosList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Image.network(
-                            'http://192.168.15.6/api/produto/imagens/' +
+                            'http://192.168.15.10/api/produto/imagens/' +
                                 produtos[index].imagem +
                                 '',
                             height: 190,
@@ -292,7 +289,6 @@ class ProdutosList extends StatelessWidget {
                                   Text("Chat"),
                                 ],
                               ),
-                              
 
                               // FlatButton(
                               //   child: const Text('Mensagem'),
@@ -306,23 +302,28 @@ class ProdutosList extends StatelessWidget {
                               // ),
                             ],
                           )),
-                          Padding(padding:EdgeInsets.all(15) ),
+                          Padding(padding: EdgeInsets.all(15)),
                           ListTile(
-                                leading: CircleAvatar(backgroundImage: NetworkImage('http://192.168.15.6/api/usuario/imagens/' +
-                                      produtos[index].avatar) ),
-                                title: Text("Anunciante: " + produtos[index].nome_usuario),
-                                subtitle: Text("Telefone: " + produtos[index].telefone),
-                                trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(icon: Icon(Icons.person_add), onPressed: null)
-                                  ]
-                                ),
-                                  
-                              ),
-                          Padding(padding:EdgeInsets.only(left: 20), child: 
-                          Text("Email: " + produtos[index].email)
-                          , ),
+                            leading: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    'http://192.168.15.10/api/usuario/imagens/' +
+                                        produtos[index].avatar)),
+                            title: Text(
+                                "Anunciante: " + produtos[index].nome_usuario),
+                            subtitle:
+                                Text("Telefone: " + produtos[index].telefone),
+                            trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  IconButton(
+                                      icon: Icon(Icons.person_add),
+                                      onPressed: null)
+                                ]),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text("Email: " + produtos[index].email),
+                          ),
                         ]),
                   ),
                 )),
