@@ -162,10 +162,10 @@ class ProdutosList extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Card(
-                  elevation: 5,
+                  elevation: 10,
                   margin:
                       EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
-                  color: Colors.grey[100],
+                  color: Colors.white,
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: Column(
