@@ -167,21 +167,25 @@ class ProdutosList extends StatelessWidget {
                       EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
                   color: Colors.white,
                   child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(10),
                     child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          FadeInImage.memoryNetwork(
-                              fadeInDuration: const Duration(milliseconds: 400),
-                              height: 190,
-                              width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.cover,
-                              placeholder: kTransparentImage,
-                              image:
-                                  'http://192.168.15.10/api/produto/imagens/' +
-                                      produtos[index].imagem +
-                                      ''),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: FadeInImage.memoryNetwork(
+                                fadeInDuration:
+                                    const Duration(milliseconds: 400),
+                                height: 190,
+                                width: MediaQuery.of(context).size.width / 1.5,
+                                fit: BoxFit.cover,
+                                placeholder: kTransparentImage,
+                                image:
+                                    'http://192.168.15.10/api/produto/imagens/' +
+                                        produtos[index].imagem +
+                                        ''),
+                          ),
                           Divider(),
                           Center(
                             child: Text(
