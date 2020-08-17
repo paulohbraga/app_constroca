@@ -152,7 +152,7 @@ class ProdutosList extends StatelessWidget {
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
-                  color: Colors.green[400],
+                  color: Colors.blue[200],
                   // image: DecorationImage(
                   //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                 ),
@@ -169,11 +169,11 @@ class ProdutosList extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: Column(
+                        mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           FadeInImage.memoryNetwork(
-                              fadeInDuration:
-                                  const Duration(milliseconds: 1500),
+                              fadeInDuration: const Duration(milliseconds: 400),
                               height: 190,
                               width: MediaQuery.of(context).size.width,
                               fit: BoxFit.cover,
@@ -308,7 +308,6 @@ class ProdutosList extends StatelessWidget {
                               // ),
                             ],
                           )),
-                          Padding(padding: EdgeInsets.all(15)),
                           ListTile(
                             leading: CircleAvatar(
                                 backgroundImage: NetworkImage(

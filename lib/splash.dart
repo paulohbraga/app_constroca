@@ -13,8 +13,6 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    
-
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 4)).then((_) {
       Navigator.pushReplacement(
@@ -27,21 +25,18 @@ class _SplashState extends State<Splash> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
-      
         decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.lightBlueAccent[400], Colors.indigo[900]])),
-
-              child: FlareActor(
-                'assets/logo3.flr',
-                animation: 'carro',
-                sizeFromArtboard: true,
-                alignment: Alignment.centerRight,
-                fit: BoxFit.cover,
-              ),
-          
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [Colors.lightBlueAccent[400], Colors.indigo[900]])),
+        child: FlareActor(
+          'assets/logo3.flr',
+          animation: 'carro',
+          sizeFromArtboard: true,
+          alignment: Alignment.center,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
