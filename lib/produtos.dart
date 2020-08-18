@@ -108,7 +108,7 @@ class MyHomePage extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: <Color>[Colors.blue[800], Colors.blue]))),
+                      colors: APP_BAR_GRADIENT_COLOR))),
           actions: <Widget>[
             appData.id_usuario != null
                 ? InkWell(
@@ -126,7 +126,7 @@ class MyHomePage extends StatelessWidget {
           ]),
       body: Padding(
         child: FutureBuilder<List<Produto>>(
-          future: fetchProdutos(http.Client()),
+          future: buildFetchProdutos(),
           builder: (context, snapshot) {
             if (snapshot.hasError) print(snapshot.error);
 
@@ -139,6 +139,8 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+
+  Future<List<Produto>> buildFetchProdutos() => fetchProdutos(http.Client());
 }
 
 class ProdutosList extends StatelessWidget {
@@ -165,10 +167,19 @@ class ProdutosList extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyHomePageDetail())),
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyHomePageDetail(
+                                  produtos[index].id_produto,
+                                  produtos[index].nome_produto,
+                                  produtos[index].imagem,
+                                ))),
+                    appData.id_produto = produtos[index].id_produto,
+                    appData.name_produto = produtos[index].nome_produto,
+                    appData.img_produto = produtos[index].imagem,
+                  },
                   child: Card(
                     borderOnForeground: false,
                     shadowColor: Colors.grey,
