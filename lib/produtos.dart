@@ -155,7 +155,7 @@ class ProdutosList extends StatelessWidget {
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
-                  color: Colors.blue[300],
+                  color: Colors.grey[50],
                   // image: DecorationImage(
                   //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                 ),
@@ -170,11 +170,13 @@ class ProdutosList extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => MyHomePageDetail())),
                   child: Card(
-                    shadowColor: Colors.blueGrey,
+                    borderOnForeground: false,
+                    shadowColor: Colors.grey,
                     shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
-                    elevation: 5,
+                    elevation: 6,
                     margin: EdgeInsets.only(
                         left: 15, right: 15, bottom: 15, top: 15),
                     color: Colors.white,
@@ -188,13 +190,12 @@ class ProdutosList extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                               child: Hero(
                                 tag: index,
-                                transitionOnUserGestures: true,
                                 child: FadeInImage.memoryNetwork(
                                     fadeInDuration:
                                         const Duration(milliseconds: 400),
                                     height: 220,
                                     width:
-                                        MediaQuery.of(context).size.width / 1.5,
+                                        MediaQuery.of(context).size.width / 1.2,
                                     fit: BoxFit.cover,
                                     placeholder: kTransparentImage,
                                     image:
@@ -278,5 +279,30 @@ class ProdutosList extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class CustomShapeBorder extends ContinuousRectangleBorder {
+  @override
+  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
+    final double innerCircleRadius = 150.0;
+
+    Path path = Path();
+    path.lineTo(0, rect.height);
+    path.quadraticBezierTo(rect.width / 2 - (innerCircleRadius / 2) - 30,
+        rect.height + 15, rect.width / 2 - 75, rect.height + 50);
+    path.cubicTo(
+        rect.width / 2 - 40,
+        rect.height + innerCircleRadius - 40,
+        rect.width / 2 + 40,
+        rect.height + innerCircleRadius - 40,
+        rect.width / 2 + 75,
+        rect.height + 50);
+    path.quadraticBezierTo(rect.width / 2 + (innerCircleRadius / 2) + 30,
+        rect.height + 15, rect.width, rect.height);
+    path.lineTo(rect.width, 0.0);
+    path.close();
+
+    return path;
   }
 }

@@ -46,8 +46,7 @@ class _MyHomePageState extends State<MyHomePageDetail> {
         title: Text("Informações do produto"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyApp())),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       //The whole application area
@@ -75,7 +74,6 @@ class _MyHomePageState extends State<MyHomePageDetail> {
       child: Stack(
         children: <Widget>[
           Hero(
-            transitionOnUserGestures: true,
             tag: 1,
             child: Image.asset(
               "imgs/cano.png",
