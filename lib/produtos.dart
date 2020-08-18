@@ -8,6 +8,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'appdata.dart';
 import 'constants.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'login.dart';
 import 'perfil.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
@@ -161,97 +162,104 @@ class ProdutosList extends StatelessWidget {
                       Theme.of(context).textTheme.display1.fontSize * 5 + 400.0,
                 ),
                 alignment: Alignment.center,
-                child: Card(
-                  elevation: 10,
-                  margin:
-                      EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 15),
-                  color: Colors.white,
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: FadeInImage.memoryNetwork(
-                                fadeInDuration:
-                                    const Duration(milliseconds: 400),
-                                height: 190,
-                                width: MediaQuery.of(context).size.width / 1.5,
-                                fit: BoxFit.cover,
-                                placeholder: kTransparentImage,
-                                image:
-                                    'http://192.168.15.10/api/produto/imagens/' +
-                                        produtos[index].imagem +
-                                        ''),
-                          ),
-                          Divider(),
-                          Center(
-                            child: Text(
-                              produtos[index].nome_produto,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: 20, color: Colors.blueAccent[900]),
+                child: InkWell(
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Logar())),
+                  child: Card(
+                    elevation: 10,
+                    margin: EdgeInsets.only(
+                        left: 15, right: 15, bottom: 15, top: 15),
+                    color: Colors.white,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: FadeInImage.memoryNetwork(
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 400),
+                                  height: 220,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.5,
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                  image:
+                                      'http://192.168.15.10/api/produto/imagens/' +
+                                          produtos[index].imagem +
+                                          ''),
                             ),
-                          ),
-                          Divider(),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              produtos[index].descricao_produto,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.normal),
+                            Divider(),
+                            Center(
+                              child: Text(
+                                produtos[index].nome_produto,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.blueAccent[900]),
+                              ),
                             ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Ink(
-                                  decoration: const ShapeDecoration(
-                                    shape: CircleBorder(),
-                                  ),
-                                  child: IconButton(
-                                    icon: Image.asset('assets/w.png',
-                                        width: 322, height: 322),
-                                    color: Colors.white,
-                                    onPressed: () {
-                                      FlutterOpenWhatsapp.sendSingleMessage(
-                                          "55" + produtos[index].telefone,
-                                          "Olá, " +
-                                              produtos[index].nome_usuario +
-                                              ", tenho interesse no produto: " +
-                                              produtos[index].nome_produto +
-                                              ", vi o seu anúncio no App Constroca.");
-                                    },
-                                  )),
-                              Text("Chat"),
-                            ],
-                          ),
-                          ListTile(
-                            leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    'http://192.168.15.10/api/usuario/imagens/' +
-                                        produtos[index].avatar)),
-                            title: Text(
-                                "Anunciante: " + produtos[index].nome_usuario),
-                            subtitle:
-                                Text("Telefone: " + produtos[index].telefone),
-                            trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  IconButton(
-                                      icon: Icon(Icons.person_add),
-                                      onPressed: null)
-                                ]),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Text("Email: " + produtos[index].email),
-                          ),
-                        ]),
+                            Divider(),
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                produtos[index].descricao_produto,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Ink(
+                                    decoration: const ShapeDecoration(
+                                      shape: CircleBorder(),
+                                    ),
+                                    child: IconButton(
+                                      icon: Image.asset('assets/w.png',
+                                          width: 322, height: 322),
+                                      color: Colors.white,
+                                      onPressed: () {
+                                        FlutterOpenWhatsapp.sendSingleMessage(
+                                            "55" + produtos[index].telefone,
+                                            "Olá, " +
+                                                produtos[index].nome_usuario +
+                                                ", tenho interesse no produto: " +
+                                                produtos[index].nome_produto +
+                                                ", vi o seu anúncio no App Constroca.");
+                                      },
+                                    )),
+                                Text("Chat"),
+                              ],
+                            ),
+                            ListTile(
+                              leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      'http://192.168.15.10/api/usuario/imagens/' +
+                                          produtos[index].avatar)),
+                              title: Text("Anunciante: " +
+                                  produtos[index].nome_usuario),
+                              subtitle:
+                                  Text("Telefone: " + produtos[index].telefone),
+                              trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    IconButton(
+                                        icon: Icon(Icons.person_add),
+                                        onPressed: null)
+                                  ]),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Text("Email: " + produtos[index].email),
+                            ),
+                          ]),
+                    ),
                   ),
                 )),
           ],
