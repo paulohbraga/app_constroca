@@ -8,6 +8,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'appdata.dart';
 import 'constants.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
+import 'detalhaProduto.dart';
 import 'login.dart';
 import 'perfil.dart';
 
@@ -163,8 +164,10 @@ class ProdutosList extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: InkWell(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Logar())),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MyHomePageDetail())),
                   child: Card(
                     elevation: 10,
                     margin: EdgeInsets.only(
@@ -178,18 +181,21 @@ class ProdutosList extends StatelessWidget {
                           children: <Widget>[
                             ClipRRect(
                               borderRadius: BorderRadius.circular(5),
-                              child: FadeInImage.memoryNetwork(
-                                  fadeInDuration:
-                                      const Duration(milliseconds: 400),
-                                  height: 220,
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.5,
-                                  fit: BoxFit.cover,
-                                  placeholder: kTransparentImage,
-                                  image:
-                                      'http://192.168.15.10/api/produto/imagens/' +
-                                          produtos[index].imagem +
-                                          ''),
+                              child: Hero(
+                                tag: index,
+                                child: FadeInImage.memoryNetwork(
+                                    fadeInDuration:
+                                        const Duration(milliseconds: 400),
+                                    height: 220,
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.5,
+                                    fit: BoxFit.cover,
+                                    placeholder: kTransparentImage,
+                                    image:
+                                        'http://192.168.15.10/api/produto/imagens/' +
+                                            produtos[index].imagem +
+                                            ''),
+                              ),
                             ),
                             Divider(),
                             Center(
