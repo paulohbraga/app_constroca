@@ -35,6 +35,12 @@ class _MyHomePageState extends State<MyHomePageDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[Colors.blue[800], Colors.blue]))),
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
         title: Text("Informações do produto"),
@@ -69,6 +75,7 @@ class _MyHomePageState extends State<MyHomePageDetail> {
       child: Stack(
         children: <Widget>[
           Hero(
+            transitionOnUserGestures: true,
             tag: 1,
             child: Image.asset(
               "imgs/cano.png",
@@ -95,20 +102,20 @@ class _MyHomePageState extends State<MyHomePageDetail> {
           Container(
             child: Column(
               children: <Widget>[
-                Text(
-                  "Troco canos",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w100,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  "José",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2F2F3E)),
-                ),
+                // Text(
+                //   "Troco canos",
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.w100,
+                //     fontSize: 14,
+                //   ),
+                // ),
+                // Text(
+                //   "José",
+                //   style: TextStyle(
+                //       fontSize: 24,
+                //       fontWeight: FontWeight.bold,
+                //       color: Color(0xFF2F2F3E)),
+                // ),
               ],
             ),
           ),

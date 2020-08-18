@@ -97,6 +97,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[900],
       appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
@@ -169,20 +170,25 @@ class ProdutosList extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => MyHomePageDetail())),
                   child: Card(
-                    elevation: 10,
+                    shadowColor: Colors.blueGrey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    elevation: 5,
                     margin: EdgeInsets.only(
                         left: 15, right: 15, bottom: 15, top: 15),
                     color: Colors.white,
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(15),
                       child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(10),
                               child: Hero(
                                 tag: index,
+                                transitionOnUserGestures: true,
                                 child: FadeInImage.memoryNetwork(
                                     fadeInDuration:
                                         const Duration(milliseconds: 400),
