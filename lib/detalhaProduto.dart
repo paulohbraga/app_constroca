@@ -9,65 +9,65 @@ import 'package:transparent_image/transparent_image.dart';
 import 'appdata.dart';
 import 'constants.dart';
 
-Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response = await client.get(
-      'http://192.168.15.10/api/produto/readOne.php?id=' + appData.id_produto);
-  // Use the compute function to run parsePhotos in a separate isolate
-  return compute(parseProdutos, response.body);
-}
+// Future<List<Produto>> fetchProdutos(http.Client client) async {
+//   final response = await client.get(
+//       'http://192.168.15.10/api/produto/readOne.php?id=' + appData.id_produto);
+//   // Use the compute function to run parsePhotos in a separate isolate
+//   return compute(parseProdutos, response.body);
+// }
 
-// A function that will convert a response body into a List<Photo>
-List<Produto> parseProdutos(String responseBody) {
-  print(appData.id_produto + ">>>>>>>>>>>++++++++++++++++++++");
+// // A function that will convert a response body into a List<Photo>
+// List<Produto> parseProdutos(String responseBody) {
+//   print(appData.id_produto + ">>>>>>>>>>>++++++++++++++++++++");
 
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+//   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
-  return parsed.map<Produto>((json) => Produto.fromJson(json)).toList();
-}
+//   return parsed.map<Produto>((json) => Produto.fromJson(json)).toList();
+// }
 
-class Produto {
-  final String id_produto;
-  final String fk_id_usuario;
-  final String nome_usuario;
-  final String nome_produto;
-  final String telefone;
-  final String email;
-  final String descricao_produto;
-  final String imagem;
-  final String tipo;
-  final String avatar;
+// class Produto {
+//   final String id_produto;
+//   final String fk_id_usuario;
+//   final String nome_usuario;
+//   final String nome_produto;
+//   final String telefone;
+//   final String email;
+//   final String descricao_produto;
+//   final String imagem;
+//   final String tipo;
+//   final String avatar;
 
-  Produto(
-      {this.id_produto,
-      this.fk_id_usuario,
-      this.nome_usuario,
-      this.nome_produto,
-      this.telefone,
-      this.email,
-      this.descricao_produto,
-      this.imagem,
-      this.avatar,
-      this.tipo});
+//   Produto(
+//       {this.id_produto,
+//       this.fk_id_usuario,
+//       this.nome_usuario,
+//       this.nome_produto,
+//       this.telefone,
+//       this.email,
+//       this.descricao_produto,
+//       this.imagem,
+//       this.avatar,
+//       this.tipo});
 
-  factory Produto.fromJson(Map<String, dynamic> json) {
-    return Produto(
-      id_produto: json['id_produto'] as String,
-      fk_id_usuario: json['fk_id_usuario'] as String,
-      nome_usuario: json['nome_usuario'] as String,
-      nome_produto: json['nome_produto'] as String,
-      telefone: json['telefone'] as String,
-      email: json['email'] as String,
-      descricao_produto: json['descricao_produto'] as String,
-      imagem: json['imagem'] as String,
-      avatar: json['avatar'] as String,
-      tipo: json['tipo'] as String,
-      //email
-      //telefone
-      //cidade
-      // avatar
-    );
-  }
-}
+//   factory Produto.fromJson(Map<String, dynamic> json) {
+//     return Produto(
+//       id_produto: json['id_produto'] as String,
+//       fk_id_usuario: json['fk_id_usuario'] as String,
+//       nome_usuario: json['nome_usuario'] as String,
+//       nome_produto: json['nome_produto'] as String,
+//       telefone: json['telefone'] as String,
+//       email: json['email'] as String,
+//       descricao_produto: json['descricao_produto'] as String,
+//       imagem: json['imagem'] as String,
+//       avatar: json['avatar'] as String,
+//       tipo: json['tipo'] as String,
+//       //email
+//       //telefone
+//       //cidade
+//       // avatar
+//     );
+//   }
+// }
 
 class DetalhaProduto extends StatelessWidget {
   // This widget is the root of your application.
