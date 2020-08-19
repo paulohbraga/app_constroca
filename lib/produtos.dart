@@ -157,14 +157,12 @@ class ProdutosList extends StatelessWidget {
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[50],
+                  color: Colors.grey[100],
                   // image: DecorationImage(
                   //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                 ),
                 constraints: BoxConstraints.expand(
-                  height:
-                      Theme.of(context).textTheme.display1.fontSize * 5 + 400.0,
-                ),
+                    height: MediaQuery.of(context).size.height - 250),
                 alignment: Alignment.center,
                 child: InkWell(
                   onTap: () => {
@@ -181,15 +179,13 @@ class ProdutosList extends StatelessWidget {
                     appData.img_produto = produtos[index].imagem,
                   },
                   child: Card(
-                    borderOnForeground: false,
-                    shadowColor: Colors.grey,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      side: BorderSide(width: 0.5, color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    elevation: 6,
+                    elevation: 8,
                     margin: EdgeInsets.only(
-                        left: 15, right: 15, bottom: 15, top: 15),
+                        left: 15, right: 15, bottom: 15, top: 25),
                     color: Colors.white,
                     child: Container(
                       padding: EdgeInsets.all(15),

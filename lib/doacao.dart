@@ -180,16 +180,14 @@ class ProdutosList extends StatelessWidget {
                     appData.img_produto = produtos[index].imagem,
                   },
                   child: Card(
-                    borderOnForeground: false,
-                    shadowColor: Colors.grey,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      side: BorderSide(width: 0.5, color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    elevation: 6,
+                    elevation: 8,
                     margin: EdgeInsets.only(
-                        left: 15, right: 15, bottom: 15, top: 15),
-                    color: Color.fromRGBO(0, 130, 250, 0.8),
+                        left: 15, right: 15, bottom: 25, top: 25),
+                    color: Colors.white,
                     child: Container(
                       padding: EdgeInsets.all(15),
                       child: Column(
