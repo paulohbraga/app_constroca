@@ -198,7 +198,7 @@ class LoginUserState extends State {
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),
-                              borderRadius: BorderRadius.circular(10.0)),
+                              borderRadius: BorderRadius.circular(5.0)),
                           child: Container(
                             constraints: BoxConstraints(
                                 maxWidth: 100.0, minHeight: 40.0),
@@ -226,7 +226,7 @@ class LoginUserState extends State {
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),
-                              borderRadius: BorderRadius.circular(10.0)),
+                              borderRadius: BorderRadius.circular(5.0)),
                           child: Container(
                             constraints: BoxConstraints(
                                 maxWidth: 100.0, minHeight: 40.0),
@@ -242,7 +242,7 @@ class LoginUserState extends State {
                       RaisedButton(
                         onPressed: () => null,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                            borderRadius: BorderRadius.circular(50.0)),
                         padding: EdgeInsets.all(0.0),
                         child: Ink(
                           decoration: BoxDecoration(
@@ -251,7 +251,7 @@ class LoginUserState extends State {
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                               ),
-                              borderRadius: BorderRadius.circular(10.0)),
+                              borderRadius: BorderRadius.circular(5.0)),
                           child: Container(
                             constraints: BoxConstraints(
                                 maxWidth: 140.0, minHeight: 40.0),
