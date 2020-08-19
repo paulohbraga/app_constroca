@@ -138,7 +138,10 @@ class LoginUserState extends State {
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
-            title: Text("Login do usuário"),
+            title: Text(
+              "Login do usuário",
+              style: TextStyle(fontFamily: 'Raleway'),
+            ),
             flexibleSpace: Container(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -155,28 +158,34 @@ class LoginUserState extends State {
                     top: MediaQuery.of(context).size.width / 3.5),
               ),
               Container(
-                  width: 280,
+                  width: 380,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontFamily: 'Raleway'),
                     controller: emailController,
                     autocorrect: true,
                     decoration: InputDecoration(
-                      hintText: 'e-mail',
+                      // hintText: 'e-mail',
                       labelText: 'Digite seu e-mail',
                       border: OutlineInputBorder(),
                     ),
                   )),
               Container(
-                  width: 280,
+                  width: 380,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontFamily: 'Raleway'),
                     controller: passwordController,
                     autocorrect: true,
                     obscureText: true,
                     decoration: InputDecoration(
-                      hintText: 'Senha',
+                      //hintText: 'Senha',
                       labelText: 'Senha',
                       border: OutlineInputBorder(),
                     ),
@@ -206,7 +215,8 @@ class LoginUserState extends State {
                             child: Text(
                               "Login",
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'Raleway'),
                             ),
                           ),
                         ),
@@ -234,7 +244,8 @@ class LoginUserState extends State {
                             child: Text(
                               "Cadastro",
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'Raleway'),
                             ),
                           ),
                         ),
@@ -259,7 +270,8 @@ class LoginUserState extends State {
                             child: Text(
                               "Esqueci a senha",
                               textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'Raleway'),
                             ),
                           ),
                         ),

@@ -102,7 +102,11 @@ class MyHomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
-          title: Text("Troca"),
+          title: Text(
+            "Troca",
+            style:
+                TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+          ),
           flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -229,6 +233,7 @@ class ProdutosList extends StatelessWidget {
                                 produtos[index].descricao_produto,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
+                                    fontFamily: 'Raleway',
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal),
                               ),
@@ -254,7 +259,13 @@ class ProdutosList extends StatelessWidget {
                                                 ", vi o seu anúncio no App Constroca.");
                                       },
                                     )),
-                                Text("Chat"),
+                                Text(
+                                  "Chat",
+                                  style: TextStyle(
+                                      fontFamily: 'Raleway',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
+                                ),
                               ],
                             ),
                             ListTile(
@@ -262,10 +273,18 @@ class ProdutosList extends StatelessWidget {
                                   backgroundImage: NetworkImage(
                                       'http://192.168.15.10/api/usuario/imagens/' +
                                           produtos[index].avatar)),
-                              title: Text("Anunciante: " +
-                                  produtos[index].nome_usuario),
-                              subtitle:
-                                  Text("Telefone: " + produtos[index].telefone),
+                              title: Text(
+                                "Contato: " + produtos[index].nome_usuario,
+                                style: TextStyle(
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.normal),
+                              ),
+                              subtitle: Text(
+                                "Telefone: " + produtos[index].telefone,
+                                style: TextStyle(
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.normal),
+                              ),
                               trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
@@ -275,8 +294,13 @@ class ProdutosList extends StatelessWidget {
                                   ]),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text("Email: " + produtos[index].email),
+                              padding: EdgeInsets.only(left: 5),
+                              child: Text(
+                                "Email: " + produtos[index].email,
+                                style: TextStyle(
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ),
                           ]),
                     ),

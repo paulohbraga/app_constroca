@@ -15,9 +15,7 @@ class Constroca extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: APP_NAME,
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
+        theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Raleway'),
         //routes: ,
         home: Splash(),
       ),

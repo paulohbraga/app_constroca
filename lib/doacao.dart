@@ -75,9 +75,10 @@ class MyApp2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Troca';
+    final appTitle = 'Doação';
 
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Raleway'),
       debugShowCheckedModeBanner: false,
       title: appTitle,
       home: MyHomePage(),
@@ -101,7 +102,7 @@ class MyHomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
-          title: Text("Troca"),
+          title: Text("Doação"),
           flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(

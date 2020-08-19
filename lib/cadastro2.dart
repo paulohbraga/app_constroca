@@ -192,7 +192,8 @@ class TransfterDataWidget extends State {
           onPressed: () => Navigator.push(
               context, MaterialPageRoute(builder: (context) => Logar())),
         ),
-        title: Text("Cadastro de usuário"),
+        title: Text("Cadastro de usuário",
+            style: TextStyle(fontFamily: 'Raleway')),
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -349,14 +350,14 @@ class TransfterDataWidget extends State {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
-                borderRadius: BorderRadius.circular(10.0)),
+                borderRadius: BorderRadius.circular(5.0)),
             child: Container(
               constraints: BoxConstraints(maxWidth: 200.0, minHeight: 40.0),
               alignment: Alignment.center,
               child: Text(
                 "Cadastrar usuário",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
               ),
             ),
           ),

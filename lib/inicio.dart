@@ -105,7 +105,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         iconSize: 30,
         elevation: 5,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.lightBlueAccent,
+        selectedItemColor: Colors.greenAccent,
         unselectedFontSize: 15,
         selectedFontSize: 15,
         type: BottomNavigationBarType.fixed,
@@ -120,21 +120,24 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             icon: new Icon(Icons.vertical_align_center),
             title: new Text(
               "Troca",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.vertical_align_top),
             title: new Text(
               "Doações",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.face),
             title: new Text(
               "Perfil",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
         ],
