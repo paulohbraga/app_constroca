@@ -109,7 +109,6 @@ class PerfilUserState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            automaticallyImplyLeading: false,
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
             title: Text('Perfil')),
