@@ -178,8 +178,8 @@ class ProdutosList extends StatelessWidget {
                     // image: DecorationImage(
                     //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                   ),
-                  constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height - 120),
+                  //constraints: BoxConstraints.expand(
+                  //   height: MediaQuery.of(context).size.height - 120),
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () => {
