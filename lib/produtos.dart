@@ -140,7 +140,7 @@ class MyHomePage extends StatelessWidget {
             return snapshot.hasData
                 ? ProdutosList(produtos: snapshot.data)
                 : Center(
-                    child: SpinKitDoubleBounce(
+                    child: SpinKitDualRing(
                     size: 100.0,
                     color: Colors.white,
                   ));
@@ -185,8 +185,9 @@ class ProdutosList extends StatelessWidget {
                     onTap: () => {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => MyHomePageDetail(
+                          PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 700),
+                              pageBuilder: (_, __, ___) => MyHomePageDetail(
                                     produtos[index].id_produto,
                                     produtos[index].nome_produto,
                                     produtos[index].imagem,
