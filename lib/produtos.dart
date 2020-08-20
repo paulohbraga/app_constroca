@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:app_constroca/perfil.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'appdata.dart';
 import 'constants.dart';
@@ -97,6 +99,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //resizeToAvoidBottomInset: true,
       backgroundColor: Colors.blue[900],
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -136,7 +139,11 @@ class MyHomePage extends StatelessWidget {
 
             return snapshot.hasData
                 ? ProdutosList(produtos: snapshot.data)
-                : Center(child: CircularProgressIndicator());
+                : Center(
+                    child: SpinKitDoubleBounce(
+                    size: 100.0,
+                    color: Colors.white,
+                  ));
           },
         ),
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -154,186 +161,168 @@ class ProdutosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: produtos.length,
-      itemBuilder: (context, index) {
-        return Column(
-          children: <Widget>[
-            Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  // image: DecorationImage(
-                  //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
-                ),
-                constraints: BoxConstraints.expand(
-                    height: MediaQuery.of(context).size.height - 250),
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyHomePageDetail(
-                                  produtos[index].id_produto,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      width: MediaQuery.of(context).size.height,
+      child: ListView.builder(
+        itemCount: produtos.length,
+        itemBuilder: (context, index) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    // image: DecorationImage(
+                    //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
+                  ),
+                  constraints: BoxConstraints.expand(
+                      height: MediaQuery.of(context).size.height - 250),
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyHomePageDetail(
+                                    produtos[index].id_produto,
+                                    produtos[index].nome_produto,
+                                    produtos[index].imagem,
+                                  ))),
+                      appData.id_produto = produtos[index].id_produto,
+                      appData.name_produto = produtos[index].nome_produto,
+                      appData.img_produto = produtos[index].imagem,
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 0.5, color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      elevation: 8,
+                      margin: EdgeInsets.only(
+                          left: 15, right: 15, bottom: 15, top: 25),
+                      color: Colors.white,
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Hero(
+                                  tag: produtos[index].id_produto,
+                                  child: FadeInImage.memoryNetwork(
+                                      fadeInDuration:
+                                          const Duration(milliseconds: 400),
+                                      height: 220,
+                                      width: MediaQuery.of(context).size.width /
+                                          1.2,
+                                      fit: BoxFit.cover,
+                                      placeholder: kTransparentImage,
+                                      image:
+                                          'http://192.168.15.10/api/produto/imagens/' +
+                                              produtos[index].imagem +
+                                              ''),
+                                ),
+                              ),
+                              Divider(),
+                              Center(
+                                child: Text(
                                   produtos[index].nome_produto,
-                                  produtos[index].imagem,
-                                ))),
-                    appData.id_produto = produtos[index].id_produto,
-                    appData.name_produto = produtos[index].nome_produto,
-                    appData.img_produto = produtos[index].imagem,
-                  },
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.5, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    elevation: 8,
-                    margin: EdgeInsets.only(
-                        left: 15, right: 15, bottom: 15, top: 25),
-                    color: Colors.white,
-                    child: Container(
-                      padding: EdgeInsets.all(15),
-                      child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Hero(
-                                tag: index,
-                                child: FadeInImage.memoryNetwork(
-                                    fadeInDuration:
-                                        const Duration(milliseconds: 400),
-                                    height: 220,
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.2,
-                                    fit: BoxFit.cover,
-                                    placeholder: kTransparentImage,
-                                    image:
-                                        'http://192.168.15.10/api/produto/imagens/' +
-                                            produtos[index].imagem +
-                                            ''),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.blueAccent[900]),
+                                ),
                               ),
-                            ),
-                            Divider(),
-                            Center(
-                              child: Text(
-                                produtos[index].nome_produto,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.blueAccent[900]),
-                              ),
-                            ),
-                            Divider(),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                produtos[index].descricao_produto,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                    fontFamily: 'Raleway',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Ink(
-                                    decoration: const ShapeDecoration(
-                                      shape: CircleBorder(),
-                                    ),
-                                    child: IconButton(
-                                      icon: Image.asset('assets/w.png',
-                                          width: 322, height: 322),
-                                      color: Colors.white,
-                                      onPressed: () {
-                                        FlutterOpenWhatsapp.sendSingleMessage(
-                                            "55" + produtos[index].telefone,
-                                            "Olá, " +
-                                                produtos[index].nome_usuario +
-                                                ", tenho interesse no produto: " +
-                                                produtos[index].nome_produto +
-                                                ", vi o seu anúncio no App Constroca.");
-                                      },
-                                    )),
-                                Text(
-                                  "Chat",
+                              Divider(),
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  produtos[index].descricao_produto,
+                                  textAlign: TextAlign.justify,
                                   style: TextStyle(
                                       fontFamily: 'Raleway',
                                       fontSize: 16,
                                       fontWeight: FontWeight.normal),
                                 ),
-                              ],
-                            ),
-                            ListTile(
-                              leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      'http://192.168.15.10/api/usuario/imagens/' +
-                                          produtos[index].avatar)),
-                              title: Text(
-                                "Contato: " + produtos[index].nome_usuario,
-                                style: TextStyle(
-                                    fontFamily: 'Raleway',
-                                    fontWeight: FontWeight.normal),
                               ),
-                              subtitle: Text(
-                                "Telefone: " + produtos[index].telefone,
-                                style: TextStyle(
-                                    fontFamily: 'Raleway',
-                                    fontWeight: FontWeight.normal),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Ink(
+                                      decoration: const ShapeDecoration(
+                                        shape: CircleBorder(),
+                                      ),
+                                      child: IconButton(
+                                        icon: Image.asset('assets/w.png',
+                                            width: 322, height: 322),
+                                        color: Colors.white,
+                                        onPressed: () {
+                                          FlutterOpenWhatsapp.sendSingleMessage(
+                                              "55" + produtos[index].telefone,
+                                              "Olá, " +
+                                                  produtos[index].nome_usuario +
+                                                  ", tenho interesse no produto: " +
+                                                  produtos[index].nome_produto +
+                                                  ", vi o seu anúncio no App Constroca.");
+                                        },
+                                      )),
+                                  Text(
+                                    "Chat",
+                                    style: TextStyle(
+                                        fontFamily: 'Raleway',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                ],
                               ),
-                              trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    IconButton(
-                                        icon: Icon(Icons.person_add),
-                                        onPressed: null)
-                                  ]),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 5),
-                              child: Text(
-                                "Email: " + produtos[index].email,
-                                style: TextStyle(
-                                    fontFamily: 'Raleway',
-                                    fontWeight: FontWeight.normal),
+                              ListTile(
+                                leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        'http://192.168.15.10/api/usuario/imagens/' +
+                                            produtos[index].avatar)),
+                                title: Text(
+                                  "Contato: " + produtos[index].nome_usuario,
+                                  style: TextStyle(
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                subtitle: Text(
+                                  "Telefone: " + produtos[index].telefone,
+                                  style: TextStyle(
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      IconButton(
+                                          icon: Icon(Icons.person_add),
+                                          onPressed: null)
+                                    ]),
                               ),
-                            ),
-                          ]),
+                              Padding(
+                                padding: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  "Email: " + produtos[index].email,
+                                  style: TextStyle(
+                                      fontFamily: 'Raleway',
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ]),
+                      ),
                     ),
-                  ),
-                )),
-          ],
-        );
-      },
+                  )),
+            ],
+          );
+        },
+      ),
     );
-  }
-}
-
-class CustomShapeBorder extends ContinuousRectangleBorder {
-  @override
-  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
-    final double innerCircleRadius = 150.0;
-
-    Path path = Path();
-    path.lineTo(0, rect.height);
-    path.quadraticBezierTo(rect.width / 2 - (innerCircleRadius / 2) - 30,
-        rect.height + 15, rect.width / 2 - 75, rect.height + 50);
-    path.cubicTo(
-        rect.width / 2 - 40,
-        rect.height + innerCircleRadius - 40,
-        rect.width / 2 + 40,
-        rect.height + innerCircleRadius - 40,
-        rect.width / 2 + 75,
-        rect.height + 50);
-    path.quadraticBezierTo(rect.width / 2 + (innerCircleRadius / 2) + 30,
-        rect.height + 15, rect.width, rect.height);
-    path.lineTo(rect.width, 0.0);
-    path.close();
-
-    return path;
   }
 }

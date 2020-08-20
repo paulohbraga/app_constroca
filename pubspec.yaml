@@ -27,7 +27,9 @@ dependencies:
   flutter_open_whatsapp: 0.1.2
   image_picker: ^0.4.10
   transparent_image: ^1.0.0
- # get_it: ^1.0.3+2
+  progress_indicators: ^0.1.5
+  flutter_spinkit: ^3.1.0
+   # get_it: ^1.0.3+2
  # url_launcher: ^5.0.3
   flutter:
     sdk: flutter
@@ -65,6 +67,8 @@ flutter:
     - assets/m.png
     - assets/c.png
     - assets/avatar.png
+    - assets/worker.gif
+    - assets/green_avatar.gif
     - imgs/1.jpg
     - imgs/2.jpg
     - imgs/3.jpg

@@ -154,11 +154,14 @@ class LoginUserState extends State {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width / 3.5),
-              ),
+                  padding: const EdgeInsets.all(20.0),
+                  child: CircleAvatar(
+                    radius: 120.0,
+                    backgroundImage: AssetImage('assets/green_avatar.gif'),
+                    backgroundColor: Colors.transparent,
+                  )),
               Container(
-                  width: 380,
+                  width: 280,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     style: TextStyle(
@@ -174,7 +177,7 @@ class LoginUserState extends State {
                     ),
                   )),
               Container(
-                  width: 380,
+                  width: 280,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
                     style: TextStyle(
