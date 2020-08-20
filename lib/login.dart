@@ -135,6 +135,7 @@ class LoginUserState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blue[100],
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
@@ -150,15 +151,21 @@ class LoginUserState extends State {
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
-            child: Center(
+            child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[Colors.blue[100], Colors.blue[200]])),
           child: Column(
             children: <Widget>[
               Padding(padding: const EdgeInsets.only(top: 30)),
               Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: AssetImage('assets/green_avatar.gif'),
+                    radius: 80.0,
+                    backgroundImage: AssetImage('assets/nerd.gif'),
                     backgroundColor: Colors.transparent,
                   )),
               Container(
@@ -202,8 +209,8 @@ class LoginUserState extends State {
                       RaisedButton(
                         onPressed: userLogin,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.2),
+                            borderRadius: BorderRadius.circular(10.0)),
+                        padding: EdgeInsets.all(0.0),
                         child: Ink(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(

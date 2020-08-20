@@ -67,7 +67,11 @@ flutter:
     - assets/m.png
     - assets/c.png
     - assets/avatar.png
-    - assets/worker.gif
+    - assets/nerd.gif
+    - assets/items_avatar.gif
+    - assets/faceshild.gif
+    - assets/avatar_expressions.gif
+    - assets/face_avatar.gif
     - assets/green_avatar.gif
     - imgs/1.jpg
     - imgs/2.jpg

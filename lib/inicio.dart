@@ -102,12 +102,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
       bottomNavigationBar: new BottomNavigationBar(
         backgroundColor: APP_BAR_COLOR,
-        iconSize: 30,
-        elevation: 5,
+        iconSize: 40,
+        elevation: 1,
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.greenAccent,
-        unselectedFontSize: 15,
-        selectedFontSize: 15,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         onTap: (int index) {
@@ -119,7 +119,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           new BottomNavigationBarItem(
             icon: new Icon(Icons.vertical_align_center),
             title: new Text(
-              "Troca",
+              "Trocas",
               style:
                   TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),

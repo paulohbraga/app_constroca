@@ -104,7 +104,7 @@ class MyHomePage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           title: Text(
-            "Troca",
+            "Doações",
             style:
                 TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
           ),

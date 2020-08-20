@@ -106,7 +106,7 @@ class MyHomePage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           title: Text(
-            "Troca",
+            "Trocas",
             style:
                 TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
           ),
@@ -179,7 +179,7 @@ class ProdutosList extends StatelessWidget {
                     //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                   ),
                   constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height - 250),
+                      height: MediaQuery.of(context).size.height - 120),
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () => {
@@ -216,7 +216,7 @@ class ProdutosList extends StatelessWidget {
                                   tag: produtos[index].id_produto,
                                   child: FadeInImage.memoryNetwork(
                                       fadeInDuration:
-                                          const Duration(milliseconds: 400),
+                                          const Duration(milliseconds: 1000),
                                       height: 220,
                                       width: MediaQuery.of(context).size.width /
                                           1.2,
