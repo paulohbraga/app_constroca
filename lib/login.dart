@@ -153,10 +153,11 @@ class LoginUserState extends State {
             child: Center(
           child: Column(
             children: <Widget>[
+              Padding(padding: const EdgeInsets.only(top: 30)),
               Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: CircleAvatar(
-                    radius: 120.0,
+                    radius: 100.0,
                     backgroundImage: AssetImage('assets/green_avatar.gif'),
                     backgroundColor: Colors.transparent,
                   )),
