@@ -13,8 +13,7 @@ import 'detalhaProduto.dart';
 import 'perfil.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
-  final response =
-      await client.get('http://192.168.15.10/api/produto/readDonation.php');
+  final response = await client.get('http://192.168.15.10/api/produto/readDonation.php');
 
   // Use the compute function to run parsePhotos in a separate isolate
   return compute(parseProdutos, response.body);
@@ -100,35 +99,18 @@ class MyHomePage extends StatelessWidget {
       //resizeToAvoidBottomInset: true,
       backgroundColor: Colors.blue[900],
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          backgroundColor: APP_BAR_COLOR,
-          title: Text(
-            "Doações",
-            style:
-                TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
-          ),
-          flexibleSpace: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: APP_BAR_GRADIENT_COLOR))),
-          actions: <Widget>[
-            appData.id_usuario != null
-                ? InkWell(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PerfilUser())),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.network(
-                        'http://192.168.15.10/api/usuario/imagens/' +
-                            appData.avatar +
-                            "",
-                      ),
-                    ))
-                : Divider(),
-          ]),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: APP_BAR_COLOR,
+        title: Text(
+          "Doações",
+          style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+        ),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
+      ),
       body: Padding(
         child: FutureBuilder<List<Produto>>(
           future: buildFetchProdutos(),
@@ -176,8 +158,7 @@ class ProdutosList extends StatelessWidget {
                     // image: DecorationImage(
                     //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                   ),
-                  constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height - 250),
+                  constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - 250),
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () => {
@@ -185,10 +166,11 @@ class ProdutosList extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => MyHomePageDetail(
-                                    produtos[index].id_produto,
-                                    produtos[index].nome_produto,
-                                    produtos[index].imagem,
-                                  ))),
+                                  produtos[index].descricao_produto,
+                                  produtos[index].id_produto,
+                                  produtos[index].nome_produto,
+                                  produtos[index].imagem,
+                                  produtos[index].email))),
                       appData.id_produto = produtos[index].id_produto,
                       appData.name_produto = produtos[index].nome_produto,
                       appData.img_produto = produtos[index].imagem,
@@ -199,8 +181,7 @@ class ProdutosList extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       elevation: 8,
-                      margin: EdgeInsets.only(
-                          left: 15, right: 15, bottom: 15, top: 25),
+                      margin: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 25),
                       color: Colors.white,
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -213,17 +194,12 @@ class ProdutosList extends StatelessWidget {
                                 child: Hero(
                                   tag: produtos[index].id_produto,
                                   child: FadeInImage.memoryNetwork(
-                                      fadeInDuration:
-                                          const Duration(milliseconds: 400),
+                                      fadeInDuration: const Duration(milliseconds: 400),
                                       height: 220,
-                                      width: MediaQuery.of(context).size.width /
-                                          1.2,
+                                      width: MediaQuery.of(context).size.width / 1.2,
                                       fit: BoxFit.cover,
                                       placeholder: kTransparentImage,
-                                      image:
-                                          'http://192.168.15.10/api/produto/imagens/' +
-                                              produtos[index].imagem +
-                                              ''),
+                                      image: 'http://192.168.15.10/api/produto/imagens/' + produtos[index].imagem + ''),
                                 ),
                               ),
                               Divider(),
@@ -232,9 +208,7 @@ class ProdutosList extends StatelessWidget {
                                   produtos[index].nome_produto,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.blueAccent[900]),
+                                  style: TextStyle(fontSize: 20, color: Colors.blueAccent[900]),
                                 ),
                               ),
                               Divider(),
@@ -243,10 +217,7 @@ class ProdutosList extends StatelessWidget {
                                 child: Text(
                                   produtos[index].descricao_produto,
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal),
+                                  style: TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),
                                 ),
                               ),
                               Column(
@@ -257,8 +228,7 @@ class ProdutosList extends StatelessWidget {
                                         shape: CircleBorder(),
                                       ),
                                       child: IconButton(
-                                        icon: Image.asset('assets/w.png',
-                                            width: 322, height: 322),
+                                        icon: Image.asset('assets/w.png', width: 322, height: 322),
                                         color: Colors.white,
                                         onPressed: () {
                                           FlutterOpenWhatsapp.sendSingleMessage(
@@ -272,45 +242,32 @@ class ProdutosList extends StatelessWidget {
                                       )),
                                   Text(
                                     "Chat",
-                                    style: TextStyle(
-                                        fontFamily: 'Raleway',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
+                                    style:
+                                        TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),
                                   ),
                                 ],
                               ),
                               ListTile(
                                 leading: CircleAvatar(
                                     backgroundImage: NetworkImage(
-                                        'http://192.168.15.10/api/usuario/imagens/' +
-                                            produtos[index].avatar)),
+                                        'http://192.168.15.10/api/usuario/imagens/' + produtos[index].avatar)),
                                 title: Text(
                                   "Contato: " + produtos[index].nome_usuario,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.normal),
+                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
                                 ),
                                 subtitle: Text(
                                   "Telefone: " + produtos[index].telefone,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.normal),
+                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
                                 ),
                                 trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      IconButton(
-                                          icon: Icon(Icons.person_add),
-                                          onPressed: null)
-                                    ]),
+                                    children: <Widget>[IconButton(icon: Icon(Icons.person_add), onPressed: null)]),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(left: 5),
                                 child: Text(
                                   "Email: " + produtos[index].email,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontWeight: FontWeight.normal),
+                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
                                 ),
                               ),
                             ]),

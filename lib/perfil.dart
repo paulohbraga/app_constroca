@@ -53,8 +53,7 @@ class PerfilUserState extends State {
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
     var response_id = await http.post(url_id_usuario, body: json.encode(data));
-    var response_img =
-        await http.post(url_img_usuario, body: json.encode(data));
+    var response_img = await http.post(url_img_usuario, body: json.encode(data));
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
@@ -74,10 +73,7 @@ class PerfilUserState extends State {
       prefs.setString('id', appData.id_usuario);
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => CadastroProduto(id: appData.id_usuario)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario)));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -109,56 +105,42 @@ class PerfilUserState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: APP_BAR_COLOR,
-            centerTitle: true,
-            title: Text('Perfil')),
+            automaticallyImplyLeading: false, backgroundColor: APP_BAR_COLOR, centerTitle: true, title: Text('Perfil')),
         resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
+        body: Container(
             child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
-                Colors.black.withOpacity(0.2), BlendMode.dstATop),
-            image: AssetImage("imgs/5.jpg"),
-            fit: BoxFit.fill,
-          )),
-          constraints:
-              BoxConstraints.expand(height: MediaQuery.of(context).size.height),
+          decoration: BoxDecoration(),
+          constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height),
           child: Column(
             children: <Widget>[
               Container(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                        ),
-                        InkWell(
-                            child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.network(
-                            'http://192.168.15.10/api/usuario/imagens/' +
-                                appData.avatar +
-                                "",
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        )),
-                        Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Text(
-                            appData.nome_usuario,
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
-                        ),
-                      ]),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                    ),
+                    InkWell(
+                        child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        'http://192.168.15.10/api/usuario/imagens/' + appData.avatar + "",
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    )),
+                    Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        appData.nome_usuario,
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                      ),
+                    ),
+                  ]),
                   // decoration: BoxDecoration(
                   //     image: DecorationImage(
                   //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
                   constraints: BoxConstraints.expand(
-                    height: Theme.of(context).textTheme.display1.fontSize * 1 +
-                        100.0,
+                    height: Theme.of(context).textTheme.display1.fontSize * 1 + 100.0,
                   )),
               Container(
                 child: Column(
@@ -199,76 +181,65 @@ class PerfilUserState extends State {
                 //         image: AssetImage("imgs/4.png"), fit: BoxFit.cover)),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: MediaQuery.of(context).size.width / 4),
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.width / 4),
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      RaisedButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CadastroProduto(id: appData.id_usuario))),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 180.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Cadastrar novo produto",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                  RaisedButton(
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario))),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Cadastrar novo produto",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      RaisedButton(
-                        onPressed: () => {
-                          appData.id_usuario = null,
-                          appData.cidade = null,
-                          appData.nome_usuario = null,
-                          appData.telefone = null,
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Logar())),
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 140.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Sair",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () => {
+                      appData.id_usuario = null,
+                      appData.cidade = null,
+                      appData.nome_usuario = null,
+                      appData.telefone = null,
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
+                    },
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Sair",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
               ),
             ],
           ),

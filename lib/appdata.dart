@@ -13,6 +13,9 @@ class AppData {
   String id_produto = "";
   String name_produto = "";
   String img_produto = "";
+  String descricao_produto = "";
+  String email_client;
+  String avatar_client;
 
   factory AppData() {
     return _appData;

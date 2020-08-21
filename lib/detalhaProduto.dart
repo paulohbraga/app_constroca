@@ -83,7 +83,7 @@ class DetalhaProduto extends StatelessWidget {
 }
 
 class MyHomePageDetail extends StatefulWidget {
-  MyHomePageDetail(String idProduto, String nome_produto, String img_produto,
+  MyHomePageDetail(String descricao, String idProduto, String nome_produto, String img_produto, String avatar,
       {Key key, this.title})
       : super(key: key);
   final appData = AppData();
@@ -121,14 +121,35 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         child: Column(
           children: <Widget>[
             hero(appData.id_produto),
+            ListTile(
+              leading: CircleAvatar(
+                  backgroundImage: NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client)),
+              title: Text(
+                "Contato: ",
+                style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
+              ),
+              subtitle: Text(
+                "Telefone: ",
+                style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
+              ),
+              trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[IconButton(icon: Icon(Icons.chat), onPressed: null)]),
+            ),
             spaceVertical(2),
             //Center Items
             Expanded(
               child: sections(),
             ),
+            Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: Text(
+                "Email: " + appData.email_client,
+                style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
+              ),
+            ),
 
             //Bottom Button
-            purchase()
           ],
         ),
       ),
@@ -144,9 +165,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             tag: id,
             child: FadeInImage.memoryNetwork(
                 placeholder: kTransparentImage,
-                image: 'http://192.168.15.10/api/produto/imagens/' +
-                    appData.img_produto +
-                    ''),
+                image: 'http://192.168.15.10/api/produto/imagens/' + appData.img_produto + ''),
           ),
           //This
           // should be a paged
@@ -202,7 +221,6 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         children: <Widget>[
           description(),
           spaceVertical(50),
-          property(),
         ],
       ),
     );
@@ -210,37 +228,9 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
 
   Widget description() {
     return Text(
-      "Aqui vai a descriçao do item para troca ou doação ",
+      appData.descricao_produto,
       textAlign: TextAlign.justify,
-      style: TextStyle(height: 1.5, color: Color(0xFF6F8398)),
-    );
-  }
-
-  Widget property() {
-    return Container(
-      padding: EdgeInsets.only(right: 20, left: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "texto aqui texto aqui",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2F2F3E)),
-              ),
-              spaceVertical(10),
-              //colorSelector(),
-            ],
-          ),
-          size()
-        ],
-      ),
+      style: TextStyle(fontFamily: 'Raleway', height: 1.5),
     );
   }
 
@@ -252,10 +242,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         Text(
           "Teste",
           textAlign: TextAlign.left,
-          style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2F2F3E)),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF2F2F3E)),
         ),
         spaceVertical(10),
         Container(
@@ -264,10 +251,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
           color: Color(0xFFF5F8FB),
           child: Text(
             "teste",
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF2F2F3E)),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF2F2F3E)),
           ),
         )
       ],
@@ -275,29 +259,6 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
   }
 
   /***** End */
-
-  ///************** BOTTOM BUTTON ********************************************/
-  Widget purchase() {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          FlatButton(
-            child: Text(
-              "Adicionar os favoritos +",
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2F2F3E)),
-            ),
-            color: Colors.transparent,
-            onPressed: () {},
-          ),
-        ],
-      ),
-    );
-  }
 
   /***** End */
 
@@ -337,8 +298,7 @@ class ColorTicker extends StatelessWidget {
           margin: EdgeInsets.all(5),
           width: 30,
           height: 30,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle, color: color.withOpacity(0.7)),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color.withOpacity(0.7)),
           child: selected ? Image.asset("imgs/checker.png") : Container(),
         ));
   }
