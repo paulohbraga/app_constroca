@@ -23,8 +23,7 @@ class CadastroProduto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, home: TransfterData(id: id));
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData(id: id));
   }
 }
 
@@ -42,10 +41,7 @@ class TransfterDataWidget extends State {
   TransfterDataWidget({Key key, @required this.id});
 
   Tipo selectedUser;
-  List<Tipo> users = <Tipo>[
-    const Tipo('Troca', 'T'),
-    const Tipo('Doação', 'D')
-  ];
+  List<Tipo> users = <Tipo>[const Tipo('Troca', 'T'), const Tipo('Doação', 'D')];
 
   // Getting value from TextField widget.
   String tipoProduto = '';
@@ -56,12 +52,11 @@ class TransfterDataWidget extends State {
   final cidadeController = TextEditingController();
   final passwordController = TextEditingController();
   int contador;
-  String nome_imagem = 'default.jpng';
+  String nome_imagem = 'default.png';
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
 
-  static final String uploadEndPoint =
-      'http://192.168.15.10/api/produto/image_save.php';
+  static final String uploadEndPoint = 'http://192.168.15.10/api/produto/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -114,8 +109,7 @@ class TransfterDataWidget extends State {
     return FutureBuilder<File>(
       future: file,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
+        if (snapshot.connectionState == ConnectionState.done && null != snapshot.data) {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
@@ -201,8 +195,7 @@ class TransfterDataWidget extends State {
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Inicio())),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio())),
             ),
           ],
         );
@@ -218,8 +211,7 @@ class TransfterDataWidget extends State {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => PerfilUser())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
           ),
           title: Text('Cadastro de produtos'),
           centerTitle: true,
@@ -227,8 +219,7 @@ class TransfterDataWidget extends State {
         ),
         body: SingleChildScrollView(
             child: ConstrainedBox(
-          constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height + 200),
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height + 200),
           child: Column(
             children: <Widget>[
               Divider(
@@ -307,16 +298,14 @@ class TransfterDataWidget extends State {
                       value: user,
                       child: new Text(
                         user.name,
-                        style:
-                            new TextStyle(color: Colors.black87, fontSize: 20),
+                        style: new TextStyle(color: Colors.black87, fontSize: 20),
                       ),
                     );
                   }).toList()),
               Padding(padding: EdgeInsets.only(bottom: 45)),
               RaisedButton(
                 onPressed: cadastrar,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
                   decoration: BoxDecoration(
@@ -327,8 +316,7 @@ class TransfterDataWidget extends State {
                       ),
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Container(
-                    constraints:
-                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                    constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
                       "Cadastrar novo item",
@@ -368,9 +356,7 @@ class TransfterDataWidget extends State {
 
               Visibility(
                   visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30, top: 10),
-                      child: CircularProgressIndicator())),
+                  child: Container(margin: EdgeInsets.only(bottom: 30, top: 10), child: CircularProgressIndicator())),
             ],
           ),
         )));
