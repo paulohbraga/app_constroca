@@ -75,16 +75,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             child: new TickerMode(
               enabled: index == 0,
               child: new MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  home: new MyApp()), // Ou Troca.() para voltar ao original
+                  debugShowCheckedModeBanner: false, home: new MyApp()), // Ou Troca.() para voltar ao original
             ),
           ),
           new Offstage(
             offstage: index != 1,
             child: new TickerMode(
               enabled: index == 1,
-              child: new MaterialApp(
-                  debugShowCheckedModeBanner: false, home: new MyApp2()),
+              child: new MaterialApp(debugShowCheckedModeBanner: false, home: new MyApp2()),
             ),
           ),
           new Offstage(
@@ -93,9 +91,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               enabled: index == 2,
               child: new MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  home: appData.id_usuario == null
-                      ? Logar()
-                      : Perfil()), // Agora deve ir para a pagina de perfil
+                  home: appData.id_usuario == null ? Logar() : Perfil()), // Agora deve ir para a pagina de perfil
             ),
           ),
         ],
@@ -120,24 +116,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             icon: new Icon(Icons.vertical_align_center),
             title: new Text(
               "Trocas",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.vertical_align_top),
             title: new Text(
               "Doações",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.face),
             title: new Text(
               "Perfil",
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
         ],
