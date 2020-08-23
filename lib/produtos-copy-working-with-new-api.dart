@@ -12,6 +12,7 @@ import 'constants.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'detalhaProduto.dart';
 import 'login.dart';
+import 'models/Produto.dart';
 import 'perfil.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
@@ -25,94 +26,6 @@ Future<List<Produto>> fetchProdutos(http.Client client) async {
 List<Produto> parseProdutos(String str) => List<Produto>.from(json.decode(str).map((x) => Produto.fromJson(x)));
 
 String produtoToJson(List<Produto> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-class Produto {
-  Produto({
-    this.id,
-    this.nomeProduto,
-    this.descricao,
-    this.status,
-    this.tipo,
-    this.imagem,
-    this.usuario,
-  });
-
-  int id;
-  String nomeProduto;
-  String descricao;
-  String status;
-  String tipo;
-  String imagem;
-  Usuario usuario;
-
-  factory Produto.fromJson(Map<String, dynamic> json) => Produto(
-        id: json["id"],
-        nomeProduto: json["nome_produto"],
-        descricao: json["descricao"],
-        status: json["status"],
-        tipo: json["tipo"],
-        imagem: json["imagem"],
-        usuario: Usuario.fromJson(json["usuario"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nome_produto": nomeProduto,
-        "descricao": descricao,
-        "status": status,
-        "tipo": tipo,
-        "imagem": imagem,
-        "usuario": usuario.toJson(),
-      };
-}
-
-class Usuario {
-  Usuario({
-    this.id,
-    this.nome,
-    this.loginUsuario,
-    this.email,
-    this.cpf,
-    this.telefone,
-    this.cidade,
-    this.logado,
-    this.avatar,
-  });
-
-  int id;
-  String nome;
-  String loginUsuario;
-  String email;
-  String cpf;
-  int telefone;
-  String cidade;
-  int logado;
-  String avatar;
-
-  factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
-        id: json["id"],
-        nome: json["nome"],
-        loginUsuario: json["login_usuario"],
-        email: json["email"],
-        cpf: json["cpf"],
-        telefone: json["telefone"],
-        cidade: json["cidade"],
-        logado: json["logado"],
-        avatar: json["avatar"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nome": nome,
-        "login_usuario": loginUsuario,
-        "email": email,
-        "cpf": cpf,
-        "telefone": telefone,
-        "cidade": cidade,
-        "logado": logado,
-        "avatar": avatar,
-      };
-}
 
 class MyApp extends StatelessWidget {
   final appData = AppData();
