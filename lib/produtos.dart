@@ -145,7 +145,7 @@ class ProdutosList extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
       ),
-      width: MediaQuery.of(context).size.height,
+      //width: MediaQuery.of(context).size.height,
       child: ListView.builder(
         itemCount: produtos.length,
         itemBuilder: (context, index) {
@@ -183,8 +183,8 @@ class ProdutosList extends StatelessWidget {
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 0.5, color: Colors.grey),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        side: BorderSide(width: 1.5, color: Colors.grey[400]),
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
                       elevation: 8,
                       margin: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 25),
@@ -195,17 +195,21 @@ class ProdutosList extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Hero(
-                                  tag: produtos[index].id_produto,
-                                  child: FadeInImage.memoryNetwork(
-                                      fadeInDuration: const Duration(milliseconds: 1000),
-                                      height: 220,
-                                      width: MediaQuery.of(context).size.width / 1.2,
-                                      fit: BoxFit.cover,
-                                      placeholder: kTransparentImage,
-                                      image: 'http://192.168.15.10/api/produto/imagens/' + produtos[index].imagem + ''),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Hero(
+                                    tag: produtos[index].id_produto,
+                                    child: FadeInImage.memoryNetwork(
+                                        fadeInDuration: const Duration(milliseconds: 500),
+                                        height: 250,
+                                        width: MediaQuery.of(context).size.width / 1.8,
+                                        fit: BoxFit.fitWidth,
+                                        placeholder: kTransparentImage,
+                                        image:
+                                            'http://192.168.15.10/api/produto/imagens/' + produtos[index].imagem + ''),
+                                  ),
                                 ),
                               ),
                               Divider(),
