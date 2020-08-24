@@ -14,9 +14,7 @@ A app tem como objetivo permitar que os usuários se cadastrem e coloquem materi
 
 # Capturas
 
-<p align="center">
-<img alt="kigio" src="https://j.gifs.com/GvqJw0.gif" />
-</p>
+
 <p align="center">
 <img alt="0" src="http://www.someletras.com.br/paulo/gifs/0.gif" />
 </p>
