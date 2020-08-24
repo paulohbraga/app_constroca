@@ -125,11 +125,11 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
               leading: CircleAvatar(
                   backgroundImage: NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client)),
               title: Text(
-                "Contato: ",
+                "Contato: " + appData.email_client,
                 style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
               ),
               subtitle: Text(
-                "Telefone: ",
+                "Telefone: " + appData.telefone_client,
                 style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
               ),
               trailing: Row(

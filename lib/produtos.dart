@@ -180,7 +180,8 @@ class ProdutosList extends StatelessWidget {
                       appData.img_produto = produtos[index].imagem,
                       appData.descricao_produto = produtos[index].descricao_produto,
                       appData.email_client = produtos[index].email,
-                      appData.avatar_client = produtos[index].avatar
+                      appData.avatar_client = produtos[index].avatar,
+                      appData.telefone_client = produtos[index].telefone
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(

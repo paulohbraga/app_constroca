@@ -16,6 +16,7 @@ class AppData {
   String descricao_produto = "";
   String email_client;
   String avatar_client;
+  String telefone_client;
 
   factory AppData() {
     return _appData;

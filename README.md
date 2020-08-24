@@ -12,6 +12,28 @@ Membros: Murilo, Paulo Henrique.
 A app tem como objetivo permitar que os usuários se cadastrem e coloquem materiais de construção para troca ou doação.
 
 
+# Capturas
+
+<p align="center">
+<img alt="kigio" src="https://j.gifs.com/GvqJw0.gif" />
+</p>
+<p align="center">
+<img alt="0" src="http://www.someletras.com.br/paulo/gifs/0.gif" />
+</p>
+<p align="center">
+<img alt="1" src="http://www.someletras.com.br/paulo/gifs/1.gif" />
+</p>
+<p align="center">
+<img alt="2" src="http://www.someletras.com.br/paulo/gifs/2.gif" />
+</p>
+<p align="center">
+<img alt="3" src="http://www.someletras.com.br/paulo/gifs/3.gif" />
+</p>
+<p align="center">
+<img alt="4" src="http://www.someletras.com.br/paulo/gifs/4.gif" />
+</p>
+
+
 # app_constroca 
 
 
