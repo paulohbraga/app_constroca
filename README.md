@@ -1,15 +1,15 @@
 # app_constroca
 
-Aplicativo Constroca para a disciplina de Projeto Integrador I do Curso Análise e Desenvolvimento de Sistemas - Uniceub
+Aplicativo Constroca para a disciplina de Projeto Integrador I e II do Curso Análise e Desenvolvimento de Sistemas - Centro Universitário de Brasília
 
 Professor/Scrum Master: Sérgio Cozetti
 
-Membros: Murilo, Paulo Henrique.
+Membros: Murilo de La Vega, Paulo Henrique.
 
 
 # Descrição
 
-A app tem como objetivo permitar que os usuários se cadastrem e coloquem materiais de construção para troca ou doação.
+A app tem como objetivo permitir que os usuários se cadastrem e coloquem materiais de construção para troca ou doação. O front-end está sendo desenvolvindo utilizando o framework Flutter em linguagem Dart. 
 
 
 # Capturas
