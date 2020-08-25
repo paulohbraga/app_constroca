@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:app_constroca/produtos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:http/http.dart' as http;
 import 'package:transparent_image/transparent_image.dart';
 
@@ -138,6 +139,32 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                   children: <Widget>[IconButton(icon: Icon(Icons.chat), onPressed: null)]),
             ),
             spaceVertical(2),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Ink(
+                    decoration: const ShapeDecoration(
+                      shape: CircleBorder(),
+                    ),
+                    child: IconButton(
+                      icon: Image.asset('assets/w.png', width: 322, height: 322),
+                      color: Colors.white,
+                      onPressed: () {
+                        // FlutterOpenWhatsapp.sendSingleMessage(
+                        //     // "55" + produtos[index].telefone,
+                        //     "Olá, " +
+                        //         // produtos[index].nome_usuario +
+                        //         ", tenho interesse no produto: " +
+                        //         // produtos[index].nome_produto +
+                        //         ", vi o seu anúncio no App Constroca.");
+                      },
+                    )),
+                Text(
+                  "Chat",
+                  style: TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),
+                ),
+              ],
+            ),
             //Center Items
             // Expanded(
             //   child: sections(),

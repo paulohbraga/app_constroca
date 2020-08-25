@@ -208,13 +208,17 @@ class ProdutosList extends StatelessWidget {
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: <Color>[Colors.black12, Colors.black87]),
                               borderRadius:
                                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-                              color: Colors.black54,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(5),
                               child: Text(produtos[index].nome_produto,
+                                  textAlign: TextAlign.end,
                                   style: TextStyle(
                                       fontFamily: 'Raleway',
                                       fontSize: 18,
