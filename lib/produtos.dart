@@ -211,7 +211,7 @@ class ProdutosList extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
-                                  colors: <Color>[Colors.black12, Colors.black87]),
+                                  colors: <Color>[Color(0x999999), Colors.black]),
                               borderRadius:
                                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                             ),
@@ -221,7 +221,7 @@ class ProdutosList extends StatelessWidget {
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
                                       fontFamily: 'Raleway',
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold)),
                             ),

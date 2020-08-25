@@ -125,7 +125,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)), child: hero(appData.id_produto)),
             ListTile(
               leading: CircleAvatar(
-                  backgroundImage: NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client)),
+                  backgroundImage:
+                      NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client + '')),
               title: Text(
                 "Contato: " + appData.email_client,
                 style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
@@ -142,6 +143,12 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Text(appData.descricao_produto,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal)),
+                ),
                 Ink(
                     decoration: const ShapeDecoration(
                       shape: CircleBorder(),
