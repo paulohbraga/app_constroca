@@ -153,137 +153,81 @@ class ProdutosList extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    // image: DecorationImage(
-                    //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  // image: DecorationImage(
+                  //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
+                ),
+                //constraints: BoxConstraints.expand(
+                //   height: MediaQuery.of(context).size.height - 120),
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 400),
+                            pageBuilder: (_, __, ___) => MyHomePageDetail(
+                                produtos[index].descricao_produto,
+                                produtos[index].id_produto,
+                                produtos[index].nome_produto,
+                                produtos[index].imagem,
+                                produtos[index].avatar))),
+                    appData.id_produto = produtos[index].id_produto,
+                    appData.name_produto = produtos[index].nome_produto,
+                    appData.img_produto = produtos[index].imagem,
+                    appData.descricao_produto = produtos[index].descricao_produto,
+                    appData.email_client = produtos[index].email,
+                    appData.avatar_client = produtos[index].avatar,
+                    appData.telefone_client = produtos[index].telefone
+                  },
+                  child: Stack(
+                    children: <Widget>[
+                      Card(
+                        semanticContainer: true,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Hero(
+                          tag: produtos[index].id_produto,
+                          child: FadeInImage.memoryNetwork(
+                            image: "http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem + "",
+                            fit: BoxFit.fill,
+                            placeholder: kTransparentImage,
+                            height: 280,
+                            width: MediaQuery.of(context).size.width,
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        elevation: 5,
+                        margin: EdgeInsets.all(10),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Center(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                              color: Colors.black54,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(produtos[index].nome_produto,
+                                  style: TextStyle(
+                                      fontFamily: 'Raleway',
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  //constraints: BoxConstraints.expand(
-                  //   height: MediaQuery.of(context).size.height - 120),
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () => {
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: Duration(milliseconds: 400),
-                              pageBuilder: (_, __, ___) => MyHomePageDetail(
-                                  produtos[index].descricao_produto,
-                                  produtos[index].id_produto,
-                                  produtos[index].nome_produto,
-                                  produtos[index].imagem,
-                                  produtos[index].avatar))),
-                      appData.id_produto = produtos[index].id_produto,
-                      appData.name_produto = produtos[index].nome_produto,
-                      appData.img_produto = produtos[index].imagem,
-                      appData.descricao_produto = produtos[index].descricao_produto,
-                      appData.email_client = produtos[index].email,
-                      appData.avatar_client = produtos[index].avatar,
-                      appData.telefone_client = produtos[index].telefone
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1.5, color: Colors.grey[400]),
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      elevation: 8,
-                      margin: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 25),
-                      color: Colors.white,
-                      child: Container(
-                        padding: EdgeInsets.all(15),
-                        child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Hero(
-                                    tag: produtos[index].id_produto,
-                                    child: FadeInImage.memoryNetwork(
-                                        fadeInDuration: const Duration(milliseconds: 500),
-                                        height: 250,
-                                        width: MediaQuery.of(context).size.width / 1.8,
-                                        fit: BoxFit.fitWidth,
-                                        placeholder: kTransparentImage,
-                                        image:
-                                            'http://192.168.15.10/api/produto/imagens/' + produtos[index].imagem + ''),
-                                  ),
-                                ),
-                              ),
-                              Divider(),
-                              Center(
-                                child: Text(
-                                  produtos[index].nome_produto,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontSize: 20, color: Colors.blueAccent[900]),
-                                ),
-                              ),
-                              Divider(),
-                              Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  produtos[index].descricao_produto,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),
-                                ),
-                              ),
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Ink(
-                                      decoration: const ShapeDecoration(
-                                        shape: CircleBorder(),
-                                      ),
-                                      child: IconButton(
-                                        icon: Image.asset('assets/w.png', width: 322, height: 322),
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          FlutterOpenWhatsapp.sendSingleMessage(
-                                              "55" + produtos[index].telefone,
-                                              "Olá, " +
-                                                  produtos[index].nome_usuario +
-                                                  ", tenho interesse no produto: " +
-                                                  produtos[index].nome_produto +
-                                                  ", vi o seu anúncio no App Constroca.");
-                                        },
-                                      )),
-                                  Text(
-                                    "Chat",
-                                    style:
-                                        TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),
-                                  ),
-                                ],
-                              ),
-                              ListTile(
-                                leading: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        'http://192.168.15.10/api/usuario/imagens/' + produtos[index].avatar)),
-                                title: Text(
-                                  "Contato: " + produtos[index].nome_usuario,
-                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
-                                ),
-                                subtitle: Text(
-                                  "Telefone: " + produtos[index].telefone,
-                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
-                                ),
-                                trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[IconButton(icon: Icon(Icons.person_add), onPressed: null)]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 5),
-                                child: Text(
-                                  "Email: " + produtos[index].email,
-                                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  )),
+                ),
+              ),
             ],
           );
         },

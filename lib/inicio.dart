@@ -127,7 +127,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
           ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.face),
+            icon: new Icon(Icons.person_outline),
             title: new Text(
               "Perfil",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),

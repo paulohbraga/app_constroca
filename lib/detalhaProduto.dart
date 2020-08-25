@@ -120,7 +120,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            hero(appData.id_produto),
+            Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)), child: hero(appData.id_produto)),
             ListTile(
               leading: CircleAvatar(
                   backgroundImage: NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client)),
@@ -138,9 +139,9 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             ),
             spaceVertical(2),
             //Center Items
-            Expanded(
-              child: sections(),
-            ),
+            // Expanded(
+            //   child: sections(),
+            // ),
             Padding(
               padding: EdgeInsets.only(left: 5),
               child: Text(
@@ -164,6 +165,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
           Hero(
             tag: id,
             child: FadeInImage.memoryNetwork(
+                height: MediaQuery.of(context).size.height / 2.5,
+                fit: BoxFit.cover,
                 placeholder: kTransparentImage,
                 image: 'http://192.168.15.10/api/produto/imagens/' + appData.img_produto + ''),
           ),

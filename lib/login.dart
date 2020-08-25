@@ -1,4 +1,5 @@
 import 'package:app_constroca/perfil.dart';
+import 'package:app_constroca/recover.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -46,11 +47,9 @@ class LoginUserState extends State {
 
     var url_id_usuario = 'http://192.168.15.10/api/usuario/getidusuario.php';
     var url_img_usuario = 'http://192.168.15.10/api/usuario/getimgusuario.php';
-    var url_nome_usuario =
-        'http://192.168.15.10/api/usuario/getnomeusuario.php';
+    var url_nome_usuario = 'http://192.168.15.10/api/usuario/getnomeusuario.php';
     var url_cidade = 'http://192.168.15.10/api/usuario/getcidadeusuario.php';
-    var url_telefone =
-        'http://192.168.15.10/api/usuario/gettelefoneusuario.php';
+    var url_telefone = 'http://192.168.15.10/api/usuario/gettelefoneusuario.php';
     var url_email = 'http://192.168.15.10/api/usuario/getemailusuario.php';
     var url_count = 'http://192.168.15.10/api/usuario/getprodutosusuario.php';
 
@@ -60,13 +59,10 @@ class LoginUserState extends State {
     // Starting Web API Call.
     var response = await http.post(url, body: json.encode(data));
     var response_id = await http.post(url_id_usuario, body: json.encode(data));
-    var response_img =
-        await http.post(url_img_usuario, body: json.encode(data));
-    var response_nome =
-        await http.post(url_nome_usuario, body: json.encode(data));
+    var response_img = await http.post(url_img_usuario, body: json.encode(data));
+    var response_nome = await http.post(url_nome_usuario, body: json.encode(data));
     var response_cidade = await http.post(url_cidade, body: json.encode(data));
-    var response_telefone =
-        await http.post(url_telefone, body: json.encode(data));
+    var response_telefone = await http.post(url_telefone, body: json.encode(data));
     var response_email = await http.post(url_email, body: json.encode(data));
     var response_produtos = await http.post(url_count, body: json.encode(data));
 
@@ -99,8 +95,7 @@ class LoginUserState extends State {
       prefs.setString('id', id);
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PerfilUser()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser()));
       //CadastroProduto( id: id)));
     } else {
       // If Email or Password did not Matched.
@@ -172,10 +167,7 @@ class LoginUserState extends State {
                   width: 280,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontFamily: 'Raleway'),
+                    style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                     controller: emailController,
                     autocorrect: true,
                     decoration: InputDecoration(
@@ -188,10 +180,7 @@ class LoginUserState extends State {
                   width: 280,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontFamily: 'Raleway'),
+                    style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                     controller: passwordController,
                     autocorrect: true,
                     obscureText: true,
@@ -203,97 +192,81 @@ class LoginUserState extends State {
                   )),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      RaisedButton(
-                        onPressed: userLogin,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue[900], Colors.blue[600]],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(5.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 100.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Login",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white, fontFamily: 'Raleway'),
-                            ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                  RaisedButton(
+                    onPressed: userLogin,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue[900], Colors.blue[600]],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Login",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
-                      RaisedButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Cadastro2())),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue[900], Colors.blue[600]],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(5.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 100.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Cadastro",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white, fontFamily: 'Raleway'),
-                            ),
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2())),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue[900], Colors.blue[600]],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Cadastro",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
-                      RaisedButton(
-                        onPressed: () => null,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0)),
-                        padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue[900], Colors.blue[600]],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(5.0)),
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth: 140.0, minHeight: 40.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Esqueci a senha",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white, fontFamily: 'Raleway'),
-                            ),
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Recover())),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue[900], Colors.blue[600]],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Esqueci a senha",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
               ),
               Visibility(
                   visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30),
-                      child: CircularProgressIndicator())),
+                  child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
             ],
           ),
         )));
@@ -317,16 +290,14 @@ class ProfileScreen extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-            appBar: AppBar(
-                title: Text('Nova tela'), automaticallyImplyLeading: false),
+            appBar: AppBar(title: Text('Nova tela'), automaticallyImplyLeading: false),
             body: Center(
                 child: Column(
               children: <Widget>[
                 Container(
                     width: 280,
                     padding: EdgeInsets.all(10.0),
-                    child: Text('Email = ' + '\n' + email,
-                        style: TextStyle(fontSize: 20))),
+                    child: Text('Email = ' + '\n' + email, style: TextStyle(fontSize: 20))),
                 RaisedButton(
                   onPressed: () {
                     logout(context);
