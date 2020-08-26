@@ -108,10 +108,10 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: <Color>[Colors.blue[800], Colors.blue]))),
+                    colors: <Color>[Colors.blue, Colors.blue[800]]))),
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
-        title: Text(appData.name_produto),
+        title: Text(appData.name_produto, style: TextStyle(fontSize: 15)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),

@@ -183,6 +183,7 @@ class ProdutosList extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Card(
+                        semanticContainer: true,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Hero(
                           tag: produtos[index].id_produto,
