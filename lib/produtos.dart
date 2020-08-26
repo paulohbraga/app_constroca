@@ -165,9 +165,8 @@ class ProdutosList extends StatelessWidget {
                   onTap: () => {
                     Navigator.push(
                         context,
-                        PageRouteBuilder(
-                            transitionDuration: Duration(milliseconds: 400),
-                            pageBuilder: (_, __, ___) => MyHomePageDetail(
+                        MaterialPageRoute(
+                            builder: (context) => MyHomePageDetail(
                                 produtos[index].descricao_produto,
                                 produtos[index].id_produto,
                                 produtos[index].nome_produto,
@@ -184,11 +183,11 @@ class ProdutosList extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Card(
-                        semanticContainer: true,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Hero(
                           tag: produtos[index].id_produto,
                           child: FadeInImage.memoryNetwork(
+                            fadeInDuration: const Duration(milliseconds: 400),
                             image: "http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem + "",
                             fit: BoxFit.fill,
                             placeholder: kTransparentImage,
@@ -227,7 +226,7 @@ class ProdutosList extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
