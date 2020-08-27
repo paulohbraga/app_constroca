@@ -211,7 +211,7 @@ class ProdutosList extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
-                                  colors: <Color>[Color(0x999999), Colors.black]),
+                                  colors: <Color>[Color(0x999999), Colors.blue[900]]),
                               borderRadius:
                                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                             ),
