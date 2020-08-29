@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:app_constroca/inicio.dart';
 import 'package:crypto/crypto.dart' as crypto;
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -35,7 +36,7 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint = 'http://192.168.15.10/api/usuario/image_save.php';
+  static final String uploadEndPoint = 'http://localhost:8080/uploadfile';
 
   Future<File> file;
   String status = '';
@@ -67,19 +68,23 @@ class TransfterDataWidget extends State {
     var md5 = crypto.md5;
     var digest = md5.convert(utf8.encode(fileName)).toString();
 
-    upload(digest);
+    upload(tmpFile, digest);
   }
 
-  upload(String fileName) {
-    nome_imagem = fileName;
-    http.post(uploadEndPoint, body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : errMessage);
-    }).catchError((error) {
-      setStatus(error);
+  upload(File file, String filename) async {
+    nome_imagem = filename;
+
+    debugPrint(nome_imagem);
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromFile(file.path, filename: filename),
     });
+
+    var response = await Dio()
+        .post(uploadEndPoint, data: formData)
+        .then((response) => setStatus(response.data))
+        .catchError((error) => print(error));
+
+    //nome_imagem = fileName;
   }
 
   Widget showImage() {
@@ -249,7 +254,7 @@ class TransfterDataWidget extends State {
           ),
           maxLength: 40,
           validator: _validarNome,
-          onEditingComplete: startUpload(),
+          // onEditingComplete: startUpload(),
           onSaved: (String val) {
             nome = val;
           },
