@@ -13,8 +13,7 @@ import 'package:image_picker/image_picker.dart';
 class Cadastro2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, home: TransfterData());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData());
   }
 }
 
@@ -36,8 +35,7 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint =
-      'http://192.168.15.10/api/usuario/image_save.php';
+  static final String uploadEndPoint = 'http://192.168.15.10/api/usuario/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -88,8 +86,7 @@ class TransfterDataWidget extends State {
     return FutureBuilder<File>(
       future: file,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
+        if (snapshot.connectionState == ConnectionState.done && null != snapshot.data) {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
@@ -171,10 +168,7 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Inicio())), // editado 10-06 - tinha erro de rota
+                  context, MaterialPageRoute(builder: (context) => Inicio())), // editado 10-06 - tinha erro de rota
             ),
           ],
         );
@@ -189,11 +183,9 @@ class TransfterDataWidget extends State {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Logar())),
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
         ),
-        title: Text("Cadastro de usuário",
-            style: TextStyle(fontFamily: 'Raleway')),
+        title: Text("Cadastro de usuário", style: TextStyle(fontFamily: 'Raleway')),
         flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -340,8 +332,7 @@ class TransfterDataWidget extends State {
         new SizedBox(height: 100.0),
         new RaisedButton(
           onPressed: _sendForm,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
           padding: EdgeInsets.all(0.0),
           child: Ink(
             decoration: BoxDecoration(
