@@ -29,8 +29,9 @@ dependencies:
   transparent_image: ^1.0.0
   progress_indicators: ^0.1.5
   flutter_spinkit: ^3.1.0
-   # get_it: ^1.0.3+2
- # url_launcher: ^5.0.3
+  dio:
+  # get_it: ^1.0.3+2
+  # url_launcher: ^5.0.3
   flutter:
     sdk: flutter
   provider:
