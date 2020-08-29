@@ -31,6 +31,10 @@ class LoginUserState extends State {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final appData = AppData();
+  bool teclado = true;
+
+  var image1 = Image.asset("assets/avatar_expressions.gif");
+  var image2 = Image.asset("assets/new.gif");
 
   Future userLogin() async {
     // Showing CircularProgressIrndicator.
@@ -130,7 +134,8 @@ class LoginUserState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //backgroundColor: Colors.blue[100],
+        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
@@ -144,20 +149,21 @@ class LoginUserState extends State {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
-        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
             child: Container(
-          height: MediaQuery.of(context).size.height,
           child: Column(
             children: <Widget>[
               Padding(padding: const EdgeInsets.only(top: 30)),
               Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: CircleAvatar(
-                    radius: 80.0,
-                    backgroundImage: AssetImage('assets/avatar_expressions.gif'),
-                    backgroundColor: Colors.black,
-                  )),
+                  child: ClipOval(
+                      child: Image.asset(
+                    teclado ? 'assets/avatar_expressions.gif' : 'assets/new.gif',
+                    gaplessPlayback: true,
+                    fit: BoxFit.cover,
+                    width: 150.0,
+                    height: 150.0,
+                  ))),
               Container(
                   width: 280,
                   padding: EdgeInsets.all(10.0),
@@ -177,6 +183,12 @@ class LoginUserState extends State {
                   child: TextField(
                     style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                     controller: passwordController,
+                    onTap: () {
+                      setState(() {
+                        teclado = false;
+                        debugPrint(teclado.toString());
+                      });
+                    },
                     autocorrect: true,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -265,43 +277,5 @@ class LoginUserState extends State {
             ],
           ),
         )));
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-// Creating String Var to Hold sent Email.
-  final String email;
-
-// Receiving Email using Constructor.
-  ProfileScreen({Key key, @required this.email}) : super(key: key);
-
-// User Logout Function.
-  logout(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: AppBar(title: Text('Nova tela'), automaticallyImplyLeading: false),
-            body: Center(
-                child: Column(
-              children: <Widget>[
-                Container(
-                    width: 280,
-                    padding: EdgeInsets.all(10.0),
-                    child: Text('Email = ' + '\n' + email, style: TextStyle(fontSize: 20))),
-                RaisedButton(
-                  onPressed: () {
-                    logout(context);
-                  },
-                  color: Colors.red,
-                  textColor: Colors.white,
-                  child: Text('Clique pra sair'),
-                ),
-              ],
-            ))));
   }
 }

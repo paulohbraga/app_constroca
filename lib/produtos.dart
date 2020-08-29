@@ -96,10 +96,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.blue[900],
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: APP_BAR_COLOR,
         title: Text(

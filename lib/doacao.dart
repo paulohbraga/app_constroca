@@ -75,7 +75,7 @@ class MyApp2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Troca';
+    final appTitle = 'Doação';
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
