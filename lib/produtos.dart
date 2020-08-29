@@ -210,12 +210,12 @@ class ProdutosList extends StatelessWidget {
                               gradient: LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
-                                  colors: <Color>[Color(0x999999), Colors.blue[900]]),
+                                  colors: <Color>[Color(0x499999), Colors.black87]),
                               borderRadius:
                                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(15),
                               child: Text(produtos[index].nome_produto,
                                   textAlign: TextAlign.end,
                                   style: TextStyle(

@@ -158,7 +158,7 @@ class LoginUserState extends State {
                   padding: const EdgeInsets.all(20.0),
                   child: ClipOval(
                       child: Image.asset(
-                    teclado ? 'assets/avatar_expressions.gif' : 'assets/new.gif',
+                    teclado ? 'assets/avatar_expressions.gif' : 'assets/closing_eyes.gif',
                     gaplessPlayback: true,
                     fit: BoxFit.cover,
                     width: 150.0,
@@ -183,7 +183,7 @@ class LoginUserState extends State {
                   child: TextField(
                     style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                     controller: passwordController,
-                    onTap: () {
+                    onChanged: (text) {
                       setState(() {
                         teclado = false;
                         debugPrint(teclado.toString());
