@@ -4,12 +4,18 @@ Aplicativo Constroca para a disciplina de Projeto Integrador I e II do Curso An�
 
 Professor/Scrum Master: Sérgio Cozetti
 
-Membros: Murilo de La Vega, Paulo Henrique.
+Membros: Murilo de La Vega, Paulo Henrique Braga.
 
 
 # Descrição
 
 A app tem como objetivo permitir que os usuários se cadastrem e coloquem materiais de construção para troca ou doação. O front-end está sendo desenvolvindo utilizando o framework Flutter em linguagem Dart. 
+
+
+# Tecnologias utilizadas
+
+Framework: Flutter
+Linguagem: Dart
 
 
 # Capturas
