@@ -1,4 +1,5 @@
 import 'package:app_constroca/appdata.dart';
+import 'package:app_constroca/chat.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:app_constroca/perfil.dart';
@@ -91,6 +92,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               enabled: index == 2,
               child: new MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  home: appData.id_usuario == null ? Logar() : Chat()), // Agora deve ir para a pagina de perfil
+            ),
+          ),
+          new Offstage(
+            offstage: index != 3,
+            child: new TickerMode(
+              enabled: index == 3,
+              child: new MaterialApp(
+                  debugShowCheckedModeBanner: false,
                   home: appData.id_usuario == null ? Logar() : Perfil()), // Agora deve ir para a pagina de perfil
             ),
           ),
@@ -123,6 +133,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             icon: new Icon(Icons.vertical_align_top),
             title: new Text(
               "Doações",
+              style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+            ),
+          ),
+          new BottomNavigationBarItem(
+            icon: new Icon(Icons.chat),
+            title: new Text(
+              "Chat",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
