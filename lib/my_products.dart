@@ -163,76 +163,96 @@ class ProdutosList extends StatelessWidget {
                 //constraints: BoxConstraints.expand(
                 //   height: MediaQuery.of(context).size.height - 120),
                 alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () => {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyHomePageDetail(
-                                produtos[index].descricao_produto,
-                                produtos[index].id_produto,
-                                produtos[index].nome_produto,
-                                produtos[index].imagem,
-                                produtos[index].avatar))),
-                    appData.id_produto = produtos[index].id_produto,
-                    appData.name_produto = produtos[index].nome_produto,
-                    appData.img_produto = produtos[index].imagem,
-                    appData.descricao_produto = produtos[index].descricao_produto,
-                    appData.email_client = produtos[index].email,
-                    appData.avatar_client = produtos[index].avatar,
-                    appData.telefone_client = produtos[index].telefone
-                  },
-                  child: Stack(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage("http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem),
+                  ),
+                  title: Text(produtos[index].nome_produto),
+                  trailing: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Card(
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: Hero(
-                          tag: produtos[index].id_produto,
-                          child: FadeInImage.memoryNetwork(
-                            fadeInDuration: const Duration(milliseconds: 400),
-                            image: "http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem + "",
-                            fit: BoxFit.fill,
-                            placeholder: kTransparentImage,
-                            height: 280,
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        elevation: 5,
-                        margin: EdgeInsets.all(10),
-                      ),
                       Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Center(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: <Color>[Color(0x499999), Colors.black87]),
-                              borderRadius:
-                                  BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Text(produtos[index].nome_produto,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
+                        padding: const EdgeInsets.all(15.0),
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.green,
                         ),
                       ),
+                      Icon(Icons.delete, color: Colors.red),
                     ],
                   ),
                 ),
+                // child: InkWell(
+                //   onTap: () => {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => MyHomePageDetail(
+                //                 produtos[index].descricao_produto,
+                //                 produtos[index].id_produto,
+                //                 produtos[index].nome_produto,
+                //                 produtos[index].imagem,
+                //                 produtos[index].avatar))),
+                //     appData.id_produto = produtos[index].id_produto,
+                //     appData.name_produto = produtos[index].nome_produto,
+                //     appData.img_produto = produtos[index].imagem,
+                //     appData.descricao_produto = produtos[index].descricao_produto,
+                //     appData.email_client = produtos[index].email,
+                //     appData.avatar_client = produtos[index].avatar,
+                //     appData.telefone_client = produtos[index].telefone
+                //   },
+                //   child: Stack(
+                //     children: <Widget>[
+                //       Card(
+                //         semanticContainer: true,
+                //         clipBehavior: Clip.antiAliasWithSaveLayer,
+                //         child: Hero(
+                //           tag: produtos[index].id_produto,
+                //           child: FadeInImage.memoryNetwork(
+                //             fadeInDuration: const Duration(milliseconds: 400),
+                //             image: "http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem + "",
+                //             fit: BoxFit.fill,
+                //             placeholder: kTransparentImage,
+                //             height: 280,
+                //             width: MediaQuery.of(context).size.width,
+                //           ),
+                //         ),
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(10.0),
+                //         ),
+                //         elevation: 5,
+                //         margin: EdgeInsets.all(10),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(10),
+                //         child: Center(
+                //           child: Container(
+                //             width: MediaQuery.of(context).size.width,
+                //             decoration: BoxDecoration(
+                //               gradient: LinearGradient(
+                //                   begin: Alignment.topLeft,
+                //                   end: Alignment.bottomRight,
+                //                   colors: <Color>[Color(0x499999), Colors.black87]),
+                //               borderRadius:
+                //                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                //             ),
+                //             child: Padding(
+                //               padding: const EdgeInsets.all(15),
+                //               child: Text(produtos[index].nome_produto,
+                //                   textAlign: TextAlign.end,
+                //                   style: TextStyle(
+                //                       fontFamily: 'Raleway',
+                //                       fontSize: 15,
+                //                       color: Colors.white,
+                //                       fontWeight: FontWeight.bold)),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ),
             ],
           );
