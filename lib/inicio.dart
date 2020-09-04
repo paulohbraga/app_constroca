@@ -1,5 +1,6 @@
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/chat.dart';
+import 'package:app_constroca/chat_placeholder.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:app_constroca/perfil.dart';
@@ -92,7 +93,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               enabled: index == 2,
               child: new MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  home: appData.id_usuario == null ? Logar() : Chat()), // Agora deve ir para a pagina de perfil
+                  home: appData.id_usuario == null
+                      ? Chat_Placeholder()
+                      : Chat()), // Agora deve ir para a pagina de perfil
             ),
           ),
           new Offstage(

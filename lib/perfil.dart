@@ -1,5 +1,6 @@
 import 'package:app_constroca/cadastroProduto.dart';
 import 'package:app_constroca/login.dart';
+import 'package:app_constroca/my_products.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -211,6 +212,35 @@ class PerfilUserState extends State {
                     ),
                   ),
                   RaisedButton(
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => MyProducts(id: appData.id_usuario))),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                    padding: EdgeInsets.all(0.0),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Meus produtos",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
                     onPressed: () => {
                       appData.id_usuario = null,
                       appData.cidade = null,
@@ -239,7 +269,7 @@ class PerfilUserState extends State {
                       ),
                     ),
                   ),
-                ]),
+                ],
               ),
             ],
           ),

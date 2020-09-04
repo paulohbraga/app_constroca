@@ -13,8 +13,7 @@ import 'package:image_picker/image_picker.dart';
 class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, home: TransfterData());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData());
   }
 }
 
@@ -46,8 +45,7 @@ class TransfterDataWidget extends State {
   String nome_imagem;
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint =
-      "http://192.168.15.10/api/usuario/image_save.php";
+  static final String uploadEndPoint = "http://192.168.15.10/api/usuario/image_save.php";
 
   Future<File> file;
   String status = '';
@@ -98,8 +96,7 @@ class TransfterDataWidget extends State {
     return FutureBuilder<File>(
       future: file,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
+        if (snapshot.connectionState == ConnectionState.done && null != snapshot.data) {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
@@ -186,10 +183,7 @@ class TransfterDataWidget extends State {
             FlatButton(
               child: new Text("OK"),
               onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          Logar())), // editado 10-06 - tinha erro de rota
+                  context, MaterialPageRoute(builder: (context) => Logar())), // editado 10-06 - tinha erro de rota
             ),
           ],
         );
@@ -204,8 +198,7 @@ class TransfterDataWidget extends State {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Logar())),
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
         ),
         title: Text('Cadastro de usuário'),
         centerTitle: true,
@@ -213,8 +206,7 @@ class TransfterDataWidget extends State {
       ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height + 400),
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height + 400),
           child: Column(
             children: <Widget>[
               Divider(
@@ -369,8 +361,7 @@ class TransfterDataWidget extends State {
               ),
               RaisedButton(
                 onPressed: cadastrar,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
                   decoration: BoxDecoration(
@@ -381,8 +372,7 @@ class TransfterDataWidget extends State {
                       ),
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Container(
-                    constraints:
-                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                    constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
                       "Cadastrar",
@@ -394,9 +384,7 @@ class TransfterDataWidget extends State {
               ),
               Visibility(
                   visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30, top: 10),
-                      child: CircularProgressIndicator())),
+                  child: Container(margin: EdgeInsets.only(bottom: 30, top: 10), child: CircularProgressIndicator())),
             ],
           ),
         ),

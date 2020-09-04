@@ -61,8 +61,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Logar())),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
             ),
           ],
         );
@@ -70,8 +69,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
     );
   }
 
-  static final String uploadEndPoint =
-      'http://192.168.15.10/api/produto/image_save.php';
+  static final String uploadEndPoint = 'http://192.168.15.10/api/produto/image_save.php';
 
   Future<File> file;
   String status = '';
@@ -117,8 +115,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
     return FutureBuilder<File>(
       future: file,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
+        if (snapshot.connectionState == ConnectionState.done && null != snapshot.data) {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
           return Container(
@@ -162,8 +159,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
       ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height + 200),
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height + 200),
           child: Column(
             children: <Widget>[
               Divider(
@@ -244,8 +240,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
               ),
               RaisedButton(
                 onPressed: cadastrar,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
                   decoration: BoxDecoration(
@@ -256,8 +251,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
                       ),
                       borderRadius: BorderRadius.circular(30.0)),
                   child: Container(
-                    constraints:
-                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                    constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
                       "Cadastrar novo item",
@@ -269,9 +263,7 @@ class UploadImageDemoState extends State<UploadImageDemo> {
               ),
               Visibility(
                   visible: visible,
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 30, top: 10),
-                      child: CircularProgressIndicator())),
+                  child: Container(margin: EdgeInsets.only(bottom: 30, top: 10), child: CircularProgressIndicator())),
             ],
           ),
         ),
