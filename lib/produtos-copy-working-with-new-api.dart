@@ -124,7 +124,7 @@ class ProdutosList extends StatelessWidget {
                               transitionDuration: Duration(milliseconds: 400),
                               pageBuilder: (_, __, ___) => MyHomePageDetail(
                                   produtos[index].descricao,
-                                  produtos[index].id.toString(),
+                                  produtos[index].id_produto.toString(),
                                   produtos[index].nomeProduto,
                                   produtos[index].imagem,
                                   produtos[index].usuario.avatar))),
@@ -152,7 +152,7 @@ class ProdutosList extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Hero(
-                                  tag: produtos[index].id,
+                                  tag: produtos[index].id_produto,
                                   child: FadeInImage.memoryNetwork(
                                       fadeInDuration: const Duration(milliseconds: 1000),
                                       height: 220,

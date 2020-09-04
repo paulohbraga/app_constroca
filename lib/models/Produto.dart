@@ -2,7 +2,7 @@ import 'Usuario.dart';
 
 class Produto {
   Produto({
-    this.id,
+    this.id_produto,
     this.nomeProduto,
     this.descricao,
     this.status,
@@ -11,7 +11,7 @@ class Produto {
     this.usuario,
   });
 
-  int id;
+  int id_produto;
   String nomeProduto;
   String descricao;
   String status;
@@ -20,7 +20,7 @@ class Produto {
   Usuario usuario;
 
   factory Produto.fromJson(Map<String, dynamic> json) => Produto(
-        id: json["id"],
+        id_produto: json["id_produto"],
         nomeProduto: json["nome_produto"],
         descricao: json["descricao"],
         status: json["status"],
@@ -30,7 +30,7 @@ class Produto {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "id_produto": id_produto,
         "nome_produto": nomeProduto,
         "descricao": descricao,
         "status": status,
