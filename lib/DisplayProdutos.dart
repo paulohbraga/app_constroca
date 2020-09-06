@@ -10,7 +10,7 @@ import 'detalhaProduto.dart';
 class DisplayProdutos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<ProdutosProvider>(context);
+    final appState = Provider.of<ProdutosProvider>(context, listen: true);
 
     return Container(
       padding: const EdgeInsets.all(0),
@@ -26,7 +26,7 @@ class DisplayProdutos extends StatelessWidget {
           : appState.getResponseJson() != null
               ? Container(
                   child: ListView.builder(
-                    itemCount: appState.getResponseJson().length,
+                    itemCount: appState.items.length,
                     itemBuilder: (context, index) {
                       return Column(
                         mainAxisSize: MainAxisSize.max,
@@ -92,30 +92,13 @@ class DisplayProdutos extends StatelessWidget {
                                           gradient: LinearGradient(
                                               begin: Alignment.topLeft,
                                               end: Alignment.bottomRight,
-                                              colors: <Color>[Color(0x499999), Colors.black87]),
+                                              colors: <Color>[Color(0x008899), Colors.blue[800]]),
                                           borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                                         ),
                                         child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
                                           children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.all(15),
-                                              child: ButtonTheme(
-                                                buttonColor: Colors.white,
-                                                minWidth: 35,
-                                                height: 45,
-                                                child: RaisedButton(
-                                                  onPressed: () => {
-                                                    Provider.of<ProdutosProvider>(context, listen: false)
-                                                        .deleteProduct(appState.getResponseJson()[index].id)
-                                                  },
-                                                  child: Icon(
-                                                    Icons.delete,
-                                                    size: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
                                             Padding(
                                               padding: const EdgeInsets.all(15),
                                               child: Text(appState.getResponseJson()[index].nomeProduto,

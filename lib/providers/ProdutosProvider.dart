@@ -11,6 +11,7 @@ class ProdutosProvider extends ChangeNotifier {
   String _dataUrl = "http://localhost:8080/produtos/";
   String _jsonResonse = "";
   bool _isFetching = false;
+  List<Produto> items;
 
   bool get isFetching => _isFetching;
 
@@ -32,16 +33,16 @@ class ProdutosProvider extends ChangeNotifier {
   List<Produto> getResponseJson() {
     if (_jsonResonse.isNotEmpty) {
       List<Produto> parseProdutos = List<Produto>.from(json.decode(_jsonResonse).map((x) => Produto.fromJson(x)));
+      items = parseProdutos;
       return parseProdutos;
     }
     return null;
   }
 
-  Future<String> deleteProduct(String id) async {
+  Future<void> deleteProduct(String id) async {
     final response = await http.Client().delete('http://localhost:8080/produtos/' + id);
     fetchData();
     // Use the compute function to run parsePhotos in a separate isolate
     notifyListeners();
-    return response.body;
   }
 }

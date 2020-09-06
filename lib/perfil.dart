@@ -212,8 +212,7 @@ class PerfilUserState extends State {
                     ),
                   ),
                   RaisedButton(
-                    onPressed: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => MyProducts(id: appData.id_usuario))),
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyProducts())),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     padding: EdgeInsets.all(0.0),
                     child: Ink(

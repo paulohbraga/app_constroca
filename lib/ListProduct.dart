@@ -13,7 +13,7 @@ class ListProduct extends StatefulWidget {
 class _ListProductState extends State<ListProduct> {
   @override
   Widget build(BuildContext context) {
-    final produtos = Provider.of<ProdutosProvider>(context);
+    //final produtos = Provider.of<ProdutosProvider>(context);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
