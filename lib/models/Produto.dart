@@ -1,28 +1,29 @@
 import 'Usuario.dart';
+import 'dart:convert';
 
 class Produto {
   Produto({
-    this.id_produto,
+    this.id,
     this.nomeProduto,
-    this.descricao,
+    this.descricaoProduto,
     this.status,
     this.tipo,
     this.imagem,
     this.usuario,
   });
 
-  int id_produto;
+  String id;
   String nomeProduto;
-  String descricao;
+  String descricaoProduto;
   String status;
   String tipo;
   String imagem;
   Usuario usuario;
 
   factory Produto.fromJson(Map<String, dynamic> json) => Produto(
-        id_produto: json["id_produto"],
+        id: json["id"],
         nomeProduto: json["nome_produto"],
-        descricao: json["descricao"],
+        descricaoProduto: json["descricao_produto"],
         status: json["status"],
         tipo: json["tipo"],
         imagem: json["imagem"],
@@ -30,9 +31,9 @@ class Produto {
       );
 
   Map<String, dynamic> toJson() => {
-        "id_produto": id_produto,
+        "id": id,
         "nome_produto": nomeProduto,
-        "descricao": descricao,
+        "descricao_produto": descricaoProduto,
         "status": status,
         "tipo": tipo,
         "imagem": imagem,

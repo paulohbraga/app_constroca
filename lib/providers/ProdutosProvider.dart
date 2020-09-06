@@ -1,35 +1,47 @@
 import 'dart:convert';
 
+import 'package:app_constroca/models/Produto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ProdutosProvider extends ChangeNotifier {
   ProdutosProvider();
 
-  String _produtosUrl = "http://localhost:8080/produtos/";
-  String _jsonResponse = "";
+  String _dataUrl = "http://localhost:8080/produtos/";
+  String _jsonResonse = "";
   bool _isFetching = false;
 
   bool get isFetching => _isFetching;
 
-  Future<void> fetchProdutos() async {
-    //_isFetching = true;
-    var response = await http.Client().get(_produtosUrl);
+  Future<void> fetchData() async {
+    _isFetching = true;
+    notifyListeners();
+
+    var response = await http.get(_dataUrl);
     if (response.statusCode == 200) {
-      _jsonResponse = response.body;
+      _jsonResonse = response.body;
     }
-    // _isFetching = false;
+
+    _isFetching = false;
     notifyListeners();
   }
 
-  String get getResponse => _jsonResponse;
+  String get getResponseText => _jsonResonse;
 
-  List<String> getRespondeJson() {
-    if (_jsonResponse.isNotEmpty) {
-      Map<String, dynamic> json = jsonDecode(_jsonResponse);
-      print(json);
-      return json[""];
+  List<Produto> getResponseJson() {
+    if (_jsonResonse.isNotEmpty) {
+      List<Produto> parseProdutos = List<Produto>.from(json.decode(_jsonResonse).map((x) => Produto.fromJson(x)));
+      return parseProdutos;
     }
     return null;
+  }
+
+  Future<String> deleteProduct(String id) async {
+    final response = await http.Client().delete('http://localhost:8080/produtos/' + id);
+    fetchData();
+    // Use the compute function to run parsePhotos in a separate isolate
+    notifyListeners();
+    return response.body;
   }
 }

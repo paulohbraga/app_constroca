@@ -313,30 +313,3 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
   }
   /***** End */
 }
-
-class ColorTicker extends StatelessWidget {
-  final Color color;
-  final bool selected;
-  final VoidCallback selectedCallback;
-  ColorTicker({this.color, this.selected, this.selectedCallback});
-
-  @override
-  Widget build(BuildContext context) {
-    Future<List<Produto>> buildFetchProdutos() => fetchProdutos(http.Client());
-
-    print(selected);
-    return GestureDetector(
-        onTap: () {
-          selectedCallback();
-          fetchProdutos(http.Client());
-        },
-        child: Container(
-          padding: EdgeInsets.all(7),
-          margin: EdgeInsets.all(5),
-          width: 30,
-          height: 30,
-          decoration: BoxDecoration(shape: BoxShape.circle, color: color.withOpacity(0.7)),
-          child: selected ? Image.asset("imgs/checker.png") : Container(),
-        ));
-  }
-}

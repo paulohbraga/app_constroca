@@ -1,10 +1,13 @@
+import 'package:app_constroca/ListProduct.dart';
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/chat.dart';
 import 'package:app_constroca/chat_placeholder.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:app_constroca/perfil.dart';
+import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'doacao.dart';
 import 'produtos.dart';
@@ -69,6 +72,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final produtos = Provider.of<ProdutosProvider>(context);
+
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
@@ -77,7 +82,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             child: new TickerMode(
               enabled: index == 0,
               child: new MaterialApp(
-                  debugShowCheckedModeBanner: false, home: new MyApp()), // Ou Troca.() para voltar ao original
+                  debugShowCheckedModeBanner: false, home: new ListProduct()), // Ou Troca.() para voltar ao original
             ),
           ),
           new Offstage(
@@ -120,6 +125,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         type: BottomNavigationBarType.fixed,
         currentIndex: index,
         onTap: (int index) {
+          if (index == 0) {
+            produtos.fetchData();
+          }
+          if (index == 1) {
+            produtos.fetchData();
+          }
+
           setState(() {
             this.index = index;
           });
