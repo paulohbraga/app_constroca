@@ -20,6 +20,13 @@ Future<List<Produto>> fetchProdutos(http.Client client) async {
   return compute(parseProdutos, response.body);
 }
 
+Future<String> deleteProduct(String id) async {
+  final response = await http.Client().delete('http://localhost:8080/produtos/' + id);
+
+  // Use the compute function to run parsePhotos in a separate isolate
+  return response.body;
+}
+
 // A function that will convert a response body into a List<Photo>
 List<Produto> parseProdutos(String str) => List<Produto>.from(json.decode(str).map((x) => Produto.fromJson(x)));
 
@@ -128,11 +135,16 @@ class MyHomePage extends StatelessWidget {
   Future<List<Produto>> buildFetchProdutos() => fetchProdutos(http.Client());
 }
 
-class ProdutosList extends StatelessWidget {
+class ProdutosList extends StatefulWidget {
   final List<Produto> produtos;
 
   ProdutosList({Key key, this.produtos}) : super(key: key);
 
+  @override
+  _ProdutosListState createState() => _ProdutosListState();
+}
+
+class _ProdutosListState extends State<ProdutosList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -141,7 +153,7 @@ class ProdutosList extends StatelessWidget {
       ),
       //width: MediaQuery.of(context).size.height,
       child: ListView.builder(
-        itemCount: produtos.length,
+        itemCount: widget.produtos.length,
         itemBuilder: (context, index) {
           return Column(
             mainAxisSize: MainAxisSize.max,
@@ -160,15 +172,19 @@ class ProdutosList extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MyHomePageDetail(produtos[index].descricao, produtos[index].id,
-                                produtos[index].nomeProduto, produtos[index].imagem, produtos[index].usuario.avatar))),
-                    appData.id_produto = produtos[index].id,
-                    appData.name_produto = produtos[index].nomeProduto,
-                    appData.img_produto = produtos[index].imagem,
-                    appData.descricao_produto = produtos[index].descricao,
-                    appData.email_client = produtos[index].usuario.email,
-                    appData.avatar_client = produtos[index].usuario.avatar,
-                    appData.telefone_client = produtos[index].usuario.telefone.toString()
+                            builder: (context) => MyHomePageDetail(
+                                widget.produtos[index].descricao,
+                                widget.produtos[index].id,
+                                widget.produtos[index].nomeProduto,
+                                widget.produtos[index].imagem,
+                                widget.produtos[index].usuario.avatar))),
+                    appData.id_produto = widget.produtos[index].id,
+                    appData.name_produto = widget.produtos[index].nomeProduto,
+                    appData.img_produto = widget.produtos[index].imagem,
+                    appData.descricao_produto = widget.produtos[index].descricao,
+                    appData.email_client = widget.produtos[index].usuario.email,
+                    appData.avatar_client = widget.produtos[index].usuario.avatar,
+                    appData.telefone_client = widget.produtos[index].usuario.telefone.toString()
                   },
                   child: Stack(
                     children: <Widget>[
@@ -176,10 +192,10 @@ class ProdutosList extends StatelessWidget {
                         semanticContainer: true,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: Hero(
-                          tag: produtos[index].id,
+                          tag: widget.produtos[index].id,
                           child: FadeInImage.memoryNetwork(
                             fadeInDuration: const Duration(milliseconds: 400),
-                            image: "http://192.168.15.10/api/produto/imagens/" + produtos[index].imagem + "",
+                            image: "http://192.168.15.10/api/produto/imagens/" + widget.produtos[index].imagem + "",
                             fit: BoxFit.fill,
                             placeholder: kTransparentImage,
                             height: 280,
@@ -205,15 +221,38 @@ class ProdutosList extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Text(produtos[index].nomeProduto,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontFamily: 'Raleway',
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold)),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: ButtonTheme(
+                                    buttonColor: Colors.white,
+                                    minWidth: 35,
+                                    height: 45,
+                                    child: RaisedButton(
+                                      onLongPress: () => {
+                                        deleteProduct(
+                                          widget.produtos[index].id.toString(),
+                                        ),
+                                      },
+                                      child: Icon(
+                                        Icons.delete,
+                                        size: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Text(widget.produtos[index].nomeProduto,
+                                      textAlign: TextAlign.end,
+                                      style: TextStyle(
+                                          fontFamily: 'Raleway',
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ],
                             ),
                           ),
                         ),
