@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class ProdutosProvider extends ChangeNotifier {
   ProdutosProvider();
 
-  String _dataUrl = "http://localhost:8080/produtos/";
+  String _dataUrl = "http://192.168.15.10:8080/produtos/";
   String _jsonResonse = "";
   bool _isFetching = false;
   List<Produto> items;
@@ -40,7 +40,7 @@ class ProdutosProvider extends ChangeNotifier {
   }
 
   Future<void> deleteProduct(String id) async {
-    final response = await http.Client().delete('http://localhost:8080/produtos/' + id);
+    final response = await http.Client().delete('http://192.168.15.10:8080/produtos/' + id);
     fetchData();
     // Use the compute function to run parsePhotos in a separate isolate
     notifyListeners();

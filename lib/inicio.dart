@@ -7,6 +7,7 @@ import 'package:app_constroca/login.dart';
 import 'package:app_constroca/perfil.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'doacao.dart';
@@ -40,17 +41,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
-    // This is the proper place to make the async calls
-    // This way they only get called once
-
-    // During development, if you change this code,
-    // you will need to do a full restart instead of just a hot reload
-
-    // You can't use async/await here,
-    // We can't mark this method as async because of the @override
     main().then((result) {
-      // If we need to rebuild the widget with the resulting data,
-      // make sure to use `setState`
       setState(() {
         print(appData.id_usuario);
       });
@@ -66,7 +57,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     String result = (prefs.getString("id")) ?? "";
     email_logado = result;
     print(email_logado + "=================================");
-    //runApp(MaterialApp(home: email == null ? Login() : Home()));
   }
 
   int index = 0;
@@ -74,6 +64,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     final produtos = Provider.of<ProdutosProvider>(context);
     return new Scaffold(
       body: new Stack(
@@ -120,7 +114,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         iconSize: 40,
         elevation: 1,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.greenAccent,
+        selectedItemColor: Colors.yellow[700],
         unselectedFontSize: 12,
         selectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
@@ -153,7 +147,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
           ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.chat),
+            icon: new Icon(Icons.chat_bubble_outline),
             title: new Text(
               "Chat",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),

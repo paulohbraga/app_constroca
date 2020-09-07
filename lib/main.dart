@@ -1,5 +1,4 @@
 import 'package:app_constroca/providers/ProdutosProvider.dart';
-import 'package:app_constroca/providers/Users.dart';
 import 'package:flutter/material.dart';
 import 'package:app_constroca/splash.dart';
 import 'package:provider/provider.dart';
