@@ -14,14 +14,14 @@ class Perfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PerfilUser(0),
+      home: PerfilUser(),
     );
   }
 }
 
 class PerfilUser extends StatefulWidget {
-  PerfilUser(this.message);
-  final dynamic message;
+  PerfilUser();
+  final dynamic message = appData.message;
 
   PerfilUserState createState() => PerfilUserState(message);
 }
@@ -53,9 +53,6 @@ class PerfilUserState extends State {
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
     //print(message);
-    message_global = message;
-    print(message_global);
-
     // If the Response Message is Matched.
     if (message == 'Usuario existe') {
       // Hiding the CircularProgressIndicator.
@@ -64,8 +61,7 @@ class PerfilUserState extends State {
       });
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CadastroProduto(message_global["id"].toString())));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto()));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -95,7 +91,7 @@ class PerfilUserState extends State {
 
   @override
   Widget build(BuildContext context) {
-    print(message);
+    //print(message);
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false, backgroundColor: APP_BAR_COLOR, centerTitle: true, title: Text('Perfil')),
@@ -174,7 +170,7 @@ class PerfilUserState extends State {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
                   RaisedButton(
                     onPressed: () =>
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto(message))),
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto())),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     padding: EdgeInsets.all(0.0),
                     child: Ink(

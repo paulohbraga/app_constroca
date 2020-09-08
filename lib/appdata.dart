@@ -7,6 +7,7 @@ class AppData {
   String cidade;
   String telefone;
   String email;
+  dynamic message;
 
   // Product data
   String count_produtos;

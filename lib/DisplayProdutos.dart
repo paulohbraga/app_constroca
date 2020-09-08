@@ -12,8 +12,8 @@ class DisplayProdutos extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = Provider.of<ProdutosProvider>(context, listen: true);
 
-    return Container(
-      padding: const EdgeInsets.all(0),
+    return RefreshIndicator(
+      onRefresh: () => appState.fetchData(),
       child: appState.isFetching
           ? Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),

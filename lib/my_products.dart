@@ -31,39 +31,42 @@ class MyProducts extends StatelessWidget {
                 )),
               )
             : appState.getResponseJson() != null
-                ? ListView.builder(
-                    primary: false,
-                    shrinkWrap: true,
-                    itemCount: appState.items.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage("http://192.168.15.10/api/produto/imagens/" +
-                              appState.getResponseJson()[index].imagem +
-                              ""),
-                        ),
-                        title: Text(
-                          appState.getResponseJson()[index].nomeProduto,
-                        ),
-                        trailing: Container(
-                          width: 50,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              IconButton(
-                                onPressed: () => {
-                                  Provider.of<ProdutosProvider>(context, listen: false)
-                                      .deleteProduct(appState.getResponseJson()[index].id),
-                                },
-                                icon: Icon(Icons.delete),
-                              )
-                            ],
+                ? RefreshIndicator(
+                    onRefresh: () => appState.fetchData(),
+                    child: ListView.builder(
+                      primary: false,
+                      shrinkWrap: true,
+                      itemCount: appState.items.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage("http://192.168.15.10/api/produto/imagens/" +
+                                appState.getResponseJson()[index].imagem +
+                                ""),
                           ),
-                        ),
-                      );
-                    },
+                          title: Text(
+                            appState.getResponseJson()[index].nomeProduto,
+                          ),
+                          trailing: Container(
+                            width: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                IconButton(
+                                  onPressed: () => {
+                                    Provider.of<ProdutosProvider>(context, listen: false)
+                                        .deleteProduct(appState.getResponseJson()[index].id),
+                                  },
+                                  icon: Icon(Icons.delete),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   )
-                : Text("Press Button above to fetch data"),
+                : Text("Atualize a página recarregar"),
       ),
     );
   }

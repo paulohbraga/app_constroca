@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/inicio.dart';
 import 'package:app_constroca/perfil.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,18 @@ class Tipo {
 }
 
 class CadastroProduto extends StatelessWidget {
-  final dynamic message;
+  final dynamic message = appData.message;
 
-  CadastroProduto(this.message);
+  CadastroProduto();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData(message: message));
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData());
   }
 }
 
 class TransfterData extends StatefulWidget {
-  TransfterDataWidget createState() => TransfterDataWidget(message: message);
+  TransfterDataWidget createState() => TransfterDataWidget();
 
   dynamic message;
 
@@ -211,7 +212,7 @@ class TransfterDataWidget extends State {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser(message))),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
           ),
           title: Text('Cadastro de produtos'),
           centerTitle: true,

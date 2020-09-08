@@ -27,11 +27,9 @@ class ProdutosProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       _jsonResonse = response.body;
     }
-
     items = getResponseJson();
-
     _isFetching = false;
-    print(getItems.toString());
+
     notifyListeners();
   }
 

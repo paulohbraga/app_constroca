@@ -58,8 +58,10 @@ class LoginUserState extends State {
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
+    appData.id_usuario = message['id'].toString();
+    appData.message = message;
 
-    //print(message["id"].toString() + " aqui");
+    print(message["id"].toString());
 
     // If the Response Message is Matched.
     if (message != null) {
@@ -70,7 +72,7 @@ class LoginUserState extends State {
       });
 
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser(message)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser()));
       //CadastroProduto( id: id)));
     } else {
       // If Email or Password did not Matched.
