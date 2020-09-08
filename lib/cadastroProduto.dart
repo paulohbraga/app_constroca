@@ -17,28 +17,28 @@ class Tipo {
 }
 
 class CadastroProduto extends StatelessWidget {
-  final String id;
+  final dynamic message;
 
-  CadastroProduto({Key key, @required this.id}) : super(key: key);
+  CadastroProduto(this.message);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData(id: id));
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData(message: message));
   }
 }
 
 class TransfterData extends StatefulWidget {
-  TransfterDataWidget createState() => TransfterDataWidget(id: id);
+  TransfterDataWidget createState() => TransfterDataWidget(message: message);
 
-  var id;
+  dynamic message;
 
-  TransfterData({Key key, @required this.id}) : super(key: key);
+  TransfterData({Key key, @required this.message}) : super(key: key);
 }
 
 class TransfterDataWidget extends State {
-  String id;
+  dynamic message;
 
-  TransfterDataWidget({Key key, @required this.id});
+  TransfterDataWidget({Key key, @required this.message});
 
   Tipo selectedUser;
   List<Tipo> users = <Tipo>[const Tipo('Troca', 'T'), const Tipo('Doação', 'D')];
@@ -65,7 +65,7 @@ class TransfterDataWidget extends State {
   String errMessage = 'Erro ao carregar imagem';
 
   chooseImage() {
-    print(id);
+    print(message);
 
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
@@ -73,9 +73,9 @@ class TransfterDataWidget extends State {
     setStatus('');
   }
 
-  setStatus(String message) {
+  setStatus(String message2) {
     setState(() {
-      status = message;
+      status = message2;
     });
   }
 
@@ -170,14 +170,14 @@ class TransfterDataWidget extends State {
       'descricao_produto': descricao,
       'imagem': nome_imagem,
       'tipo': tipo,
-      'fk_id_usuario': id
+      'fk_id_usuario': message["id"].toString()
     };
 
     // Starting Web Call with data.
     var response = await http.post(url, body: json.encode(data));
 
     // Getting Server response into variable.
-    var message = jsonDecode(response.body);
+    var message3 = jsonDecode(response.body);
 
     // If Web call Success than Hide the CircularProgressIndicator.
     if (response.statusCode == 200) {
@@ -191,7 +191,7 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text(message),
+          title: new Text(message3),
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
@@ -211,7 +211,7 @@ class TransfterDataWidget extends State {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser(message))),
           ),
           title: Text('Cadastro de produtos'),
           centerTitle: true,

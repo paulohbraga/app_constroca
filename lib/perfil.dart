@@ -14,54 +14,47 @@ class Perfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PerfilUser(),
+      home: PerfilUser(0),
     );
   }
 }
 
 class PerfilUser extends StatefulWidget {
-  PerfilUserState createState() => PerfilUserState();
+  PerfilUser(this.message);
+  final dynamic message;
+
+  PerfilUserState createState() => PerfilUserState(message);
 }
 
 class PerfilUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
-
+  final dynamic message;
   // Getting value from TextField widget.
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  var message_global;
   final appData = AppData();
 
-  Future userLogin() async {
+  PerfilUserState(this.message);
+
+  Future userLogin(int id_user) async {
     // Showing CircularProgressIrndicator.
     setState(() {
       visible = true;
     });
 
-    // Getting value from Controller
-    String email = emailController.text;
-    String password = passwordController.text;
-
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.10/api/login/login.php';
-
-    var url_id_usuario = 'http://192.168.15.10/api/usuario/getidusuario.php';
-    var url_img_usuario = 'http://192.168.15.10/api/usuario/getimgusuario.php';
+    var url = 'http://localhost:8080/usuarios/' + id_user.toString();
 
     // Store all data with Param Name.
-    var data = {'email': email, 'password': password};
 
     // Starting Web API Call.
-    var response = await http.post(url, body: json.encode(data));
-    var response_id = await http.post(url_id_usuario, body: json.encode(data));
-    var response_img = await http.post(url_img_usuario, body: json.encode(data));
+    var response = await http.get(url);
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
-    var id = jsonDecode(response_id.body);
-    var avatar = jsonDecode(response_img.body);
-    appData.id_usuario = id;
-    appData.avatar = avatar;
+    //print(message);
+    message_global = message;
+    print(message_global);
 
     // If the Response Message is Matched.
     if (message == 'Usuario existe') {
@@ -70,11 +63,9 @@ class PerfilUserState extends State {
         visible = false;
       });
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('id', appData.id_usuario);
-
       // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario)));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CadastroProduto(message_global["id"].toString())));
     } else {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
@@ -87,7 +78,7 @@ class PerfilUserState extends State {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text(message),
+            title: new Text("message"),
             actions: <Widget>[
               FlatButton(
                 child: new Text("OK"),
@@ -104,6 +95,7 @@ class PerfilUserState extends State {
 
   @override
   Widget build(BuildContext context) {
+    print(message);
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false, backgroundColor: APP_BAR_COLOR, centerTitle: true, title: Text('Perfil')),
@@ -123,7 +115,7 @@ class PerfilUserState extends State {
                         child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'http://192.168.15.10/api/usuario/imagens/' + appData.avatar + "",
+                        'http://192.168.15.10/api/usuario/imagens/' + message['avatar'],
                         height: 100,
                         width: 100,
                         fit: BoxFit.cover,
@@ -132,7 +124,7 @@ class PerfilUserState extends State {
                     Padding(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        appData.nome_usuario,
+                        message['nome'],
                         style: TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
@@ -151,28 +143,21 @@ class PerfilUserState extends State {
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "Cidade: " + appData.cidade,
+                          "Cidade: " + message['cidade'],
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "Telefone: " + appData.telefone,
+                          "Telefone: " + message['telefone'].toString(),
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "e-mail: " + appData.email,
-                          style: TextStyle(fontSize: 20, color: Colors.black),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 5, top: 25),
-                        child: Text(
-                          "Produtos cadastrados: " + appData.count_produtos,
+                          "e-mail: " + message['email'],
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
@@ -188,8 +173,8 @@ class PerfilUserState extends State {
                 padding: const EdgeInsets.all(20.0),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
                   RaisedButton(
-                    onPressed: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => CadastroProduto(id: appData.id_usuario))),
+                    onPressed: () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto(message))),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     padding: EdgeInsets.all(0.0),
                     child: Ink(
@@ -236,39 +221,42 @@ class PerfilUserState extends State {
                   ),
                 ]),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () => {
-                      appData.id_usuario = null,
-                      appData.cidade = null,
-                      appData.nome_usuario = null,
-                      appData.telefone = null,
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: () => {
+                        appData.id_usuario = null,
+                        appData.cidade = null,
+                        appData.nome_usuario = null,
+                        appData.telefone = null,
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Sair",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white),
                           ),
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Sair",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
