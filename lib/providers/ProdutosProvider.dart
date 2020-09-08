@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ProdutosProvider extends ChangeNotifier {
-  ProdutosProvider();
+  ProdutosProvider() {
+    fetchData();
+  }
 
   String _dataUrl = "http://192.168.15.10:8080/produtos/";
   String _jsonResonse = "";
@@ -14,6 +16,8 @@ class ProdutosProvider extends ChangeNotifier {
   List<Produto> items;
 
   bool get isFetching => _isFetching;
+
+  dynamic get getItems => items;
 
   Future<void> fetchData() async {
     _isFetching = true;
@@ -24,7 +28,10 @@ class ProdutosProvider extends ChangeNotifier {
       _jsonResonse = response.body;
     }
 
+    items = getResponseJson();
+
     _isFetching = false;
+    print(getItems.toString());
     notifyListeners();
   }
 

@@ -49,9 +49,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => Provider.of<ProdutosProvider>(context, listen: false).fetchData());
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var email = prefs.getString('id');
     String result = (prefs.getString("id")) ?? "";

@@ -34,7 +34,7 @@ class MyProducts extends StatelessWidget {
                 ? ListView.builder(
                     primary: false,
                     shrinkWrap: true,
-                    itemCount: appState.getResponseJson().length,
+                    itemCount: appState.items.length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(

@@ -46,7 +46,7 @@ class DisplayProdutos extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => MyHomePageDetail(
-                                            appState.getResponseJson()[index].descricaoProduto,
+                                            appState.items[index].descricaoProduto,
                                             appState.getResponseJson()[index].id,
                                             appState.getResponseJson()[index].nomeProduto,
                                             appState.getResponseJson()[index].imagem,
