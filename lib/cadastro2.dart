@@ -131,7 +131,7 @@ class TransfterDataWidget extends State {
     // Getting value from Controller
 
     // API URL
-    var url = 'http://192.168.15.10/api/usuario/create.php';
+    var url = 'http://localhost:8080/usuarios';
 
     // Store all data with Param Name.
     var data = {
@@ -146,13 +146,14 @@ class TransfterDataWidget extends State {
     };
 
     // Starting Web Call with data.
-    var response = await http.post(url, body: json.encode(data));
+    var response = await http.post(url,
+        body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
 
     // If Web call Success than Hide the CircularProgressIndicator.
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       setState(() {
         visible = false;
       });
@@ -163,7 +164,7 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text(message),
+          title: new Text("message"),
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),

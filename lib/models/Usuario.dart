@@ -7,7 +7,6 @@ class Usuario {
     this.cpf,
     this.telefone,
     this.cidade,
-    this.logado,
     this.avatar,
   });
 
@@ -16,9 +15,8 @@ class Usuario {
   String loginUsuario;
   String email;
   String cpf;
-  int telefone;
+  String telefone;
   String cidade;
-  int logado;
   String avatar;
 
   factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
@@ -29,7 +27,6 @@ class Usuario {
         cpf: json["cpf"],
         telefone: json["telefone"],
         cidade: json["cidade"],
-        logado: json["logado"],
         avatar: json["avatar"],
       );
 
@@ -41,7 +38,6 @@ class Usuario {
         "cpf": cpf,
         "telefone": telefone,
         "cidade": cidade,
-        "logado": logado,
         "avatar": avatar,
       };
 }
