@@ -223,6 +223,7 @@ class LoginUserState extends State {
                     ),
                   ),
                   RaisedButton(
+                    key: Key("botao"),
                     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Recover())),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                     padding: EdgeInsets.all(0.0),

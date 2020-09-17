@@ -63,6 +63,7 @@ flutter:
     - imgs/icon.png
     - imgs/app_icon.png
     - assets/logo.flr
+    - assets/lock.png
     - assets/logo2.flr
     - assets/logo3.flr
     - assets/w.png
