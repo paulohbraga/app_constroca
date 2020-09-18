@@ -33,7 +33,7 @@ class DisplayProdutos extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.grey[100],
+                              color: Colors.transparent,
                               // image: DecorationImage(
                               //     image: AssetImage("imgs/5.jpg"), fit: BoxFit.cover)
                             ),
@@ -81,10 +81,10 @@ class DisplayProdutos extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     elevation: 5,
-                                    margin: EdgeInsets.all(10),
+                                    margin: EdgeInsets.all(8),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(8),
                                     child: Center(
                                       child: Container(
                                         width: MediaQuery.of(context).size.width,
@@ -92,7 +92,7 @@ class DisplayProdutos extends StatelessWidget {
                                           gradient: LinearGradient(
                                               begin: Alignment.topLeft,
                                               end: Alignment.bottomRight,
-                                              colors: <Color>[Color(0x008899), Colors.blue[800]]),
+                                              colors: <Color>[Colors.blue, Colors.blue[900]]),
                                           borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                                         ),
