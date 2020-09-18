@@ -61,8 +61,6 @@ class LoginUserState extends State {
     appData.id_usuario = message['id'].toString();
     appData.message = message;
 
-    print(message["id"].toString());
-
     // If the Response Message is Matched.
     if (message["id"] != null) {
       //print(message);
@@ -78,6 +76,7 @@ class LoginUserState extends State {
       // If Email or Password did not Matched.
       // Hiding the CircularProgressIndicator.
       setState(() {
+        appData.id_usuario = null;
         appData.cidade = null;
         appData.nome_usuario = null;
         appData.telefone = null;

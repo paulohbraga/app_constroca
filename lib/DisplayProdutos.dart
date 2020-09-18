@@ -20,7 +20,7 @@ class DisplayProdutos extends StatelessWidget {
               child: Center(
                   child: SpinKitDualRing(
                 size: 100.0,
-                color: Colors.blue[200],
+                color: Colors.transparent,
               )),
             )
           : appState.getResponseJson() != null

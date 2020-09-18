@@ -21,73 +21,18 @@ class Perfil extends StatelessWidget {
 
 class PerfilUser extends StatefulWidget {
   PerfilUser();
-  final dynamic message = appData.message;
 
-  PerfilUserState createState() => PerfilUserState(message);
+  PerfilUserState createState() => PerfilUserState();
 }
 
 class PerfilUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
-  final dynamic message;
   // Getting value from TextField widget.
   var message_global;
   final appData = AppData();
 
-  PerfilUserState(this.message);
-
-  Future userLogin(int id_user) async {
-    // Showing CircularProgressIrndicator.
-    setState(() {
-      visible = true;
-    });
-
-    // SERVER LOGIN API URL
-    var url = 'http://localhost:8080/usuarios/' + id_user.toString();
-
-    // Store all data with Param Name.
-
-    // Starting Web API Call.
-    var response = await http.get(url);
-
-    // Getting Server response into variable.
-    var message = jsonDecode(response.body);
-    //print(message);
-    // If the Response Message is Matched.
-    if (message == 'Usuario existe') {
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-
-      // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroProduto()));
-    } else {
-      // If Email or Password did not Matched.
-      // Hiding the CircularProgressIndicator.
-      setState(() {
-        visible = false;
-      });
-
-      // Showing Alert Dialog with Response JSON Message.
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("message"),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+  PerfilUserState();
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +56,7 @@ class PerfilUserState extends State {
                         child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'http://192.168.15.10/api/usuario/imagens/' + message['avatar'],
+                        'http://192.168.15.10/api/usuario/imagens/' + appData.message['avatar'],
                         height: 100,
                         width: 100,
                         fit: BoxFit.cover,
@@ -120,7 +65,7 @@ class PerfilUserState extends State {
                     Padding(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        message['nome'],
+                        appData.message['nome'],
                         style: TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
@@ -139,21 +84,21 @@ class PerfilUserState extends State {
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "Cidade: " + message['cidade'],
+                          "Cidade: " + appData.message['cidade'],
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "Telefone: " + message['telefone'].toString(),
+                          "Telefone: " + appData.message['telefone'].toString(),
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5, top: 25),
                         child: Text(
-                          "e-mail: " + message['email'],
+                          "e-mail: " + appData.message['email'],
                           style: TextStyle(fontSize: 20, color: Colors.black),
                         ),
                       ),
