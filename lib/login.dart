@@ -64,7 +64,7 @@ class LoginUserState extends State {
     print(message["id"].toString());
 
     // If the Response Message is Matched.
-    if (message != null) {
+    if (message["id"] != null) {
       //print(message);
       // Hiding the CircularProgressIndicator.
       setState(() {

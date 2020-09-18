@@ -3,7 +3,7 @@ import 'package:app_constroca/recover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-// Função auxiliar para envolver os widgets a serem testados.
+// Tela de perfil - clicar no botao e ir para a tela recuperacao
 Widget makeTestable(Widget widget) => MaterialApp(home: widget);
 
 void main() {
