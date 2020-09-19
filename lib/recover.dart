@@ -1,8 +1,87 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-
 import 'constants.dart';
 
-class Recover extends StatelessWidget {
+class Recover extends StatefulWidget {
+  @override
+  _RecoverState createState() => _RecoverState();
+}
+
+class _RecoverState extends State<Recover> {
+  bool visible = false;
+
+  final emailController = TextEditingController();
+
+  Future userRecover() async {
+    setState(() {
+      visible = true;
+    });
+
+    String email = emailController.text;
+
+    var url = 'http://localhost:8080/email-send';
+
+    var data = {'email': email};
+
+    var response = await http.post(url,
+        body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
+
+    var message = jsonDecode(response.body);
+
+    if (message["responseMail"] == 'sucess') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text(
+              "Sua nova senha foi encaminhada para o seu e-mail",
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    visible = false;
+                    emailController.clear();
+                  });
+                },
+              ),
+            ],
+          );
+        },
+      );
+      setState(() {
+        visible = false;
+      });
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text(
+              "Usuário não cadastrado no sistema!",
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    visible = false;
+                  });
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,12 +126,14 @@ class Recover extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: TextFormField(
+                  key: Key("txtEmail"),
+                  controller: emailController,
                   decoration: new InputDecoration(
                       hintText: 'Digite e-mail abaixo', labelText: 'Seu e-mail', border: OutlineInputBorder())),
             ),
             RaisedButton(
               key: Key("recuperar"),
-              onPressed: () => {},
+              onPressed: () => userRecover(),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
               padding: EdgeInsets.all(0.0),
               child: Ink(
@@ -74,6 +155,9 @@ class Recover extends StatelessWidget {
                 ),
               ),
             ),
+            Visibility(
+                visible: visible,
+                child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
           ],
         ),
       ),

@@ -19,7 +19,16 @@ void main() {
     // deve ter o texto 'Enviar nova senha'
     expect(find.text('Enviar nova senha'), findsOneWidget);
     // Checar se o botão existe e é clicável
+    final Finder txtEmail = find.byKey(Key("txtEmail"));
+
+    await tester.enterText(find.byType(TextFormField), 'marciocolunga@gmail.com');
+
     await tester.tap(botao);
+
+    expect(find.byType(AlertDialog), findsOneWidget);
+
+    expect(find.text('Sua nova senha foi encaminhada para o seu e-mail'), findsOneWidget);
+
     await tester.pumpAndSettle();
 
     await tester.pump();
