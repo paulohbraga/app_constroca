@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:app_constroca/produtos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:http/http.dart' as http;
 import 'package:transparent_image/transparent_image.dart';
 
@@ -70,19 +68,6 @@ import 'constants.dart';
 //   }
 // }
 
-class DetalhaProduto extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Product page',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Montserrat'),
-      home: MyHomePage(title: 'Flutter Product page'),
-    );
-  }
-}
-
 class MyHomePageDetail extends StatefulWidget {
   MyHomePageDetail(String descricao, String idProduto, String nome_produto, String img_produto, String avatar,
       {Key key, this.title})
@@ -147,25 +132,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                   padding: const EdgeInsets.all(25.0),
                   child: Text(appData.descricao_produto,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal)),
+                      style: TextStyle(fontSize: 20, fontFamily: 'Raleway', fontWeight: FontWeight.normal)),
                 ),
-                Ink(
-                    decoration: const ShapeDecoration(
-                      shape: CircleBorder(),
-                    ),
-                    child: IconButton(
-                      icon: Image.asset('assets/w.png', width: 322, height: 322),
-                      color: Colors.white,
-                      onPressed: () {
-                        // FlutterOpenWhatsapp.sendSingleMessage(
-                        //     // "55" + produtos[index].telefone,
-                        //     "Olá, " +
-                        //         // produtos[index].nome_usuario +
-                        //         ", tenho interesse no produto: " +
-                        //         // produtos[index].nome_produto +
-                        //         ", vi o seu anúncio no App Constroca.");
-                      },
-                    )),
                 Text(
                   "Chat",
                   style: TextStyle(fontFamily: 'Raleway', fontSize: 16, fontWeight: FontWeight.normal),

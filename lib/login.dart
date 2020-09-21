@@ -49,15 +49,14 @@ class LoginUserState extends State {
     // SERVER LOGIN API URL
     var url = 'http://localhost:8080/login';
 
-    // Store all data with Param Name.
     var data = {'email': email, 'password': password};
 
-    // Starting Web API Call.
     var response = await http.post(url,
         body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
-
+    //HACK to convert special chars from response
+    String source = Utf8Decoder().convert(response.bodyBytes);
     // Getting Server response into variable.
-    var message = jsonDecode(response.body);
+    var message = json.decode(source);
     appData.id_usuario = message['id'].toString();
     appData.message = message;
 

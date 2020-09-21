@@ -24,8 +24,11 @@ class ProdutosProvider extends ChangeNotifier {
     notifyListeners();
 
     var response = await http.get(_dataUrl);
+    //HACK to convert special chars from response
     if (response.statusCode == 200) {
-      _jsonResonse = response.body;
+      String source = Utf8Decoder().convert(response.bodyBytes);
+
+      _jsonResonse = source;
     }
     items = getResponseJson();
     _isFetching = false;

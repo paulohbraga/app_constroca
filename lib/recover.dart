@@ -119,7 +119,7 @@ class _RecoverState extends State<Recover> {
               padding: const EdgeInsets.all(50.0),
               child: Text(
                 'Digite seu email para receber uma nova senha',
-                style: TextStyle(fontSize: 20, fontFamily: 'Raleway'),
+                style: TextStyle(fontSize: 20, fontFamily: 'Raleway', fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -157,7 +157,7 @@ class _RecoverState extends State<Recover> {
             ),
             Visibility(
                 visible: visible,
-                child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
+                child: Container(margin: EdgeInsets.only(bottom: 30, top: 20), child: CircularProgressIndicator())),
           ],
         ),
       ),
