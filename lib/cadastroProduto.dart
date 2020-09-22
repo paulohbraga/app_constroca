@@ -315,9 +315,9 @@ class TransfterDataWidget extends State {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
-                      borderRadius: BorderRadius.circular(10.0)),
+                      borderRadius: BorderRadius.circular(5.0)),
                   child: Container(
-                    constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                    constraints: BoxConstraints(maxWidth: 200.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
                       "Cadastrar novo item",

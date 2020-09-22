@@ -78,6 +78,7 @@ class DisplayProdutos extends StatelessWidget {
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
+                                      side: BorderSide(width: 0.5, color: Colors.grey[800]),
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     elevation: 5,
@@ -100,7 +101,7 @@ class DisplayProdutos extends StatelessWidget {
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: <Widget>[
                                             Padding(
-                                              padding: const EdgeInsets.all(15),
+                                              padding: const EdgeInsets.all(12),
                                               child: Text(appState.getResponseJson()[index].nomeProduto,
                                                   textAlign: TextAlign.end,
                                                   style: TextStyle(

@@ -131,7 +131,7 @@ class TransfterDataWidget extends State {
     // Getting value from Controller
 
     // API URL
-    var url = 'http://localhost:8080/usuarios';
+    var url = 'http://192.168.15.10:8080/usuarios';
 
     // Store all data with Param Name.
     var data = {

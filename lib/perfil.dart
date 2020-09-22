@@ -46,6 +46,7 @@ class PerfilUserState extends State {
           decoration: BoxDecoration(),
           constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
                   child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
@@ -125,7 +126,7 @@ class PerfilUserState extends State {
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
-                          borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(5.0)),
                       child: Container(
                         constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
                         alignment: Alignment.center,
@@ -148,7 +149,7 @@ class PerfilUserState extends State {
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
-                          borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(5.0)),
                       child: Container(
                         constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
                         alignment: Alignment.center,
@@ -163,7 +164,7 @@ class PerfilUserState extends State {
                 ]),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 100),
+                padding: const EdgeInsets.only(top: 50),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -184,7 +185,7 @@ class PerfilUserState extends State {
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
-                            borderRadius: BorderRadius.circular(10.0)),
+                            borderRadius: BorderRadius.circular(5.0)),
                         child: Container(
                           constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
                           alignment: Alignment.center,

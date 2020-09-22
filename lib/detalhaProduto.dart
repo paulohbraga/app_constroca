@@ -168,7 +168,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             tag: id,
             child: FadeInImage.memoryNetwork(
                 height: MediaQuery.of(context).size.height / 2.5,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 placeholder: kTransparentImage,
                 image: 'http://192.168.15.10/api/produto/imagens/' + appData.img_produto + ''),
           ),

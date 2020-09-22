@@ -20,7 +20,7 @@ class _RecoverState extends State<Recover> {
 
     String email = emailController.text;
 
-    var url = 'http://localhost:8080/email-send';
+    var url = 'http://192.168.15.10:8080/email-send';
 
     var data = {'email': email};
 

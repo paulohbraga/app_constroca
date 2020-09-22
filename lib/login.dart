@@ -47,7 +47,7 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://localhost:8080/login';
+    var url = 'http://192.168.15.10:8080/login';
 
     var data = {'email': email, 'password': password};
 
@@ -160,7 +160,7 @@ class LoginUserState extends State {
                     onChanged: (text) {
                       setState(() {
                         teclado = false;
-                        debugPrint(teclado.toString());
+                        //debugPrint(teclado.toString());
                       });
                     },
                     autocorrect: true,
@@ -198,7 +198,13 @@ class LoginUserState extends State {
                     ),
                   ),
                   RaisedButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2())),
+                    onPressed: () => {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2())),
+                      setState(() {
+                        teclado = true;
+                        //debugPrint(teclado.toString());
+                      })
+                    },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                     padding: EdgeInsets.all(0.0),
                     child: Ink(
