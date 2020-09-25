@@ -20,6 +20,7 @@ class _ListProductState extends State<ListProduct> {
       title: 'Produtos',
       home: Scaffold(
         appBar: AppBar(
+          elevation: 5,
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,

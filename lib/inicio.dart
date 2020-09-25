@@ -108,7 +108,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       bottomNavigationBar: new BottomNavigationBar(
         backgroundColor: APP_BAR_COLOR,
         iconSize: 35,
-        elevation: 1,
+        elevation: 5,
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.yellow[700],
         unselectedFontSize: 12,
