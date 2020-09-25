@@ -142,7 +142,10 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("Usuário cadastrado com sucesso"),
+          title: new Text(
+            "Usuário cadastrado com sucesso",
+            textAlign: TextAlign.center,
+          ),
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
@@ -300,7 +303,7 @@ class TransfterDataWidget extends State {
           child: Ink(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.blue[900], Colors.blue[600]],
+                  colors: [Colors.blue[800], Colors.blue[800]],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

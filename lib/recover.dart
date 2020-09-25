@@ -139,7 +139,7 @@ class _RecoverState extends State<Recover> {
               child: Ink(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.blue[900], Colors.blue[600]],
+                      colors: [Colors.blue[800], Colors.blue[800]],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),

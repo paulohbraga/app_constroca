@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'constants.dart';
-import 'package:crypto/crypto.dart' as crypto;
 
 class Tipo {
   const Tipo(this.name, this.tipo);
@@ -44,7 +43,7 @@ class TransfterDataWidget extends State {
 
   TransfterDataWidget({Key key, @required this.message});
 
-  Tipo selectedUser;
+  Tipo selectedType;
   List<Tipo> users = <Tipo>[const Tipo('Troca', 'T'), const Tipo('Doação', 'D')];
 
   // Getting value from TextField widget.
@@ -177,7 +176,10 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("Cadastrado"),
+          title: new Text(
+            "Produto cadastrado com sucesso",
+            textAlign: TextAlign.center,
+          ),
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
@@ -198,6 +200,10 @@ class TransfterDataWidget extends State {
         resizeToAvoidBottomPadding: true,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
@@ -274,11 +280,11 @@ class TransfterDataWidget extends State {
               DropdownButton<Tipo>(
                   elevation: 8,
                   hint: new Text("        Troca ou doação?        "),
-                  value: selectedUser,
+                  value: selectedType,
                   onChanged: (Tipo newValue) {
                     setState(() {
-                      selectedUser = newValue;
-                      tipoProduto = selectedUser.tipo;
+                      selectedType = newValue;
+                      tipoProduto = selectedType.tipo;
                     });
                   },
                   items: users.map((Tipo user) {
@@ -298,7 +304,7 @@ class TransfterDataWidget extends State {
                 child: Ink(
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                        colors: [Colors.blue[800], Colors.blue[800]],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),

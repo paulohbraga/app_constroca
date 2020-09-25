@@ -181,7 +181,7 @@ class LoginUserState extends State {
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Colors.blue[900], Colors.blue[600]],
+                            colors: [Colors.blue[800], Colors.blue[800]],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -210,7 +210,7 @@ class LoginUserState extends State {
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Colors.blue[900], Colors.blue[600]],
+                            colors: [Colors.blue[800], Colors.blue[800]],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -234,7 +234,7 @@ class LoginUserState extends State {
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Colors.blue[900], Colors.blue[600]],
+                            colors: [Colors.blue[800], Colors.blue[800]],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),

@@ -94,7 +94,9 @@ class DisplayProdutos extends StatelessWidget {
                                           gradient: LinearGradient(
                                               begin: Alignment.topLeft,
                                               end: Alignment.bottomRight,
-                                              colors: <Color>[Colors.blue, Colors.blue[900]]),
+                                              colors: appState.getResponseJson()[index].tipo == "T"
+                                                  ? <Color>[Colors.blue, Colors.blue[900]]
+                                                  : <Color>[Colors.green, Colors.green[900]]),
                                           borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(10), topLeft: Radius.circular(10)),
                                         ),

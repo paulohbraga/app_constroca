@@ -39,7 +39,19 @@ class PerfilUserState extends State {
     //print(message);
     return Scaffold(
         appBar: AppBar(
-            automaticallyImplyLeading: false, backgroundColor: APP_BAR_COLOR, centerTitle: true, title: Text('Perfil')),
+          elevation: 5,
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          backgroundColor: APP_BAR_COLOR,
+          title: Text(
+            "Perfil de usuário",
+            style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+          ),
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
+        ),
         resizeToAvoidBottomInset: true,
         body: Container(
             child: Container(
@@ -122,7 +134,7 @@ class PerfilUserState extends State {
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            colors: [Colors.blue[800], Colors.blue[800]],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -145,7 +157,7 @@ class PerfilUserState extends State {
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                            colors: [Colors.blue[800], Colors.blue[800]],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
@@ -181,7 +193,7 @@ class PerfilUserState extends State {
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                              colors: [Colors.blue[800], Colors.blue[800]],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
