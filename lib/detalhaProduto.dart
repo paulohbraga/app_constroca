@@ -109,15 +109,22 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)), child: hero(appData.id_produto)),
             ListTile(
+              contentPadding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 16.0),
               leading: CircleAvatar(
+                  radius: 30,
                   backgroundImage:
                       NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client + '')),
               title: Text(
                 "Contato: " + appData.email_client,
-                style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.normal,
+                ),
               ),
               subtitle: Text(
                 "Telefone: " + appData.telefone_client,
+                textAlign: TextAlign.center,
                 style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
               ),
               trailing: Row(

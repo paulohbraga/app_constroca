@@ -26,6 +26,7 @@ class DisplayProdutos extends StatelessWidget {
           : appState.getResponseJson() != null
               ? Container(
                   child: ListView.builder(
+                    shrinkWrap: true,
                     itemCount: appState.items.length,
                     itemBuilder: (context, index) {
                       return Column(
@@ -68,9 +69,9 @@ class DisplayProdutos extends StatelessWidget {
                                       tag: appState.getResponseJson()[index].id,
                                       child: FadeInImage.memoryNetwork(
                                         fadeInDuration: const Duration(milliseconds: 100),
-                                        image: "http://192.168.15.10/api/produto/imagens/" +
+                                        image: 'http://192.168.15.10/api/produto/imagens/' +
                                             appState.getResponseJson()[index].imagem +
-                                            "",
+                                            '',
                                         fit: BoxFit.fill,
                                         placeholder: kTransparentImage,
                                         height: 280,

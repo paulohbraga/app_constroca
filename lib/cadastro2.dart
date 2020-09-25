@@ -37,7 +37,7 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint = 'http://192.168.15.10:8080/uploadfile';
+  static final String uploadEndPoint = 'http://192.168.15.10:8080/uploadimageuser';
 
   Future<File> file;
   String status = '';
@@ -71,7 +71,7 @@ class TransfterDataWidget extends State {
     Dio dio = new Dio();
 
     dio
-        .post("http://localhost:8080/uploadfile", data: data)
+        .post("http://localhost:8080/uploadimageuser", data: data)
         .then((response) => print(response))
         .catchError((error) => print(error));
   }

@@ -2,9 +2,12 @@ import 'dart:io';
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/inicio.dart';
 import 'package:app_constroca/perfil.dart';
+import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'constants.dart';
@@ -57,7 +60,7 @@ class TransfterDataWidget extends State {
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
 
-  static final String uploadEndPoint = 'http://192.168.15.10/api/produto/image_save.php';
+  static final String uploadEndPoint = 'http://localhost:8080/uploadimageproduct';
 
   Future<File> file;
   String status = '';
@@ -65,13 +68,34 @@ class TransfterDataWidget extends State {
   File tmpFile;
   String errMessage = 'Erro ao carregar imagem';
 
-  chooseImage() {
-    print(message);
-
+  Future<File> getImage() async {
+    var file = await ImagePicker.pickImage(
+        source: ImageSource.gallery,
+        maxHeight: 500, // <- reduce the image size
+        maxWidth: 500);
+    _upload(file);
     setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
+      status = file.path.split('/').last;
     });
-    setStatus('');
+  }
+
+  void _upload(File file) async {
+    String fileName = file.path.split('/').last;
+    nome_imagem = fileName;
+
+    FormData data = FormData.fromMap({
+      "file": await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      ),
+    });
+
+    Dio dio = new Dio();
+
+    dio
+        .post("http://localhost:8080/uploadimageproduct", data: data)
+        .then((response) => print(response))
+        .catchError((error) => print(error));
   }
 
   setStatus(String message2) {
@@ -80,67 +104,19 @@ class TransfterDataWidget extends State {
     });
   }
 
-  startUpload() {
-    setStatus('Enviando imagem...');
-    if (null == tmpFile) {
-      setStatus(errMessage);
-      return;
-    }
-    String fileName = tmpFile.path.split('/').last;
-    nome_imagem = fileName;
-    var md5 = crypto.md5;
-    var digest = md5.convert(utf8.encode(fileName)).toString();
-
-    upload(digest);
-  }
-
-  upload(String fileName) {
-    nome_imagem = fileName;
-    http.post(uploadEndPoint, body: {
-      "image": base64Image,
-      "name": fileName,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : errMessage);
-    }).catchError((error) {
-      setStatus(error);
-    });
-  }
-
   Widget showImage() {
-    return FutureBuilder<File>(
-      future: file,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && null != snapshot.data) {
-          tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          return Container(
-              width: MediaQuery.of(context).size.width - 10,
-              height: 200.0,
+    return Container(
+      alignment: Alignment.center,
+      child: status == ''
+          ? Center(child: Text('Imagem não selecionada'))
+          : Container(
+              width: 350,
+              height: 250.0,
               decoration: new BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  image: new DecorationImage(
-                    fit: BoxFit.cover,
-                    image: new FileImage(snapshot.data),
-                  )));
-
-          // return Flexible(
-          //   child: Image.file(
-          //     snapshot.data,
-          //     fit: BoxFit.fill,
-          //   ),
-          // );
-        } else if (null != snapshot.error) {
-          return const Text(
-            'Erro ao carregar image',
-            textAlign: TextAlign.center,
-          );
-        } else {
-          return const Text(
-            'Não foi selecionada uma imagem',
-            textAlign: TextAlign.center,
-          );
-        }
-      },
+                shape: BoxShape.rectangle,
+                image: new DecorationImage(
+                    fit: BoxFit.cover, image: NetworkImage('http://192.168.15.10/api/produto/imagens/' + status)),
+              )),
     );
   }
 
@@ -149,11 +125,13 @@ class TransfterDataWidget extends State {
     setState(() {
       visible = true;
     });
+    final appState = Provider.of<ProdutosProvider>(context, listen: false);
 
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var email_logado = prefs.getString('email');
     print(email_logado);
+    //print(message['id']);
 
     // Getting value from Controller
     String nome = nomeController.text;
@@ -162,20 +140,27 @@ class TransfterDataWidget extends State {
     String telefone = telefoneController.text;
     String cidade = cidadeController.text;
     String password = passwordController.text;
-
+    String id_user = appData.id_usuario;
     // API URL
-    var url = 'http://192.168.15.10/api/produto/create.php';
+    var url = 'http://192.168.15.10:8080/usuarios/' + id_user + '/produtos';
     // Store all data with Param Name.
     var data = {
       'nome_produto': nome,
       'descricao_produto': descricao,
-      'imagem': nome_imagem,
+      'status': "A",
       'tipo': tipo,
-      'fk_id_usuario': message["id"].toString()
+      'imagem': nome_imagem,
     };
 
+    // "nome_produto": "terra",
+    //   "descricao_produto": "lalala",
+    //   "status": "A",
+    //   "tipo": "D",
+    //   "imagem": "default.png",
+
     // Starting Web Call with data.
-    var response = await http.post(url, body: json.encode(data));
+    var response = await http.post(url,
+        body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
 
     // Getting Server response into variable.
     var message3 = jsonDecode(response.body);
@@ -192,11 +177,12 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text(message3),
+          title: new Text("Cadastrado"),
           actions: <Widget>[
             FlatButton(
               child: new Text("OK"),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio())),
+              onPressed: () =>
+                  {appState.fetchData(), Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio()))},
             ),
           ],
         );
@@ -206,6 +192,8 @@ class TransfterDataWidget extends State {
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<ProdutosProvider>(context, listen: true);
+
     return Scaffold(
         resizeToAvoidBottomPadding: true,
         resizeToAvoidBottomInset: true,
@@ -227,7 +215,7 @@ class TransfterDataWidget extends State {
                 color: null,
               ),
               OutlineButton(
-                onPressed: chooseImage,
+                onPressed: () => getImage(),
                 child: Text('Selecionar imagem'),
               ),
               SizedBox(
@@ -237,35 +225,34 @@ class TransfterDataWidget extends State {
               SizedBox(
                 height: 20.0,
               ),
-              OutlineButton(
-                onPressed: startUpload,
-                child: Text('Enviar'),
-              ),
+              // OutlineButton(
+              //   child: Text('Enviar'),
+              // ),
               SizedBox(
                 height: 20.0,
               ),
-              Text(
-                status,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.blue[900],
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                ),
-              ),
+              // Text(
+              //   status,
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //     color: Colors.blue[900],
+              //     fontWeight: FontWeight.w500,
+              //     fontSize: 15.0,
+              //   ),
+              // ),
 
               Container(
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
-                    onSubmitted: startUpload(),
+                    //onSubmitted: startUpload(),
                     //onTap: startUpload(),
                     style: TextStyle(fontSize: 20, color: Colors.black),
                     controller: nomeController,
                     autocorrect: true,
                     decoration: InputDecoration(
                       hintText: 'Produto',
-                      labelText: 'Nome do produto',
+                      labelText: 'Nome do produto 2',
                       border: OutlineInputBorder(),
                     ),
                   )),
