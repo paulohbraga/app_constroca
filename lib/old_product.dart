@@ -208,8 +208,9 @@ class ProdutosList extends StatelessWidget {
                                         width: MediaQuery.of(context).size.width / 1.1,
                                         fit: BoxFit.fill,
                                         placeholder: kTransparentImage,
-                                        image:
-                                            'http://192.168.15.10/api/produto/imagens/' + produtos[index].imagem + ''),
+                                        image: 'https://constroca-webservice-app.herokuapp.com/imagens/' +
+                                            produtos[index].imagem +
+                                            ''),
                                   ),
                                 ),
                               ),

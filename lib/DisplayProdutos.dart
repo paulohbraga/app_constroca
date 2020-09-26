@@ -69,7 +69,7 @@ class DisplayProdutos extends StatelessWidget {
                                       tag: appState.getResponseJson()[index].id,
                                       child: FadeInImage.memoryNetwork(
                                         fadeInDuration: const Duration(milliseconds: 100),
-                                        image: 'http://192.168.15.10/api/produto/imagens/' +
+                                        image: 'https://constroca-webservice-app.herokuapp.com/imagens/' +
                                             appState.getResponseJson()[index].imagem +
                                             '',
                                         fit: BoxFit.fill,

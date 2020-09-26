@@ -37,7 +37,7 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint = 'http://192.168.15.10:8080/uploadimageuser';
+  static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadimageuser';
 
   Future<File> file;
   String status = '';
@@ -71,7 +71,7 @@ class TransfterDataWidget extends State {
     Dio dio = new Dio();
 
     dio
-        .post("http://localhost:8080/uploadimageuser", data: data)
+        .post("https://constroca-webservice-app.herokuapp.com/uploadimageuser", data: data)
         .then((response) => print(response))
         .catchError((error) => print(error));
   }
@@ -93,7 +93,8 @@ class TransfterDataWidget extends State {
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 image: new DecorationImage(
-                    fit: BoxFit.cover, image: NetworkImage('http://192.168.15.10/api/usuario/imagens/' + status)),
+                    fit: BoxFit.cover,
+                    image: NetworkImage('https://constroca-webservice-app.herokuapp.com/imagens/' + status)),
               )),
     );
   }
@@ -109,7 +110,7 @@ class TransfterDataWidget extends State {
     // Getting value from Controller
 
     // API URL
-    var url = 'http://192.168.15.10:8080/usuarios';
+    var url = 'https://constroca-webservice-app.herokuapp.com/usuarios';
 
     // Store all data with Param Name.
     var data = {

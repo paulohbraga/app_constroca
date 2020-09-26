@@ -47,7 +47,7 @@ class LoginUserState extends State {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'http://192.168.15.10:8080/login';
+    var url = 'https://constroca-webservice-app.herokuapp.com/login';
 
     var data = {'email': email, 'password': password};
 

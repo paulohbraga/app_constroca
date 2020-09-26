@@ -112,8 +112,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
               contentPadding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 16.0),
               leading: CircleAvatar(
                   radius: 30,
-                  backgroundImage:
-                      NetworkImage('http://192.168.15.10/api/usuario/imagens/' + appData.avatar_client + '')),
+                  backgroundImage: NetworkImage(
+                      'https://constroca-webservice-app.herokuapp.com/imagens/' + appData.avatar_client + '')),
               title: Text(
                 "Contato: " + appData.email_client,
                 textAlign: TextAlign.center,
@@ -177,7 +177,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                 height: MediaQuery.of(context).size.height / 2.5,
                 fit: BoxFit.fill,
                 placeholder: kTransparentImage,
-                image: 'http://192.168.15.10/api/produto/imagens/' + appData.img_produto + ''),
+                image: 'https://constroca-webservice-app.herokuapp.com/imagens/' + appData.img_produto + ''),
           ),
           //This
           // should be a paged
