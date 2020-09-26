@@ -44,9 +44,8 @@ class MyProducts extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: NetworkImage("https://constroca-webservice-app.herokuapp.com/imagens/" +
-                                appState.getResponseJson()[index].imagem +
-                                ""),
+                            backgroundImage: NetworkImage(
+                                "http://www.someletras.com.br/paulo/" + appState.getResponseJson()[index].imagem + ""),
                           ),
                           title: Text(
                             appState.getResponseJson()[index].nomeProduto,

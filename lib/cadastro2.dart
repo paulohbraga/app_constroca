@@ -37,13 +37,14 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
   // Boolean variable for CircularProgressIndicator.
 
-  static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadimageuser';
+  static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadftp';
 
   Future<File> file;
   String status = '';
   String base64Image;
   File tmpFile;
   var img;
+  Response res;
   String errMessage = 'Erro ao carregar imagem';
 
   Future<File> getImage() async {
@@ -71,8 +72,11 @@ class TransfterDataWidget extends State {
     Dio dio = new Dio();
 
     dio
-        .post("https://constroca-webservice-app.herokuapp.com/uploadimageuser", data: data)
-        .then((response) => print(response))
+        .post("https://constroca-webservice-app.herokuapp.com/uploadftp", data: data)
+        .then((response) => {
+              res = response,
+              setState(() => {}),
+            })
         .catchError((error) => print(error));
   }
 
@@ -85,7 +89,7 @@ class TransfterDataWidget extends State {
   Widget showImage() {
     return Container(
       alignment: Alignment.center,
-      child: status == ''
+      child: res == null
           ? Center(child: Text('Imagem não selecionada'))
           : Container(
               width: 150,
@@ -93,8 +97,7 @@ class TransfterDataWidget extends State {
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 image: new DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage('https://constroca-webservice-app.herokuapp.com/imagens/' + status)),
+                    fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/' + status)),
               )),
     );
   }

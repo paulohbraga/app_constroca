@@ -26,6 +26,7 @@ class DisplayProdutos extends StatelessWidget {
           : appState.getResponseJson() != null
               ? Container(
                   child: ListView.builder(
+                    reverse: true,
                     shrinkWrap: true,
                     itemCount: appState.items.length,
                     itemBuilder: (context, index) {
@@ -69,10 +70,10 @@ class DisplayProdutos extends StatelessWidget {
                                       tag: appState.getResponseJson()[index].id,
                                       child: FadeInImage.memoryNetwork(
                                         fadeInDuration: const Duration(milliseconds: 100),
-                                        image: 'https://constroca-webservice-app.herokuapp.com/imagens/' +
+                                        image: 'http://www.someletras.com.br/paulo/' +
                                             appState.getResponseJson()[index].imagem +
                                             '',
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                         placeholder: kTransparentImage,
                                         height: 280,
                                         width: MediaQuery.of(context).size.width,

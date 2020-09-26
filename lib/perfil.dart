@@ -69,7 +69,7 @@ class PerfilUserState extends State {
                         child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'https://constroca-webservice-app.herokuapp.com/imagens/' + appData.message['avatar'],
+                        'http://www.someletras.com.br/paulo/' + appData.message['avatar'],
                         height: 100,
                         width: 100,
                         fit: BoxFit.cover,
