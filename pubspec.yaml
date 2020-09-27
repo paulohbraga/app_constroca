@@ -24,7 +24,7 @@ dependencies:
   requests: ^1.0.0
   shared_preferences: ^0.4.3
   flutter_masked_text: ^0.8.0
-  image_picker: ^0.6.6+5
+  image_picker:  0.6.2+3
   transparent_image: ^1.0.0
   progress_indicators: ^0.1.5
   flutter_spinkit: ^3.1.0
