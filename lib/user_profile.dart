@@ -1,9 +1,11 @@
 import 'package:app_constroca/form_product.dart';
 import 'package:app_constroca/login.dart';
+import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:app_constroca/user_products.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'appdata.dart';
@@ -36,6 +38,8 @@ class PerfilUserState extends State {
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<ProdutosProvider>(context);
+
     //print(message);
     return Scaffold(
         appBar: AppBar(
@@ -153,7 +157,10 @@ class PerfilUserState extends State {
                       ),
                     ),
                     RaisedButton(
-                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyProducts())),
+                      onPressed: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MyProducts())),
+                        appState.fetchDataMy()
+                      },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                       padding: EdgeInsets.all(0.0),
                       child: Ink(

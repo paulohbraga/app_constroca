@@ -25,7 +25,7 @@ class MyProducts extends StatelessWidget {
           title: Text('Meus produtos')),
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        child: appState.isFetching
+        child: appState.isFetchingMy
             ? Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Center(
@@ -34,21 +34,22 @@ class MyProducts extends StatelessWidget {
                   color: Colors.blue[200],
                 )),
               )
-            : appState.getResponseJson() != null
+            : appState.getResponseJsonMy() != null
                 ? RefreshIndicator(
-                    onRefresh: () => appState.fetchData(),
+                    onRefresh: () => appState.fetchDataMy(),
                     child: ListView.builder(
                       primary: false,
                       shrinkWrap: true,
-                      itemCount: appState.items.length,
+                      itemCount: appState.itemsMy.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "http://www.someletras.com.br/paulo/" + appState.getResponseJson()[index].imagem + ""),
+                            backgroundImage: NetworkImage("http://www.someletras.com.br/paulo/" +
+                                appState.getResponseJsonMy()[index].imagem +
+                                ""),
                           ),
                           title: Text(
-                            appState.getResponseJson()[index].nomeProduto,
+                            appState.getResponseJsonMy()[index].nomeProduto,
                           ),
                           trailing: Container(
                             width: 50,
@@ -58,7 +59,7 @@ class MyProducts extends StatelessWidget {
                                 IconButton(
                                   onPressed: () => {
                                     Provider.of<ProdutosProvider>(context, listen: false)
-                                        .deleteProduct(appState.getResponseJson()[index].id),
+                                        .deleteUserProduct(appState.getResponseJsonMy()[index].id),
                                   },
                                   icon: Icon(Icons.delete),
                                 )
