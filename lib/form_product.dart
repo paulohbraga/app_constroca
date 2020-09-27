@@ -104,15 +104,9 @@ class TransfterDataWidget extends State {
     return Container(
       alignment: Alignment.center,
       child: res == null
-          ? Center(
-              child: Container(
-                  width: 350,
-                  height: 250.0,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    image: new DecorationImage(
-                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/default.png')),
-                  )))
+          ? Visibility(
+              visible: visible,
+              child: Container(child: Container(width: 120, height: 120, child: Image.asset('assets/loading.gif'))))
           : Center(
               child: Container(
                   width: 350,

@@ -30,12 +30,10 @@ class TransfterDataWidget extends State {
   String _valid_cpf = "";
   final cpfController = MaskedTextController(mask: '000.000.000-00');
 
-  // Boolean variable for CircularProgressIndicator.
   bool visible = false;
   bool _validate = false;
   String nome, login_usuario, email, cpf, telefone, cidade, password;
   String nome_imagem = "default.png";
-  // Boolean variable for CircularProgressIndicator.
 
   static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadftp';
 
@@ -62,6 +60,10 @@ class TransfterDataWidget extends State {
     String fileName = file.path.split('/').last;
     nome_imagem = fileName;
 
+    setState(() {
+      visible = true;
+      res = null;
+    });
     FormData data = FormData.fromMap({
       "file": await MultipartFile.fromFile(
         file.path,
@@ -75,7 +77,9 @@ class TransfterDataWidget extends State {
         .post("https://constroca-webservice-app.herokuapp.com/uploadftp", data: data)
         .then((response) => {
               res = response,
-              setState(() => {}),
+              setState(() => {
+                    visible = false,
+                  }),
             })
         .catchError((error) => print(error));
   }
@@ -90,19 +94,14 @@ class TransfterDataWidget extends State {
     return Container(
       alignment: Alignment.center,
       child: res == null
-          ? Center(
-              child: Container(
-                  width: 120,
-                  height: 120.0,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    image: new DecorationImage(
-                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/avatar.png')),
-                  )))
+          ? Visibility(
+              visible: visible,
+              child: Container(child: Container(width: 120, height: 120, child: Image.asset('assets/loading.gif'))),
+            )
           : Center(
               child: Container(
                   width: 120,
-                  height: 120.0,
+                  height: 120,
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
                     image: new DecorationImage(
@@ -113,14 +112,11 @@ class TransfterDataWidget extends State {
   }
 
   Future cadastrar() async {
-    // Showing CircularProgressIndicator using State.
     key:
     ValueKey("teste");
     setState(() {
       visible = true;
     });
-
-    // Getting value from Controller
 
     // API URL
     var url = 'https://constroca-webservice-app.herokuapp.com/usuarios';
@@ -359,6 +355,7 @@ class TransfterDataWidget extends State {
             ),
           ),
         ),
+
         // new RaisedButton(
         //   onPressed: _sendForm,
         //   child: new Text('Enviar'),

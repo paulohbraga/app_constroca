@@ -59,6 +59,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -108,8 +109,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
       bottomNavigationBar: new BottomNavigationBar(
         backgroundColor: APP_BAR_COLOR,
-        iconSize: 35,
-        elevation: 5,
+        iconSize: 30,
+        elevation: 100,
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.yellow[700],
         unselectedFontSize: 12,

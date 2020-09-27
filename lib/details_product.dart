@@ -108,7 +108,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             tag: id,
             child: FadeInImage.memoryNetwork(
                 height: MediaQuery.of(context).size.height / 2.5,
-                fit: BoxFit.fill,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
                 placeholder: kTransparentImage,
                 image: 'http://www.someletras.com.br/paulo/' + appData.img_produto + ''),
           ),
