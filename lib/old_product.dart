@@ -9,7 +9,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'appdata.dart';
 import 'constants.dart';
-import 'detalhaProduto.dart';
+import 'details_product.dart';
 
 Future<List<Produto>> fetchProdutos(http.Client client) async {
   final response = await client.get('http://192.168.15.10/api/produto/read.php');

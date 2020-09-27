@@ -1,13 +1,13 @@
-import 'package:app_constroca/perfil.dart';
-import 'package:app_constroca/recover.dart';
+import 'package:app_constroca/user_profile.dart';
+import 'package:app_constroca/recover_password.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
-import 'cadastro2.dart';
+import 'form_user.dart';
 import 'appdata.dart';
-import 'perfil.dart';
+import 'user_profile.dart';
 
 class Logar extends StatelessWidget {
   @override
@@ -107,9 +107,8 @@ class LoginUserState extends State {
 
   @override
   Widget build(BuildContext context) {
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
@@ -123,140 +122,149 @@ class LoginUserState extends State {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
-        body: SingleChildScrollView(
-            child: Container(
-          child: Column(
-            children: <Widget>[
-              Padding(padding: const EdgeInsets.only(top: 30)),
-              Padding(
+        body: Container(
+          constraints: new BoxConstraints.expand(),
+          padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0, bottom: 100),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(bottom: bottom),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ClipOval(
+                        child: Image.asset(
+                      teclado ? 'assets/avatar_expressions.gif' : 'assets/closing_eyes.gif',
+                      gaplessPlayback: true,
+                      fit: BoxFit.cover,
+                      width: 120.0,
+                      height: 120.0,
+                    ))),
+                Container(
+                    width: 270,
+                    height: 55,
+                    padding: EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
+                      controller: emailController,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                        // hintText: 'e-mail',
+                        labelText: 'Digite seu e-mail',
+                        border: OutlineInputBorder(),
+                      ),
+                    )),
+                Padding(padding: const EdgeInsets.only(top: 10)),
+                Container(
+                    width: 270,
+                    height: 55,
+                    padding: EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
+                      controller: passwordController,
+                      onChanged: (text) {
+                        setState(() {
+                          teclado = false;
+                          //debugPrint(teclado.toString());
+                        });
+                      },
+                      autocorrect: true,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        //hintText: 'Senha',
+                        labelText: 'Senha',
+                        border: OutlineInputBorder(),
+                      ),
+                    )),
+                Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: ClipOval(
-                      child: Image.asset(
-                    teclado ? 'assets/avatar_expressions.gif' : 'assets/closing_eyes.gif',
-                    gaplessPlayback: true,
-                    fit: BoxFit.cover,
-                    width: 150.0,
-                    height: 150.0,
-                  ))),
-              Container(
-                  width: 280,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
-                    controller: emailController,
-                    autocorrect: true,
-                    decoration: InputDecoration(
-                      // hintText: 'e-mail',
-                      labelText: 'Digite seu e-mail',
-                      border: OutlineInputBorder(),
-                    ),
-                  )),
-              Container(
-                  width: 280,
-                  padding: EdgeInsets.all(10.0),
-                  child: TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
-                    controller: passwordController,
-                    onChanged: (text) {
-                      setState(() {
-                        teclado = false;
-                        //debugPrint(teclado.toString());
-                      });
-                    },
-                    autocorrect: true,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      //hintText: 'Senha',
-                      labelText: 'Senha',
-                      border: OutlineInputBorder(),
-                    ),
-                  )),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-                  RaisedButton(
-                    onPressed: userLogin,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue[800], Colors.blue[800]],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                    RaisedButton(
+                      onPressed: userLogin,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.blue[800], Colors.blue[800]],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 90.0, minHeight: 40.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Login",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                           ),
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Login",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
                     ),
-                  ),
-                  RaisedButton(
-                    onPressed: () => {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2())),
-                      setState(() {
-                        teclado = true;
-                        //debugPrint(teclado.toString());
-                      })
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue[800], Colors.blue[800]],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
+                    RaisedButton(
+                      onPressed: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro2())),
+                        setState(() {
+                          teclado = true;
+                          //debugPrint(teclado.toString());
+                        })
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.blue[800], Colors.blue[800]],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 90.0, minHeight: 40.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Cadastro",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                           ),
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Cadastro",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
                     ),
-                  ),
-                  RaisedButton(
-                    key: Key("botao"),
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Recover())),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue[800], Colors.blue[800]],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
+                    RaisedButton(
+                      key: Key("botao"),
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Recover())),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Colors.blue[800], Colors.blue[800]],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Esqueci a senha",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                           ),
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 140.0, minHeight: 40.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Esqueci a senha",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
                         ),
                       ),
                     ),
-                  ),
-                ]),
-              ),
-              Visibility(
-                  visible: visible,
-                  child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
-            ],
+                  ]),
+                ),
+                Visibility(
+                    visible: visible,
+                    child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
+                Container(
+                  height: 100,
+                )
+              ],
+            ),
           ),
-        )));
+        ));
   }
 }

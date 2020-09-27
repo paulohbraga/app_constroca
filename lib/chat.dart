@@ -7,14 +7,13 @@ class Chat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Recuperar senha',
       home: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           title: Text(
-            "Tela de chat",
+            "Chat",
             style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
           ),
           flexibleSpace: Container(

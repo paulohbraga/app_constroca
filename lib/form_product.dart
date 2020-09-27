@@ -1,0 +1,365 @@
+import 'dart:io';
+import 'package:app_constroca/appdata.dart';
+import 'package:app_constroca/home_bar.dart';
+import 'package:app_constroca/user_profile.dart';
+import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'constants.dart';
+
+class Tipo {
+  const Tipo(this.name, this.tipo);
+
+  final String name;
+  final String tipo;
+}
+
+class CadastroProduto extends StatelessWidget {
+  final dynamic message = appData.message;
+
+  CadastroProduto();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: TransfterData());
+  }
+}
+
+class TransfterData extends StatefulWidget {
+  TransfterDataWidget createState() => TransfterDataWidget();
+
+  dynamic message;
+
+  TransfterData({Key key, @required this.message}) : super(key: key);
+}
+
+class TransfterDataWidget extends State {
+  dynamic message;
+
+  TransfterDataWidget({Key key, @required this.message});
+
+  Tipo selectedType;
+  List<Tipo> users = <Tipo>[const Tipo('Troca', 'T'), const Tipo('Doação', 'D')];
+
+  // Getting value from TextField widget.
+  String tipoProduto = '';
+  final nomeController = TextEditingController();
+  final descricaoController = TextEditingController();
+  final emailController = TextEditingController();
+  final telefoneController = TextEditingController();
+  final cidadeController = TextEditingController();
+  final passwordController = TextEditingController();
+  int contador;
+  String nome_imagem = 'default.png';
+  // Boolean variable for CircularProgressIndicator.
+  bool visible = false;
+
+  static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadftp';
+
+  Future<File> file;
+  String status = '';
+  String base64Image;
+  File tmpFile;
+
+  Response res;
+  String errMessage = 'Erro ao carregar imagem';
+
+  Future<File> getImage() async {
+    var file = await ImagePicker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+        maxHeight: 500, // <- reduce the image size
+        maxWidth: 500);
+    _upload(file);
+    setState(() {
+      status = file.path.split('/').last;
+    });
+  }
+
+  void _upload(File file) async {
+    String fileName = file.path.split('/').last;
+    nome_imagem = fileName;
+
+    FormData data = FormData.fromMap({
+      "file": await MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      ),
+    });
+
+    Dio dio = new Dio();
+
+    dio
+        .post("https://constroca-webservice-app.herokuapp.com/uploadftp", data: data)
+        .then((response) => res = response)
+        .catchError((error) => print(error));
+  }
+
+  Widget showImage() {
+    return Container(
+      alignment: Alignment.center,
+      child: res == null
+          ? Center(
+              child: Container(
+                  width: 350,
+                  height: 250.0,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: new DecorationImage(
+                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/default.png')),
+                  )))
+          : Center(
+              child: Container(
+                  width: 350,
+                  height: 250.0,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: new DecorationImage(
+                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/' + status)),
+                  )),
+            ),
+    );
+  }
+
+  Future cadastrar() async {
+    // Showing CircularProgressIndicator using State.
+    setState(() {
+      visible = true;
+    });
+    final appState = Provider.of<ProdutosProvider>(context, listen: false);
+
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var email_logado = prefs.getString('email');
+    print(email_logado);
+    //print(message['id']);
+
+    // Getting value from Controller
+    String nome = nomeController.text;
+    String tipo = tipoProduto;
+    String descricao = descricaoController.text;
+    String telefone = telefoneController.text;
+    String cidade = cidadeController.text;
+    String password = passwordController.text;
+    String id_user = appData.id_usuario;
+    // API URL
+    var url = 'https://constroca-webservice-app.herokuapp.com/usuarios/' + id_user + '/produtos';
+    // Store all data with Param Name.
+    var data = {
+      'nome_produto': nome,
+      'descricao_produto': descricao,
+      'status': "A",
+      'tipo': tipo,
+      'imagem': nome_imagem,
+    };
+
+    // "nome_produto": "terra",
+    //   "descricao_produto": "lalala",
+    //   "status": "A",
+    //   "tipo": "D",
+    //   "imagem": "default.png",
+
+    // Starting Web Call with data.
+    var response = await http.post(url,
+        body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
+
+    // Getting Server response into variable.
+    var message3 = jsonDecode(response.body);
+
+    // If Web call Success than Hide the CircularProgressIndicator.
+    if (response.statusCode == 200) {
+      setState(() {
+        visible = false;
+      });
+    }
+
+    // Showing Alert Dialog with Response JSON.
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text(
+            "Produto cadastrado com sucesso",
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("OK"),
+              onPressed: () =>
+                  {appState.fetchData(), Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio()))},
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final appState = Provider.of<ProdutosProvider>(context, listen: true);
+
+    return Scaffold(
+        resizeToAvoidBottomPadding: true,
+        resizeToAvoidBottomInset: true,
+        appBar: AppBar(
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
+          ),
+          title: Text('Cadastro de produtos'),
+          centerTitle: true,
+          backgroundColor: APP_BAR_COLOR,
+        ),
+        body: SingleChildScrollView(
+            child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height + 200),
+          child: Column(
+            children: <Widget>[
+              Divider(
+                color: null,
+              ),
+              OutlineButton(
+                onPressed: () => getImage(),
+                child: Text('Selecionar imagem'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              showImage(),
+              SizedBox(
+                height: 20.0,
+              ),
+              // OutlineButton(
+              //   child: Text('Enviar'),
+              // ),
+              SizedBox(
+                height: 20.0,
+              ),
+              // Text(
+              //   status,
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //     color: Colors.blue[900],
+              //     fontWeight: FontWeight.w500,
+              //     fontSize: 15.0,
+              //   ),
+              // ),
+
+              Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    //onSubmitted: startUpload(),
+                    //onTap: startUpload(),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    controller: nomeController,
+                    autocorrect: true,
+                    decoration: InputDecoration(
+                      hintText: 'Produto',
+                      labelText: 'Nome do produto 2',
+                      border: OutlineInputBorder(),
+                    ),
+                  )),
+              Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  padding: EdgeInsets.all(10.0), //
+                  child: TextField(
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    controller: descricaoController,
+                    autocorrect: true,
+                    keyboardType: TextInputType.multiline,
+                    maxLength: 200,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      labelText: 'Descrição do produto',
+                      border: OutlineInputBorder(),
+                    ),
+                  )),
+              DropdownButton<Tipo>(
+                  elevation: 8,
+                  hint: new Text("        Troca ou doação?        "),
+                  value: selectedType,
+                  onChanged: (Tipo newValue) {
+                    setState(() {
+                      selectedType = newValue;
+                      tipoProduto = selectedType.tipo;
+                    });
+                  },
+                  items: users.map((Tipo user) {
+                    return new DropdownMenuItem<Tipo>(
+                      value: user,
+                      child: new Text(
+                        user.name,
+                        style: new TextStyle(color: Colors.black87, fontSize: 20),
+                      ),
+                    );
+                  }).toList()),
+              Padding(padding: EdgeInsets.only(bottom: 45)),
+              RaisedButton(
+                onPressed: cadastrar,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                padding: EdgeInsets.all(0.0),
+                child: Ink(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.blue[800], Colors.blue[800]],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: 200.0, minHeight: 50.0),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Cadastrar novo item",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              // Container(
+              //     width: MediaQuery.of(context).size.width / 1.2,
+              //     padding: EdgeInsets.all(10.0),
+              //     child: TextField(
+              //       style: TextStyle(fontSize: 20, color: Colors.black),
+              //       controller: loginUsuarioController,
+              //       autocorrect: true,
+              //       maxLines: null,
+              //       decoration: InputDecoration(
+              //         hintText: 'Descrição',
+              //         labelText: 'Detalhe seu produto',
+              //         border: OutlineInputBorder(),
+              //       ),
+              //     )),
+              // Container(
+              //     width: MediaQuery.of(context).size.width / 1.2,
+              //     padding: EdgeInsets.all(10.0),
+              //     child: TextField(
+              //       style: TextStyle(fontSize: 20, color: Colors.black),
+              //       controller: emailController,
+              //       autocorrect: true,
+              //       decoration: InputDecoration(
+              //         hintText: 'Doação ou troca',
+              //         labelText: 'será um campo combobox',
+              //         border: OutlineInputBorder(),
+              //       ),
+              //     )),
+
+              Visibility(
+                  visible: visible,
+                  child: Container(margin: EdgeInsets.only(bottom: 30, top: 10), child: CircularProgressIndicator())),
+            ],
+          ),
+        )));
+  }
+}

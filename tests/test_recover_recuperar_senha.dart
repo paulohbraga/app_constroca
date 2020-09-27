@@ -1,5 +1,5 @@
 import 'package:app_constroca/login.dart';
-import 'package:app_constroca/recover.dart';
+import 'package:app_constroca/recover_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

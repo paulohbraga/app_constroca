@@ -14,7 +14,7 @@ class Chat_Placeholder extends StatelessWidget {
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           title: Text(
-            "Tela de chat",
+            "Chat",
             style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
           ),
           flexibleSpace: Container(

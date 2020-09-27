@@ -4,7 +4,7 @@ Aplicativo Constroca para a disciplina de Projeto Integrador I e II do Curso An�
 
 Professor/Scrum Master: Sérgio Cozetti
 
-Membros: Murilo de La Vega, Paulo Henrique Braga.
+Membros: Murilo de La Vega, Paulo Henrique Braga, Hélis Humeno.
 
 
 # Descrição

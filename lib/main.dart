@@ -1,6 +1,6 @@
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:app_constroca/splash.dart';
+import 'package:app_constroca/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'constants.dart';
