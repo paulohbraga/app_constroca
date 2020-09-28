@@ -75,10 +75,10 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Text(appData.descricao_produto,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 20, fontFamily: 'Raleway', fontWeight: FontWeight.normal)),
+                      style: TextStyle(fontSize: 18, fontFamily: 'Raleway', fontWeight: FontWeight.normal)),
                 ),
                 Text(
                   "Chat",

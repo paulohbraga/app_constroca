@@ -50,10 +50,12 @@ class TransfterDataWidget extends State {
       imageQuality: 50,
       source: ImageSource.camera,
     );
-    _upload(file);
     setState(() {
+      tmpFile = file;
       status = file.path.split('/').last;
     });
+    print(file.path);
+    _upload(file);
   }
 
   void _upload(File file) async {
@@ -91,23 +93,26 @@ class TransfterDataWidget extends State {
   }
 
   Widget showImage() {
-    return Container(
-      alignment: Alignment.center,
-      child: res == null
-          ? Visibility(
-              visible: visible,
-              child: Container(child: Container(width: 120, height: 120, child: Image.asset('assets/loading.gif'))),
-            )
-          : Center(
-              child: Container(
+    return GestureDetector(
+      onTap: () => getImage(),
+      child: Container(
+          alignment: Alignment.center,
+          child: tmpFile != null
+              ? Container(
+                  child: Container(
+                  width: 120,
+                  height: 120,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(image: FileImage(tmpFile.absolute), fit: BoxFit.cover)),
+                ))
+              : Container(
                   width: 120,
                   height: 120,
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
-                    image: new DecorationImage(
-                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/' + status)),
-                  )),
-            ),
+                    image: new DecorationImage(fit: BoxFit.cover, image: AssetImage('assets/camera.png')),
+                  ))),
     );
   }
 
@@ -203,10 +208,6 @@ class TransfterDataWidget extends State {
   Widget _formUI() {
     return new Column(
       children: <Widget>[
-        OutlineButton(
-          onPressed: () => getImage(),
-          child: Text('Selecionar imagem'),
-        ),
         SizedBox(
           height: 20.0,
         ),

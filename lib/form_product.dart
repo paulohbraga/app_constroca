@@ -75,10 +75,11 @@ class TransfterDataWidget extends State {
         imageQuality: 50,
         maxHeight: 500, // <- reduce the image size
         maxWidth: 500);
-    _upload(file);
     setState(() {
       status = file.path.split('/').last;
+      tmpFile = file;
     });
+    _upload(file);
   }
 
   void _upload(File file) async {
@@ -101,22 +102,26 @@ class TransfterDataWidget extends State {
   }
 
   Widget showImage() {
-    return Container(
-      alignment: Alignment.center,
-      child: res == null
-          ? Visibility(
-              visible: visible,
-              child: Container(child: Container(width: 120, height: 120, child: Image.asset('assets/loading.gif'))))
-          : Center(
-              child: Container(
-                  width: 350,
-                  height: 250.0,
+    return GestureDetector(
+      onTap: () => getImage(),
+      child: Container(
+          alignment: Alignment.center,
+          child: tmpFile != null
+              ? Container(
+                  child: Container(
+                  width: 120,
+                  height: 120,
                   decoration: new BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    image: new DecorationImage(
-                        fit: BoxFit.cover, image: NetworkImage('http://www.someletras.com.br/paulo/' + status)),
-                  )),
-            ),
+                      shape: BoxShape.circle,
+                      image: DecorationImage(image: FileImage(tmpFile.absolute), fit: BoxFit.cover)),
+                ))
+              : Container(
+                  width: 120,
+                  height: 120,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: new DecorationImage(fit: BoxFit.cover, image: AssetImage('assets/camera.png')),
+                  ))),
     );
   }
 
@@ -221,10 +226,7 @@ class TransfterDataWidget extends State {
               Divider(
                 color: null,
               ),
-              OutlineButton(
-                onPressed: () => getImage(),
-                child: Text('Selecionar imagem'),
-              ),
+
               SizedBox(
                 height: 20.0,
               ),

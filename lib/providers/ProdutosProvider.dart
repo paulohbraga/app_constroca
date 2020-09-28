@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 class ProdutosProvider extends ChangeNotifier {
   ProdutosProvider() {
     fetchData();
-    fetchDataMy();
   }
 
   String _jsonResonse = "";
