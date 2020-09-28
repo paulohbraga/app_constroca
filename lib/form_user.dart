@@ -29,6 +29,8 @@ class TransfterDataWidget extends State {
   // Getting value from TextField widget.
   String _valid_cpf = "";
   final cpfController = MaskedTextController(mask: '000.000.000-00');
+  String _valid_tel = "";
+  final telController = MaskedTextController(mask: '(00)00000-0000');
 
   bool visible = false;
   bool _validate = false;
@@ -220,7 +222,7 @@ class TransfterDataWidget extends State {
         ),
 
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
             decoration: new InputDecoration(
               hintText: 'Nome Completo',
@@ -236,7 +238,7 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'Login/Nickname',
@@ -252,11 +254,11 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'DDD/Telefone',
-                labelText: 'Telefone',
+                labelText: 'Telefone celular',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.phone,
@@ -268,7 +270,7 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'Email',
@@ -284,7 +286,7 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'CPF',
@@ -301,7 +303,7 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'Cidade',
@@ -309,7 +311,7 @@ class TransfterDataWidget extends State {
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.text,
-              maxLength: 11,
+              maxLength: 30,
               validator: _validarCidade,
               onSaved: (String val) {
                 cidade = val;
@@ -317,7 +319,7 @@ class TransfterDataWidget extends State {
         ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Container(
-          height: 60,
+          height: 70,
           child: new TextFormField(
               decoration: new InputDecoration(
                 hintText: 'Senha',
@@ -326,7 +328,7 @@ class TransfterDataWidget extends State {
               ),
               obscureText: true,
               keyboardType: TextInputType.text,
-              maxLength: 11,
+              maxLength: 20,
               validator: _validarSenha,
               onSaved: (String val) {
                 password = val;
@@ -370,7 +372,7 @@ class TransfterDataWidget extends State {
   }
 
   String _validarNome(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
+    String patttern = r'(^[ã-õâ-ûá-ú a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe o nome";
@@ -381,9 +383,9 @@ class TransfterDataWidget extends State {
   }
 
   String _validarCidade(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
+    String patttern = r'(^[a-zA-Z à-úÀ-Ú0-9]*$)';
     RegExp regExp = new RegExp(patttern);
-    if (value.length < 2) {
+    if (value.length < 1) {
       return "Informe o nome da cidade corretamente";
     } else if (!regExp.hasMatch(value)) {
       return "O nome da cidade deve conter caracteres de a-z ou A-Z";
@@ -396,7 +398,8 @@ class TransfterDataWidget extends State {
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe o cpf";
-    } else if (!CPF.isValid(value)) {
+      //} else if (!CPF.isValid(value)) {
+    } else if (value.length != 14) {
       return "CPF Inválido";
     }
     return null;
@@ -416,12 +419,12 @@ class TransfterDataWidget extends State {
   }
 
   String _validarSenha(String value) {
-    String patttern = r'(^[0-9]*$)';
+    String patttern = r'(^[a-zA-Z à-úÀ-Ú0-9\\!\\@\\#\\$\\%\\&\\*\\(\\)\\<\\>\\,\\.\\?\\/\\:\\;\\\\\|\\]\\*\\]$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe a senha";
-    } else if (!regExp.hasMatch(value)) {
-      return "Senha inválida";
+    } else if (value.length < 8) {
+      return "Senha deve ter pelo menos 8 caracteres";
     } else {
       return null;
     }
