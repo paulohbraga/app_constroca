@@ -30,7 +30,7 @@ class MyProducts extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Center(
                     child: SpinKitDualRing(
-                  size: 100.0,
+                  size: 40.0,
                   color: Colors.blue[200],
                 )),
               )

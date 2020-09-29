@@ -60,6 +60,19 @@ class TransfterDataWidget extends State {
     _upload(file);
   }
 
+  Future<File> getImageGallery() async {
+    var file = await ImagePicker.pickImage(
+      imageQuality: 50,
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      tmpFile = file;
+      status = file.path.split('/').last;
+    });
+    print(file.path);
+    _upload(file);
+  }
+
   void _upload(File file) async {
     String fileName = file.path.split('/').last;
     nome_imagem = fileName;
@@ -216,6 +229,22 @@ class TransfterDataWidget extends State {
         showImage(),
         SizedBox(
           height: 20.0,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () => getImage(),
+              child: Icon(Icons.camera_enhance),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            RaisedButton(
+              onPressed: () => getImageGallery(),
+              child: Icon(Icons.image),
+            ),
+          ],
         ),
         SizedBox(
           height: 20.0,

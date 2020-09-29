@@ -82,6 +82,19 @@ class TransfterDataWidget extends State {
     _upload(file);
   }
 
+  Future<File> getImageGallery() async {
+    var file = await ImagePicker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+        maxHeight: 500, // <- reduce the image size
+        maxWidth: 500);
+    setState(() {
+      status = file.path.split('/').last;
+      tmpFile = file;
+    });
+    _upload(file);
+  }
+
   void _upload(File file) async {
     String fileName = file.path.split('/').last;
     nome_imagem = fileName;
@@ -234,9 +247,22 @@ class TransfterDataWidget extends State {
               SizedBox(
                 height: 20.0,
               ),
-              // OutlineButton(
-              //   child: Text('Enviar'),
-              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () => getImage(),
+                    child: Icon(Icons.camera_enhance),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                  ),
+                  RaisedButton(
+                    onPressed: () => getImageGallery(),
+                    child: Icon(Icons.image),
+                  ),
+                ],
+              ),
               SizedBox(
                 height: 20.0,
               ),
@@ -251,6 +277,7 @@ class TransfterDataWidget extends State {
               // ),
 
               Container(
+                  height: 70,
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
@@ -261,11 +288,12 @@ class TransfterDataWidget extends State {
                     autocorrect: true,
                     decoration: InputDecoration(
                       hintText: 'Produto',
-                      labelText: 'Nome do produto 2',
+                      labelText: 'Nome do produto',
                       border: OutlineInputBorder(),
                     ),
                   )),
               Container(
+                  height: 85,
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0), //
                   child: TextField(
@@ -281,8 +309,8 @@ class TransfterDataWidget extends State {
                     ),
                   )),
               DropdownButton<Tipo>(
-                  elevation: 8,
-                  hint: new Text("        Troca ou doação?        "),
+                  elevation: 10,
+                  hint: new Text("                 Troca ou doação?                  "),
                   value: selectedType,
                   onChanged: (Tipo newValue) {
                     setState(() {
@@ -295,11 +323,11 @@ class TransfterDataWidget extends State {
                       value: user,
                       child: new Text(
                         user.name,
-                        style: new TextStyle(color: Colors.black87, fontSize: 20),
+                        style: new TextStyle(color: Colors.black, fontSize: 20),
                       ),
                     );
                   }).toList()),
-              Padding(padding: EdgeInsets.only(bottom: 45)),
+              Padding(padding: EdgeInsets.only(bottom: 45, top: 20)),
               RaisedButton(
                 onPressed: cadastrar,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),

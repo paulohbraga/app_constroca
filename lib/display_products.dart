@@ -67,22 +67,23 @@ class DisplayProdutos extends StatelessWidget {
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     child: Hero(
                                       tag: appState.getResponseJson()[index].id,
-                                      child: FadeInImage.memoryNetwork(
-                                        fadeInDuration: const Duration(milliseconds: 50),
+                                      child: FadeInImage.assetNetwork(
+                                        fadeInCurve: Curves.bounceIn,
+                                        fadeInDuration: const Duration(milliseconds: 100),
                                         image: 'http://www.someletras.com.br/paulo/' +
                                             appState.getResponseJson()[index].imagem +
                                             '',
                                         fit: BoxFit.cover,
-                                        placeholder: kTransparentImage,
+                                        placeholder: 'assets/load.gif',
                                         height: 280,
                                         width: MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
-                                      side: BorderSide(width: 0.5, color: Colors.grey[800]),
+                                      side: BorderSide(width: 0.0, color: Colors.grey[800]),
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
-                                    elevation: 5,
+                                    elevation: 10,
                                     margin: EdgeInsets.all(8),
                                   ),
                                   Padding(

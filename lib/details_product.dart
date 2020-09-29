@@ -49,9 +49,9 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)), child: hero(appData.id_produto)),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 35.0, horizontal: 20.0),
               leading: CircleAvatar(
-                  radius: 30,
+                  radius: 25,
                   backgroundImage: NetworkImage('http://www.someletras.com.br/paulo/' + appData.avatar_client + '')),
               title: Text(
                 "Contato: " + appData.email_client,

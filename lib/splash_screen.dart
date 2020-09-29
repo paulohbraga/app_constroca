@@ -18,13 +18,13 @@ class _SplashState extends State<Splash> {
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Inicio()));
+      final appState = Provider.of<ProdutosProvider>(context, listen: true);
+      appState.fetchData();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<ProdutosProvider>(context, listen: true);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
