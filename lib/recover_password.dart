@@ -34,6 +34,7 @@ class _RecoverState extends State<Recover> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             title: new Text(
               "Sua nova senha foi encaminhada para o seu e-mail",
               textAlign: TextAlign.center,
@@ -61,6 +62,7 @@ class _RecoverState extends State<Recover> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             title: new Text(
               "Usuário não cadastrado no sistema!",
               textAlign: TextAlign.center,

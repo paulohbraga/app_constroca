@@ -87,6 +87,7 @@ class LoginUserState extends State {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             title: new Text(
               "Usuário ou senha inválidos. Tente novamente.",
               textAlign: TextAlign.center,

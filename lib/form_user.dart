@@ -172,6 +172,7 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
           title: new Text(
             "Usuário cadastrado com sucesso",
             textAlign: TextAlign.center,

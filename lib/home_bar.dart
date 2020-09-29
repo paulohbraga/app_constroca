@@ -112,7 +112,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         iconSize: 30,
         elevation: 100,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.yellow[700],
+        selectedItemColor: Colors.limeAccent,
         unselectedFontSize: 12,
         selectedFontSize: 12,
         type: BottomNavigationBarType.fixed,
@@ -131,7 +131,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         },
         items: <BottomNavigationBarItem>[
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.vertical_align_center),
+            icon: new Icon(Icons.autorenew),
             title: new Text(
               "Trocas",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
@@ -145,7 +145,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           //   ),
           // ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.chat_bubble_outline),
+            icon: new Icon(Icons.message),
             title: new Text(
               "Chat",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),

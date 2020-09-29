@@ -32,7 +32,6 @@ class CadastroProduto extends StatelessWidget {
 
 class TransfterData extends StatefulWidget {
   TransfterDataWidget createState() => TransfterDataWidget();
-
   dynamic message;
 
   TransfterData({Key key, @required this.message}) : super(key: key);
@@ -195,6 +194,7 @@ class TransfterDataWidget extends State {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
           title: new Text(
             "Produto cadastrado com sucesso",
             textAlign: TextAlign.center,

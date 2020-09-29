@@ -5,7 +5,12 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 
-class MyProducts extends StatelessWidget {
+class MyProducts extends StatefulWidget {
+  @override
+  _MyProductsState createState() => _MyProductsState();
+}
+
+class _MyProductsState extends State<MyProducts> {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<ProdutosProvider>(context);
@@ -24,7 +29,7 @@ class MyProducts extends StatelessWidget {
           centerTitle: true,
           title: Text('Meus produtos')),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(5.0),
         child: appState.isFetchingMy
             ? Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -52,14 +57,18 @@ class MyProducts extends StatelessWidget {
                             appState.getResponseJsonMy()[index].nomeProduto,
                           ),
                           trailing: Container(
-                            width: 50,
+                            margin: EdgeInsets.all(2),
+                            width: 100,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 IconButton(
+                                  onPressed: () => {},
+                                  icon: Icon(Icons.edit),
+                                ),
+                                IconButton(
                                   onPressed: () => {
-                                    Provider.of<ProdutosProvider>(context, listen: false)
-                                        .deleteUserProduct(appState.getResponseJsonMy()[index].id),
+                                    _confirmDelete(appState.getResponseJsonMy()[index].id),
                                   },
                                   icon: Icon(Icons.delete),
                                 )
@@ -73,5 +82,38 @@ class MyProducts extends StatelessWidget {
                 : Text("Atualize a página recarregar"),
       ),
     );
+  }
+
+  void _confirmDelete(String id) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+            title: Text(
+              "Confirma a exclusão do produto?",
+              style: TextStyle(color: Colors.black, fontFamily: 'Raleway'),
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancelar", style: TextStyle(color: Colors.red, fontFamily: 'Raleway')),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  "Deletar",
+                  style: TextStyle(color: Colors.green[900], fontFamily: 'Raleway'),
+                ),
+                onPressed: () => {
+                  Provider.of<ProdutosProvider>(context, listen: false).deleteUserProduct(id),
+                  Navigator.pop(context)
+                },
+              )
+            ],
+          );
+        });
   }
 }
