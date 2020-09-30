@@ -6,6 +6,7 @@ import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
 import 'package:app_constroca/user_profile.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -131,7 +132,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         },
         items: <BottomNavigationBarItem>[
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.autorenew),
+            icon: new Icon(FeatherIcons.refreshCcw),
             title: new Text(
               "Trocas",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
@@ -145,14 +146,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           //   ),
           // ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.message),
+            icon: new Icon(FeatherIcons.messageCircle),
             title: new Text(
               "Chat",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
             ),
           ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.person_outline),
+            icon: new Icon(FeatherIcons.user),
             title: new Text(
               "Perfil",
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Raleway'),

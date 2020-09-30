@@ -4,6 +4,7 @@ import 'package:app_constroca/home_bar.dart';
 import 'package:app_constroca/user_profile.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:dio/dio.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -227,7 +228,7 @@ class TransfterDataWidget extends State {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
           ),
           title: Text('Cadastro de produtos'),
@@ -257,7 +258,7 @@ class TransfterDataWidget extends State {
                     color: Colors.blue[800],
                     onPressed: () => getImage(),
                     child: Icon(
-                      Icons.camera_enhance,
+                      FeatherIcons.camera,
                       color: Colors.white,
                     ),
                   ),
@@ -268,7 +269,7 @@ class TransfterDataWidget extends State {
                     color: Colors.blue[600],
                     onPressed: () => getImageGallery(),
                     child: Icon(
-                      Icons.image,
+                      FeatherIcons.image,
                       color: Colors.white,
                     ),
                   ),
@@ -355,7 +356,7 @@ class TransfterDataWidget extends State {
                       ),
                       borderRadius: BorderRadius.circular(5.0)),
                   child: Container(
-                    constraints: BoxConstraints(maxWidth: 200.0, minHeight: 50.0),
+                    constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
                     alignment: Alignment.center,
                     child: Text(
                       "Cadastrar novo item",

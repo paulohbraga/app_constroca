@@ -1,4 +1,5 @@
 import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class _MyProductsState extends State<MyProducts> {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: APP_BAR_COLOR,

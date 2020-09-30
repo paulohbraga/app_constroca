@@ -245,7 +245,7 @@ class LoginUserState extends State {
                             ),
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Container(
-                          constraints: BoxConstraints(maxWidth: 100.0, minHeight: 40.0),
+                          constraints: BoxConstraints(maxWidth: 120.0, minHeight: 40.0),
                           alignment: Alignment.center,
                           child: Text(
                             "Esqueci a senha",

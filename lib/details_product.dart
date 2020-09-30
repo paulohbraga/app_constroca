@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -38,7 +39,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         backgroundColor: APP_BAR_COLOR,
         title: Text(appData.name_produto, style: TextStyle(fontSize: 15)),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -68,7 +69,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
               ),
               trailing: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[IconButton(icon: Icon(Icons.chat), onPressed: null)]),
+                  children: <Widget>[IconButton(icon: Icon(FeatherIcons.send), onPressed: null)]),
             ),
             Column(
               mainAxisSize: MainAxisSize.max,

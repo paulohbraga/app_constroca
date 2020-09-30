@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:app_constroca/home_bar.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:dio/dio.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -200,7 +201,7 @@ class TransfterDataWidget extends State {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
           onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
         ),
         title: Text("Cadastro de usuário", style: TextStyle(fontFamily: 'Raleway')),
@@ -243,7 +244,7 @@ class TransfterDataWidget extends State {
               color: Colors.blue[800],
               onPressed: () => getImage(),
               child: Icon(
-                Icons.camera_enhance,
+                FeatherIcons.camera,
                 color: Colors.white,
               ),
             ),
@@ -254,7 +255,7 @@ class TransfterDataWidget extends State {
               color: Colors.blue[600],
               onPressed: () => getImageGallery(),
               child: Icon(
-                Icons.image,
+                FeatherIcons.image,
                 color: Colors.white,
               ),
             ),

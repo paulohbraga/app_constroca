@@ -149,7 +149,7 @@ class PerfilUserState extends State {
                           constraints: BoxConstraints(maxWidth: 150.0, minHeight: 40.0),
                           alignment: Alignment.center,
                           child: Text(
-                            "Cadastrar novo produto",
+                            "Novo produto",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white),
                           ),
