@@ -38,6 +38,9 @@ class TransfterDataWidget extends State {
   String nome_imagem = "default.png";
 
   static final String uploadEndPoint = 'https://constroca-webservice-app.herokuapp.com/uploadftp';
+  final snackBar = SnackBar(
+      content: Text('Usuário cadastrado com sucesso!', style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.blue[900]);
 
   Future<File> file;
   String status = '';
@@ -165,28 +168,30 @@ class TransfterDataWidget extends State {
       setState(() {
         visible = false;
       });
+      Scaffold.of(context).showSnackBar(snackBar);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Logar()));
     }
 
     // mostrar mensagem json na dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-          title: new Text(
-            "Usuário cadastrado com sucesso",
-            textAlign: TextAlign.center,
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: new Text("OK"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Inicio())), // editado 10-06 - tinha erro de rota
-            ),
-          ],
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return AlertDialog(
+    //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+    //       title: new Text(
+    //         "Usuário cadastrado com sucesso",
+    //         textAlign: TextAlign.center,
+    //       ),
+    //       actions: <Widget>[
+    //         FlatButton(
+    //           child: new Text("OK"),
+    //           onPressed: () => Navigator.push(
+    //               context, MaterialPageRoute(builder: (context) => Inicio())), // editado 10-06 - tinha erro de rota
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }
 
   @override
@@ -235,15 +240,23 @@ class TransfterDataWidget extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
+              color: Colors.blue[800],
               onPressed: () => getImage(),
-              child: Icon(Icons.camera_enhance),
+              child: Icon(
+                Icons.camera_enhance,
+                color: Colors.white,
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
             ),
             RaisedButton(
+              color: Colors.blue[600],
               onPressed: () => getImageGallery(),
-              child: Icon(Icons.image),
+              child: Icon(
+                Icons.image,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

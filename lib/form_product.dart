@@ -143,7 +143,9 @@ class TransfterDataWidget extends State {
       visible = true;
     });
     final appState = Provider.of<ProdutosProvider>(context, listen: false);
-
+    final snackBar = SnackBar(
+        content: Text('Produto cadastrado com sucesso!', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blue[900]);
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var email_logado = prefs.getString('email');
@@ -187,28 +189,29 @@ class TransfterDataWidget extends State {
       setState(() {
         visible = false;
       });
+      Scaffold.of(context).showSnackBar(snackBar);
     }
 
     // Showing Alert Dialog with Response JSON.
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-          title: new Text(
-            "Produto cadastrado com sucesso",
-            textAlign: TextAlign.center,
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: new Text("OK"),
-              onPressed: () =>
-                  {appState.fetchData(), Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio()))},
-            ),
-          ],
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return AlertDialog(
+    //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+    //       title: new Text(
+    //         "Produto cadastrado com sucesso",
+    //         textAlign: TextAlign.center,
+    //       ),
+    //       actions: <Widget>[
+    //         FlatButton(
+    //           child: new Text("OK"),
+    //           onPressed: () =>
+    //               {appState.fetchData(), Navigator.push(context, MaterialPageRoute(builder: (context) => Inicio()))},
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }
 
   @override
@@ -251,15 +254,23 @@ class TransfterDataWidget extends State {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   RaisedButton(
+                    color: Colors.blue[800],
                     onPressed: () => getImage(),
-                    child: Icon(Icons.camera_enhance),
+                    child: Icon(
+                      Icons.camera_enhance,
+                      color: Colors.white,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.all(10),
                   ),
                   RaisedButton(
+                    color: Colors.blue[600],
                     onPressed: () => getImageGallery(),
-                    child: Icon(Icons.image),
+                    child: Icon(
+                      Icons.image,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -277,7 +288,6 @@ class TransfterDataWidget extends State {
               // ),
 
               Container(
-                  height: 70,
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0),
                   child: TextField(
@@ -293,7 +303,6 @@ class TransfterDataWidget extends State {
                     ),
                   )),
               Container(
-                  height: 85,
                   width: MediaQuery.of(context).size.width / 1.2,
                   padding: EdgeInsets.all(10.0), //
                   child: TextField(
@@ -314,6 +323,7 @@ class TransfterDataWidget extends State {
                   value: selectedType,
                   onChanged: (Tipo newValue) {
                     setState(() {
+                      FocusScope.of(context).requestFocus(new FocusNode());
                       selectedType = newValue;
                       tipoProduto = selectedType.tipo;
                     });
@@ -329,7 +339,11 @@ class TransfterDataWidget extends State {
                   }).toList()),
               Padding(padding: EdgeInsets.only(bottom: 45, top: 20)),
               RaisedButton(
-                onPressed: cadastrar,
+                onPressed: () => {
+                  FocusScope.of(context).requestFocus(new FocusNode()),
+                  cadastrar(),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Perfil()))
+                },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
