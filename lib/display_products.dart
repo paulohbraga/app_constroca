@@ -75,7 +75,7 @@ class DisplayProdutos extends StatelessWidget {
                                             '',
                                         fit: BoxFit.cover,
                                         placeholder: 'assets/load.gif',
-                                        height: 280,
+                                        height: MediaQuery.of(context).size.height / 2.5,
                                         width: MediaQuery.of(context).size.width,
                                       ),
                                     ),

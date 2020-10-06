@@ -35,13 +35,13 @@ class TransfterData extends StatefulWidget {
   TransfterDataWidget createState() => TransfterDataWidget();
   dynamic message;
 
-  TransfterData({Key key, @required this.message}) : super(key: key);
+  TransfterData({Key key, this.message}) : super(key: key);
 }
 
 class TransfterDataWidget extends State {
   dynamic message;
 
-  TransfterDataWidget({Key key, @required this.message});
+  TransfterDataWidget({Key key, this.message});
 
   Tipo selectedType;
   List<Tipo> users = <Tipo>[const Tipo('Troca', 'T'), const Tipo('Doação', 'D')];

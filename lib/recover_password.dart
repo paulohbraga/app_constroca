@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -95,7 +96,7 @@ class _RecoverState extends State<Recover> {
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(
@@ -111,7 +112,7 @@ class _RecoverState extends State<Recover> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 25),
                 child: Image.asset(
                   'assets/lock.png',
                   color: Colors.blue,
@@ -122,7 +123,10 @@ class _RecoverState extends State<Recover> {
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
                   'Digite seu email para receber uma nova senha',
-                  style: TextStyle(fontSize: 18, fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Raleway',
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -139,7 +143,10 @@ class _RecoverState extends State<Recover> {
               ),
               RaisedButton(
                 key: Key("recuperar"),
-                onPressed: () => userRecover(),
+                onPressed: () => {
+                  userRecover(),
+                  FocusScope.of(context).requestFocus(new FocusNode()),
+                },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
@@ -161,6 +168,7 @@ class _RecoverState extends State<Recover> {
                   ),
                 ),
               ),
+              Padding(padding: EdgeInsets.only(bottom: 200)),
               Visibility(
                   visible: visible,
                   child: Container(margin: EdgeInsets.only(bottom: 30, top: 20), child: CircularProgressIndicator())),

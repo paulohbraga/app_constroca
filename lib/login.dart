@@ -26,7 +26,9 @@ class LoginUser extends StatefulWidget {
 class LoginUserState extends State {
   // For CircularProgressIndicator.
   bool visible = false;
-
+  final snackBar = SnackBar(
+      content: Text('Usuário ou senha inválidos. Tente novamente.', style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.blue[900]);
   // Getting value from TextField widget.
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -81,28 +83,29 @@ class LoginUserState extends State {
         appData.telefone = null;
         visible = false;
       });
+      Scaffold.of(context).showSnackBar(snackBar);
 
       // Showing Alert Dialog with Response JSON Message.
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-            title: new Text(
-              "Usuário ou senha inválidos. Tente novamente.",
-              textAlign: TextAlign.center,
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+      //       title: new Text(
+      //         "Usuário ou senha inválidos. Tente novamente.",
+      //         textAlign: TextAlign.center,
+      //       ),
+      //       actions: <Widget>[
+      //         FlatButton(
+      //           child: new Text("OK"),
+      //           onPressed: () {
+      //             Navigator.of(context).pop();
+      //           },
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // );
     }
   }
 
@@ -125,7 +128,7 @@ class LoginUserState extends State {
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
         body: Container(
           constraints: new BoxConstraints.expand(),
-          padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0, bottom: 100),
+          padding: EdgeInsets.only(top: 10.0, bottom: 100),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(bottom: bottom),
             child: Column(
@@ -180,7 +183,10 @@ class LoginUserState extends State {
                   padding: const EdgeInsets.all(20.0),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
                     RaisedButton(
-                      onPressed: userLogin,
+                      onPressed: () => {
+                        userLogin(),
+                        FocusScope.of(context).requestFocus(new FocusNode()),
+                      },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       padding: EdgeInsets.all(0.0),
                       child: Ink(
@@ -245,7 +251,7 @@ class LoginUserState extends State {
                             ),
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Container(
-                          constraints: BoxConstraints(maxWidth: 120.0, minHeight: 40.0),
+                          constraints: BoxConstraints(maxWidth: 110.0, minHeight: 40.0),
                           alignment: Alignment.center,
                           child: Text(
                             "Esqueci a senha",
