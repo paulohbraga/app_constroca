@@ -20,6 +20,7 @@ class _SplashState extends State<Splash> {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Inicio()));
       final appState = Provider.of<ProdutosProvider>(context, listen: true);
       appState.fetchData();
+      appState.fetchMyChat();
     });
   }
 

@@ -1,6 +1,6 @@
 import 'package:app_constroca/list_products.dart';
 import 'package:app_constroca/appdata.dart';
-import 'package:app_constroca/chat.dart';
+import 'package:app_constroca/user_chat.dart';
 import 'package:app_constroca/chat_placeholder.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';
@@ -93,8 +93,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               child: new MaterialApp(
                   debugShowCheckedModeBanner: false,
                   home: appData.id_usuario == null
+                      //? Chat_Placeholder()
                       ? Chat_Placeholder()
-                      : Chat()), // Agora deve ir para a pagina de perfil
+                      : Chat_Placeholder()), // Agora deve ir para a pagina de perfil
             ),
           ),
           new Offstage(
@@ -123,7 +124,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             produtos.fetchData();
           }
           if (index == 1) {
-            produtos.fetchData();
+            produtos.fetchMyChat();
           }
 
           setState(() {
