@@ -1,3 +1,4 @@
+import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -34,17 +35,23 @@ class UserChat extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
-                                ),
-                                Text(
-                                  chatState.getResponseJsonMyChat()[index].sender.toString(),
-                                  style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
-                                ),
-                              ],
+                            InkWell(
+                              splashColor: Colors.amber,
+                              onTap: () => {print("Clicado")},
+                              child: appData.id_usuario == chatState.getResponseJsonMyChat()[index].sender.toString()
+                                  ? Row(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(15.0),
+                                          child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
+                                        ),
+                                        Text(
+                                          chatState.getResponseJsonMyChat()[index].receiver.toString(),
+                                          style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
+                                        ),
+                                      ],
+                                    )
+                                  : Text(""),
                             )
                           ],
                         );
