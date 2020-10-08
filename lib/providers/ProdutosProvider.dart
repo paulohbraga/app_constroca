@@ -77,7 +77,7 @@ class ProdutosProvider extends ChangeNotifier {
     notifyListeners();
 
     var responseMy = await http.get("https://constroca-webservice-app.herokuapp.com/chat");
-    print(responseMy.body);
+    //print(responseMy.body);
     //HACK to convert special chars from response
     if (responseMy.statusCode == 200) {
       String source2 = Utf8Decoder().convert(responseMy.bodyBytes);

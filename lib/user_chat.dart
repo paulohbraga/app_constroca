@@ -1,4 +1,6 @@
 import 'package:app_constroca/appdata.dart';
+import 'package:app_constroca/chat_list_body.dart';
+import 'package:app_constroca/chat_message_list.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -37,8 +39,11 @@ class UserChat extends StatelessWidget {
                           children: <Widget>[
                             InkWell(
                               splashColor: Colors.amber,
-                              onTap: () => {print("Clicado")},
-                              child: appData.id_usuario == chatState.getResponseJsonMyChat()[index].sender.toString()
+                              onTap: () => {
+                                //print("Clicado"),
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
+                              },
+                              child: appData.id_usuario == chatState.getResponseJsonMyChat()[index].receiver.toString()
                                   ? Row(
                                       children: <Widget>[
                                         Padding(
@@ -46,7 +51,7 @@ class UserChat extends StatelessWidget {
                                           child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
                                         ),
                                         Text(
-                                          chatState.getResponseJsonMyChat()[index].receiver.toString(),
+                                          "Recebida",
                                           style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
                                         ),
                                       ],
