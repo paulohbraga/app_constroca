@@ -1,12 +1,10 @@
+import 'dart:convert';
 import 'package:app_constroca/appdata.dart';
-import 'package:app_constroca/chat_list_body.dart';
 import 'package:app_constroca/chat_message_list.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
-import 'constants.dart';
 
 class UserChat extends StatelessWidget {
   @override

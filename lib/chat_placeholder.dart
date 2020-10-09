@@ -1,3 +1,4 @@
+import 'package:app_constroca/providers/MessagesProvider.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:app_constroca/user_chat.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class Chat_Placeholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatState = Provider.of<ProdutosProvider>(context, listen: true);
+    final messageState = Provider.of<MessageProvider>(context, listen: true);
 
     return Scaffold(
       body: RefreshIndicator(
@@ -42,6 +44,7 @@ class Chat_Placeholder extends StatelessWidget {
                               InkWell(
                                 splashColor: Colors.amber,
                                 onTap: () => {
+                                  messageState.fetchMessages(),
                                   //print("Clicado"),
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
                                 },
@@ -68,7 +71,7 @@ class Chat_Placeholder extends StatelessWidget {
                       ),
                     ),
                   )
-                : Text("fffff"),
+                : Text("Você deve estar logado para ter acesso ao chat"),
       ),
     );
   }

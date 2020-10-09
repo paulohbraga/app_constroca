@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:app_constroca/models/Message.dart';
+
 import '../Message.dart';
 
 Chat chatFromJson(String str) => Chat.fromJson(json.decode(str));

@@ -1,17 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:app_constroca/home_bar.dart';
-import 'package:crypto/crypto.dart' as crypto;
 import 'package:dio/dio.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'constants.dart';
-import 'package:cpfcnpj/cpfcnpj.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-import 'login.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'constants.dart';
+import 'login.dart';
 
 class Cadastro2 extends StatelessWidget {
   @override

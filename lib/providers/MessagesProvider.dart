@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:app_constroca/appdata.dart';
-import 'package:app_constroca/models/Chat.dart';
 import 'package:app_constroca/models/ChatMessageList.dart';
-import 'package:app_constroca/models/Produto.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -12,6 +10,8 @@ class MessageProvider extends ChangeNotifier {
   MessageProvider() {
     fetchMessages();
   }
+
+  static AudioCache player = new AudioCache();
 
   String _jsonResonse = "";
   bool _isFetchingMyChat = false;
@@ -52,6 +52,25 @@ class MessageProvider extends ChangeNotifier {
       return parseProdutos;
     }
     return null;
+  }
+
+  Future<void> sendMessage(int id_sender, int id_receiver, String message) async {
+    var data = {'mensagem': message, 'id_sender': id_sender, 'id_receiver': id_receiver};
+
+    if (message.isEmpty) {
+      return;
+    } else {
+      final response = await http.Client().post('https://constroca-webservice-app.herokuapp.com/chat/1/mensagens/',
+          body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
+
+      const sentMessage = "pristine.mp3";
+      player.play(sentMessage);
+
+      fetchMessages();
+
+      // Change ui listeners
+      notifyListeners();
+    }
   }
 
   Future<void> deleteProduct(String id) async {

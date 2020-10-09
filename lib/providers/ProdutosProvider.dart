@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/models/Chat.dart';
 import 'package:app_constroca/models/Produto.dart';

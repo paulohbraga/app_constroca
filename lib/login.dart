@@ -1,12 +1,13 @@
-import 'package:app_constroca/user_profile.dart';
-import 'package:app_constroca/recover_password.dart';
-import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:app_constroca/providers/MessagesProvider.dart';
+import 'package:app_constroca/recover_password.dart';
+import 'package:app_constroca/user_profile.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'appdata.dart';
 import 'constants.dart';
 import 'form_user.dart';
-import 'appdata.dart';
 import 'user_profile.dart';
 
 class Logar extends StatelessWidget {
