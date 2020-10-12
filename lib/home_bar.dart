@@ -1,6 +1,5 @@
 import 'package:app_constroca/list_products.dart';
 import 'package:app_constroca/appdata.dart';
-import 'package:app_constroca/user_chat.dart';
 import 'package:app_constroca/chat_placeholder.dart';
 import 'package:app_constroca/constants.dart';
 import 'package:app_constroca/login.dart';

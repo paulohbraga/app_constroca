@@ -1,11 +1,12 @@
 import 'package:app_constroca/chat_message_list.dart';
-import 'package:app_constroca/user_chat.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
 class ChatListBody extends StatelessWidget {
+  get id => null;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

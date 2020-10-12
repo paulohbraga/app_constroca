@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Inicio()));
-      final appState = Provider.of<ProdutosProvider>(context, listen: true);
+      final appState = Provider.of<ProdutosProvider>(context, listen: false);
       appState.fetchData();
       appState.fetchMyChat();
     });

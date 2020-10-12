@@ -21,13 +21,13 @@ class MessageProvider extends ChangeNotifier {
 
   dynamic get getItems => items;
 
-  Future<void> fetchMessages() async {
+  Future<void> fetchMessages([int id]) async {
     _isFetchingMyChat = true;
-    print(appData.id_usuario);
+    //print(appData.id_usuario);
 
     notifyListeners();
-
-    var response = await http.get('https://constroca-webservice-app.herokuapp.com/mensagens/1');
+    print(id);
+    var response = await http.get('https://constroca-webservice-app.herokuapp.com/mensagens/' + id.toString());
     print(response.body);
     //HACK to convert special chars from response
     if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class MessageProvider extends ChangeNotifier {
   }
 
   Future<void> sendMessage(int id_sender, int id_receiver, String message) async {
-    var data = {'mensagem': message, 'id_sender': id_sender, 'id_receiver': id_receiver};
+    var data = {'mensagem': message, 'sender': id_sender, 'receiver': id_receiver};
 
     if (message.isEmpty) {
       return;
@@ -67,10 +67,27 @@ class MessageProvider extends ChangeNotifier {
       player.play(sentMessage);
 
       fetchMessages();
+      getResponseJson();
 
       // Change ui listeners
       notifyListeners();
     }
+  }
+
+  Future<void> createRoom(int id_sender, int id_receiver) async {
+    var data = {'sender': id_sender, 'receiver': id_receiver};
+
+    final response = await http.Client().post('https://constroca-webservice-app.herokuapp.com/chat',
+        body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
+
+    const sentMessage = "pristine.mp3";
+    player.play(sentMessage);
+
+    fetchMessages();
+    getResponseJson();
+
+    // Change ui listeners
+    notifyListeners();
   }
 
   Future<void> deleteProduct(String id) async {

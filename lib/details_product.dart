@@ -1,12 +1,15 @@
 import 'dart:convert';
 
+import 'package:app_constroca/providers/MessagesProvider.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'appdata.dart';
+import 'chat_message_list.dart';
 import 'constants.dart';
 
 class MyHomePageDetail extends StatefulWidget {
@@ -50,27 +53,40 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
             Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)), child: hero(appData.id_produto)),
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: 35.0, horizontal: 20.0),
-              leading: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage('http://www.someletras.com.br/paulo/' + appData.avatar_client + '')),
-              title: Text(
-                "Contato: " + appData.email_client,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Raleway',
-                  fontWeight: FontWeight.normal,
+                contentPadding: EdgeInsets.symmetric(vertical: 35.0, horizontal: 20.0),
+                leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage('http://www.someletras.com.br/paulo/' + appData.avatar_client + '')),
+                title: Text(
+                  "Contato: " + appData.email_client,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-              ),
-              subtitle: Text(
-                "Telefone: " + appData.telefone_client,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
-              ),
-              trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[IconButton(icon: Icon(FeatherIcons.send), onPressed: null)]),
-            ),
+                subtitle: Text(
+                  "Telefone: " + appData.telefone_client,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.normal),
+                ),
+                trailing: appData.id_usuario == null
+                    ? Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                        IconButton(
+                            icon: Icon(FeatherIcons.send),
+                            color: Colors.transparent,
+                            onPressed: () => {print(appData.id_usuario)})
+                      ])
+                    : Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                        IconButton(
+                            icon: Icon(FeatherIcons.send),
+                            color: Colors.blue,
+                            onPressed: () => {
+                                  _showdialog(),
+                                  Provider.of<MessageProvider>(context, listen: false)
+                                      .createRoom(int.parse(appData.id_usuario), int.parse(appData.id_usuario)),
+                                })
+                      ])),
             Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -117,5 +133,53 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         ],
       ),
     );
+  }
+
+  void _showdialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancelar", style: TextStyle(color: Colors.red, fontFamily: 'Raleway')),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  "Enviar",
+                  style: TextStyle(color: Colors.green[900], fontFamily: 'Raleway'),
+                ),
+                onPressed: () => {
+                  Provider.of<MessageProvider>(context, listen: false)
+                      .createRoom(int.parse(appData.id_usuario), int.parse(appData.id_usuario)),
+                  Navigator.pop(context)
+                },
+              )
+            ],
+            content: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.all(1),
+                padding: EdgeInsets.only(bottom: 1.0),
+                height: 100,
+                width: 300,
+                child: TextField(
+                  maxLength: 100,
+                  textAlignVertical: TextAlignVertical.bottom,
+                  maxLines: null,
+                  minLines: null,
+                  expands: true,
+                ),
+              ),
+            ),
+            title: Text(
+              "Mensagem",
+              textAlign: TextAlign.center,
+            ),
+          );
+        });
   }
 }

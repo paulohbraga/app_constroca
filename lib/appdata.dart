@@ -18,6 +18,7 @@ class AppData {
   String email_client;
   String avatar_client;
   String telefone_client;
+  int chat_id = null;
 
   factory AppData() {
     return _appData;

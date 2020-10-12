@@ -1,6 +1,5 @@
 import 'package:app_constroca/providers/MessagesProvider.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
-import 'package:app_constroca/user_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +13,22 @@ class Chat_Placeholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatState = Provider.of<ProdutosProvider>(context, listen: true);
-    final messageState = Provider.of<MessageProvider>(context, listen: true);
+    final messageState = Provider.of<MessageProvider>(context, listen: false);
 
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: APP_BAR_COLOR,
+          centerTitle: true,
+          title: Text(
+            "Chats",
+            style: TextStyle(fontFamily: 'Raleway'),
+          ),
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: <Color>[Colors.blue[800], Colors.blue])))),
       body: RefreshIndicator(
         onRefresh: () => chatState.fetchMyChat(),
         child: chatState.isFetchingMyChat
@@ -25,7 +37,7 @@ class Chat_Placeholder extends StatelessWidget {
                 child: Center(
                     child: SpinKitDualRing(
                   size: 100.0,
-                  color: Colors.blue,
+                  color: Colors.transparent,
                 )),
               )
             : chatState.getResponseJsonMyChat() != null
@@ -44,8 +56,8 @@ class Chat_Placeholder extends StatelessWidget {
                               InkWell(
                                 splashColor: Colors.amber,
                                 onTap: () => {
-                                  messageState.fetchMessages(),
-                                  //print("Clicado"),
+                                  messageState.fetchMessages(chatState.getResponseJsonMyChat()[index].id),
+                                  appData.chat_id = chatState.getResponseJsonMyChat()[index].id,
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
                                 },
                                 child: appData.id_usuario ==
@@ -57,13 +69,13 @@ class Chat_Placeholder extends StatelessWidget {
                                             child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
                                           ),
                                           Text(
-                                            "Recebida",
+                                            chatState.getResponseJsonMyChat()[index].receiver.toString(),
                                             style:
                                                 TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
                                           ),
                                         ],
                                       )
-                                    : Text(""),
+                                    : Text("g"),
                               )
                             ],
                           );
