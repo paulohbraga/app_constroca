@@ -25,24 +25,23 @@ class _MessagesState extends State<Messages> {
 
   @override
   Widget build(BuildContext context) {
-    () => _controller.jumpTo(_controller.position.maxScrollExtent);
-
     final messageState = Provider.of<MessageProvider>(context, listen: true); // change to false
     // Timer(
     //   Duration(seconds: 1),
     //   () => _controller.jumpTo(_controller.position.maxScrollExtent),
     // );
     Timer(
-      Duration(seconds: 1),
-      () => {messageState.fetchMessages(appData.chat_id)},
+      Duration(seconds: 5),
+      () => messageState.fetchMessages(appData.chat_id),
     );
 
     void _send() {
       var x = _controller.jumpTo(_controller.position.maxScrollExtent);
+      setState(() => _controller.jumpTo(_controller.position.maxScrollExtent));
 
       messageState.sendMessage(int.parse(appData.id_usuario), 1, messageController.text);
+
       setState(() => messageController.text = "");
-      () => _controller.jumpTo(_controller.position.maxScrollExtent);
     }
 
     return Scaffold(
@@ -159,7 +158,7 @@ class _MessagesState extends State<Messages> {
             Padding(padding: EdgeInsets.all(5)),
             RaisedButton(
               key: Key("botao"),
-              onPressed: () => _send(),
+              onPressed: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
               padding: EdgeInsets.all(0.0),
               child: Ink(

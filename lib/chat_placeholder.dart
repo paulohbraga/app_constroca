@@ -75,7 +75,7 @@ class Chat_Placeholder extends StatelessWidget {
                                           ),
                                         ],
                                       )
-                                    : Text("g"),
+                                    : Text(""),
                               )
                             ],
                           );
