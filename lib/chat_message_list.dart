@@ -69,10 +69,11 @@ class _MessagesState extends State<Messages> {
         padding: const EdgeInsets.all(0),
         child: SingleChildScrollView(
             child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height - 200,
+              height: MediaQuery.of(context).size.height - 270,
               child: ListView.builder(
                 controller: _controller,
                 itemCount: messageState.items.length,
@@ -98,7 +99,6 @@ class _MessagesState extends State<Messages> {
                                               topRight: Radius.circular(30),
                                               bottomLeft: Radius.circular(30))),
                                       height: 40,
-                                      width: MediaQuery.of(context).size.width - 100,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Text(
@@ -146,42 +146,48 @@ class _MessagesState extends State<Messages> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onTap: () => _controller.jumpTo(_controller.position.maxScrollExtent),
-                onSubmitted: (e) => _send(),
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
-                controller: messageController,
-              ),
-            ),
             Padding(padding: EdgeInsets.all(5)),
-            RaisedButton(
-              key: Key("botao"),
-              onPressed: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-              padding: EdgeInsets.all(0.0),
-              child: Ink(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.blue[800], Colors.blue[800]],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(5.0)),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 110.0, minHeight: 40.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Enviar",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontFamily: 'Raleway'),
-                  ),
-                ),
-              ),
-            ),
             Container(
-              height: MediaQuery.of(context).size.height - 400,
+              margin: EdgeInsets.all(10.0),
+              height: 61,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(35.0),
+                        boxShadow: [BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)],
+                      ),
+                      child: Row(
+                        children: [
+                          IconButton(icon: Icon(Icons.face), onPressed: () {}),
+                          Expanded(
+                            child: TextField(
+                              controller: messageController,
+                              onTap: () => _controller.jumpTo(_controller.position.maxScrollExtent),
+                              onSubmitted: (e) => _send(),
+                              decoration: InputDecoration(hintText: "Digite a mensagem...", border: InputBorder.none),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Container(
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                    child: InkWell(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                      onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         )),
