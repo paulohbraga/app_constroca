@@ -10,16 +10,6 @@ import 'constants.dart';
 import 'form_user.dart';
 import 'user_profile.dart';
 
-class Logar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginUser(),
-    );
-  }
-}
-
 class LoginUser extends StatefulWidget {
   LoginUserState createState() => LoginUserState();
 }
@@ -85,28 +75,6 @@ class LoginUserState extends State {
         visible = false;
       });
       Scaffold.of(context).showSnackBar(snackBar);
-
-      // Showing Alert Dialog with Response JSON Message.
-      // showDialog(
-      //   context: context,
-      //   builder: (BuildContext context) {
-      //     return AlertDialog(
-      //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-      //       title: new Text(
-      //         "Usuário ou senha inválidos. Tente novamente.",
-      //         textAlign: TextAlign.center,
-      //       ),
-      //       actions: <Widget>[
-      //         FlatButton(
-      //           child: new Text("OK"),
-      //           onPressed: () {
-      //             Navigator.of(context).pop();
-      //           },
-      //         ),
-      //       ],
-      //     );
-      //   },
-      // );
     }
   }
 
@@ -114,6 +82,8 @@ class LoginUserState extends State {
   Widget build(BuildContext context) {
     final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
+        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomPadding: true,
         appBar: AppBar(
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
@@ -128,14 +98,15 @@ class LoginUserState extends State {
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
         body: Container(
-          constraints: new BoxConstraints.expand(),
+          constraints: new BoxConstraints.expand(height: MediaQuery.of(context).size.height),
           padding: EdgeInsets.only(top: 10.0, bottom: 100),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(bottom: bottom),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: ClipOval(
                         child: Image.asset(
                       teclado ? 'assets/avatar_expressions.gif' : 'assets/closing_eyes.gif',
@@ -145,9 +116,8 @@ class LoginUserState extends State {
                       height: 120.0,
                     ))),
                 Container(
-                    width: 270,
+                    width: 290,
                     height: 55,
-                    padding: EdgeInsets.all(5.0),
                     child: TextField(
                       style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                       controller: emailController,
@@ -158,11 +128,10 @@ class LoginUserState extends State {
                         border: OutlineInputBorder(),
                       ),
                     )),
-                Padding(padding: const EdgeInsets.only(top: 10)),
+                Padding(padding: const EdgeInsets.only(top: 20)),
                 Container(
-                    width: 270,
+                    width: 290,
                     height: 55,
-                    padding: EdgeInsets.all(5.0),
                     child: TextField(
                       style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: 'Raleway'),
                       controller: passwordController,
@@ -172,7 +141,6 @@ class LoginUserState extends State {
                           //debugPrint(teclado.toString());
                         });
                       },
-                      autocorrect: true,
                       obscureText: true,
                       decoration: InputDecoration(
                         //hintText: 'Senha',
@@ -267,9 +235,7 @@ class LoginUserState extends State {
                 Visibility(
                     visible: visible,
                     child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
-                Container(
-                  height: 100,
-                )
+                Container(height: 100)
               ],
             ),
           ),

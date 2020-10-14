@@ -195,7 +195,7 @@ class PerfilUserState extends State {
                           appData.cidade = null,
                           appData.nome_usuario = null,
                           appData.telefone = null,
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUser())),
                         },
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                         padding: EdgeInsets.all(0.0),

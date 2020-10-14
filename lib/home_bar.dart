@@ -103,7 +103,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               enabled: index == 2,
               child: new MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  home: appData.id_usuario == null ? Logar() : PerfilUser()), // Agora deve ir para a pagina de perfil
+                  home:
+                      appData.id_usuario == null ? LoginUser() : PerfilUser()), // Agora deve ir para a pagina de perfil
             ),
           ),
         ],

@@ -60,8 +60,9 @@ class Chat_Placeholder extends StatelessWidget {
                                   appData.chat_id = chatState.getResponseJsonMyChat()[index].id,
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
                                 },
-                                child: appData.id_usuario ==
-                                        chatState.getResponseJsonMyChat()[index].receiver.toString()
+                                child: chatState.getResponseJsonMyChat()[index].receiver.toString() ==
+                                            appData.id_usuario ||
+                                        chatState.getResponseJsonMyChat()[index].sender.toString() == appData.id_usuario
                                     ? Row(
                                         children: <Widget>[
                                           Padding(

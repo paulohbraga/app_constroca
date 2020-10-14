@@ -166,7 +166,7 @@ class TransfterDataWidget extends State {
         visible = false;
       });
       Scaffold.of(context).showSnackBar(snackBar);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Logar()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUser()));
     }
 
     // mostrar mensagem json na dialog
@@ -198,7 +198,7 @@ class TransfterDataWidget extends State {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Logar())),
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginUser())),
         ),
         title: Text("Cadastro de usuário", style: TextStyle(fontFamily: 'Raleway')),
         flexibleSpace: Container(

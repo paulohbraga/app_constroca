@@ -68,129 +68,134 @@ class _MessagesState extends State<Messages> {
       body: Padding(
         padding: const EdgeInsets.all(0),
         child: SingleChildScrollView(
+            reverse: true,
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height - 270,
-              child: ListView.builder(
-                controller: _controller,
-                itemCount: messageState.items.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      InkWell(
-                          splashColor: Colors.amber,
-                          //onTap: () => {print(appData.id_usuario)},
-                          child: messageState.getResponseJson()[index].sender.toString() == appData.id_usuario
-                              ? Row(
-                                  // Sender
-                                  children: <Widget>[
-                                    Spacer(),
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          color: Colors.blue[100],
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30),
-                                              bottomLeft: Radius.circular(30))),
-                                      height: 40,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          messageState.getResponseJson()[index].mensagem,
-                                          style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height - 270,
+                  child: ListView.builder(
+                    controller: _controller,
+                    itemCount: messageState.items.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          InkWell(
+                              splashColor: Colors.amber,
+                              //onTap: () => {print(appData.id_usuario)},
+                              child: messageState.getResponseJson()[index].sender.toString() == appData.id_usuario
+                                  ? Row(
+                                      // Sender
+                                      children: <Widget>[
+                                        Spacer(),
+                                        Container(
+                                          alignment: Alignment.centerLeft,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.rectangle,
+                                              color: Colors.blue[100],
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(30),
+                                                  topRight: Radius.circular(30),
+                                                  bottomLeft: Radius.circular(30))),
+                                          height: 40,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              messageState.getResponseJson()[index].mensagem,
+                                              style:
+                                                  TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
-                                    ),
-                                  ],
-                                )
-                              //Receiver
-                              : Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: CircleAvatar(backgroundImage: AssetImage("assets/girl-avatar.png")),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          color: Colors.green[300],
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              topRight: Radius.circular(30),
-                                              bottomRight: Radius.circular(30))),
-                                      height: 40,
-                                      width: MediaQuery.of(context).size.width - 100,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          messageState.getResponseJson()[index].mensagem,
-                                          style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
+                                        Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                    ],
-                  );
-                },
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Container(
-              margin: EdgeInsets.all(10.0),
-              height: 61,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(35.0),
-                        boxShadow: [BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)],
-                      ),
-                      child: Row(
-                        children: [
-                          IconButton(icon: Icon(Icons.face), onPressed: () {}),
-                          Expanded(
-                            child: TextField(
-                              controller: messageController,
-                              onTap: () => _controller.jumpTo(_controller.position.maxScrollExtent),
-                              onSubmitted: (e) => _send(),
-                              decoration: InputDecoration(hintText: "Digite a mensagem...", border: InputBorder.none),
-                            ),
-                          ),
+                                      ],
+                                    )
+                                  //Receiver
+                                  : Row(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: CircleAvatar(backgroundImage: AssetImage("assets/girl-avatar.png")),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.centerLeft,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.rectangle,
+                                              color: Colors.green[300],
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(30),
+                                                  topRight: Radius.circular(30),
+                                                  bottomRight: Radius.circular(30))),
+                                          height: 40,
+                                          width: MediaQuery.of(context).size.width - 100,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              messageState.getResponseJson()[index].mensagem,
+                                              style:
+                                                  TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
                         ],
-                      ),
-                    ),
+                      );
+                    },
                   ),
-                  SizedBox(width: 15),
-                  Container(
-                    padding: const EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
-                    child: InkWell(
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.white,
+                ),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                  margin: EdgeInsets.all(10.0),
+                  height: 61,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(35.0),
+                            boxShadow: [BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)],
+                          ),
+                          child: Row(
+                            children: [
+                              IconButton(icon: Icon(Icons.face), onPressed: () {}),
+                              Expanded(
+                                child: TextField(
+                                  controller: messageController,
+                                  onTap: () => _controller.jumpTo(_controller.position.maxScrollExtent),
+                                  onSubmitted: (e) => _send(),
+                                  decoration:
+                                      InputDecoration(hintText: "Digite a mensagem...", border: InputBorder.none),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        )),
+                      SizedBox(width: 15),
+                      Container(
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                        child: InkWell(
+                          child: Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          ),
+                          onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(height: 300),
+              ],
+            )),
       ),
     );
   }
@@ -198,11 +203,16 @@ class _MessagesState extends State<Messages> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(milliseconds: 100), (timer) {
+    Timer.periodic(Duration(seconds: 2), (timer) {
       if (mounted) {
         _controller.jumpTo(_controller.position.maxScrollExtent);
         timer.cancel();
       } else {}
     });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
   }
 }
