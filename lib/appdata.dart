@@ -19,6 +19,7 @@ class AppData {
   String avatar_client;
   String telefone_client;
   int chat_id = null;
+  int usuario_p_owner;
 
   factory AppData() {
     return _appData;

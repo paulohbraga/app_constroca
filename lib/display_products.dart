@@ -47,18 +47,21 @@ class DisplayProdutos extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => MyHomePageDetail(
-                                            appState.items[index].descricaoProduto,
-                                            appState.getResponseJson()[index].id,
-                                            appState.getResponseJson()[index].nomeProduto,
-                                            appState.getResponseJson()[index].imagem,
-                                            appState.getResponseJson()[index].usuario.avatar))),
+                                              appState.items[index].descricaoProduto,
+                                              appState.getResponseJson()[index].id,
+                                              appState.getResponseJson()[index].nomeProduto,
+                                              appState.getResponseJson()[index].imagem,
+                                              appState.getResponseJson()[index].usuario.avatar,
+                                              appState.getResponseJson()[index].usuario.id,
+                                            ))),
                                 appData.id_produto = appState.getResponseJson()[index].id,
                                 appData.name_produto = appState.getResponseJson()[index].nomeProduto,
                                 appData.img_produto = appState.getResponseJson()[index].imagem,
                                 appData.descricao_produto = appState.getResponseJson()[index].descricaoProduto,
                                 appData.email_client = appState.getResponseJson()[index].usuario.email,
                                 appData.avatar_client = appState.getResponseJson()[index].usuario.avatar,
-                                appData.telefone_client = appState.getResponseJson()[index].usuario.telefone.toString()
+                                appData.telefone_client = appState.getResponseJson()[index].usuario.telefone.toString(),
+                                appData.usuario_p_owner = appState.getResponseJson()[index].usuario.id,
                               },
                               child: Stack(
                                 children: <Widget>[

@@ -13,7 +13,8 @@ import 'chat_message_list.dart';
 import 'constants.dart';
 
 class MyHomePageDetail extends StatefulWidget {
-  MyHomePageDetail(String descricao, String idProduto, String nome_produto, String img_produto, String avatar,
+  MyHomePageDetail(
+      String descricao, String idProduto, String nome_produto, String img_produto, String avatar, int id_usuario_owner,
       {Key key, this.title})
       : super(key: key);
   final appData = AppData();
@@ -84,7 +85,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                             onPressed: () => {
                                   _showdialog(),
                                   Provider.of<MessageProvider>(context, listen: false)
-                                      .createRoom(int.parse(appData.id_usuario), int.parse(appData.id_usuario)),
+                                      .createRoom(int.parse(appData.id_usuario), appData.usuario_p_owner),
                                 })
                       ])),
             Column(
