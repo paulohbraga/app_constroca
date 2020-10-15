@@ -44,7 +44,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
         title: Text(appData.name_produto, style: TextStyle(fontSize: 15)),
         leading: IconButton(
           icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => {appData.usuario_p_owner = null, Navigator.of(context).pop()},
         ),
       ),
       //The whole application area

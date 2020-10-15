@@ -26,9 +26,7 @@ class MessageProvider extends ChangeNotifier {
     //print(appData.id_usuario);
 
     notifyListeners();
-    print(id);
     var response = await http.get('https://constroca-webservice-app.herokuapp.com/mensagens/' + id.toString());
-    print(response.body);
     //HACK to convert special chars from response
     if (response.statusCode == 200) {
       String source = Utf8Decoder().convert(response.bodyBytes);
@@ -80,8 +78,9 @@ class MessageProvider extends ChangeNotifier {
     final response = await http.Client().post('https://constroca-webservice-app.herokuapp.com/chat',
         body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
 
+    print(json.decode(response.body)['id']);
     const sentMessage = "pristine.mp3";
-    player.play(sentMessage);
+    //player.play(sentMessage);
 
     fetchMessages();
     getResponseJson();

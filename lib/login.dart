@@ -82,9 +82,8 @@ class LoginUserState extends State {
   Widget build(BuildContext context) {
     final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        resizeToAvoidBottomPadding: true,
         appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: APP_BAR_COLOR,
             centerTitle: true,
             title: Text(
@@ -98,10 +97,9 @@ class LoginUserState extends State {
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
         body: Container(
+          height: MediaQuery.of(context).size.height - 200,
           constraints: new BoxConstraints.expand(height: MediaQuery.of(context).size.height),
-          padding: EdgeInsets.only(top: 10.0, bottom: 100),
           child: SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: bottom),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -235,7 +233,7 @@ class LoginUserState extends State {
                 Visibility(
                     visible: visible,
                     child: Container(margin: EdgeInsets.only(bottom: 30), child: CircularProgressIndicator())),
-                Container(height: 100)
+                Container(height: 300)
               ],
             ),
           ),
