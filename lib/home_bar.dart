@@ -94,8 +94,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   debugShowCheckedModeBanner: false,
                   home: appData.id_usuario == null
                       //? Chat_Placeholder()
-                      ? Chat_Empty()
-                      : Chat_Empty()), // Agora deve ir para a pagina de perfil
+                      ? Chat_Placeholder()
+                      : Chat_Placeholder()), // Agora deve ir para a pagina de perfil
             ),
           ),
           new Offstage(

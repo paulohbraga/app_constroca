@@ -22,6 +22,9 @@ class MessageProvider extends ChangeNotifier {
   dynamic get getItems => items;
 
   Future<void> fetchMessages([int id]) async {
+    if (id == 0) {
+      fetchMessages();
+    }
     _isFetchingMyChat = true;
     //print(appData.id_usuario);
 
@@ -54,12 +57,15 @@ class MessageProvider extends ChangeNotifier {
 
   Future<void> sendMessage(int id_sender, int id_receiver, String message) async {
     var data = {'mensagem': message, 'sender': id_sender, 'receiver': id_receiver};
-
+    print(id_receiver);
     if (message.isEmpty) {
       return;
     } else {
-      final response = await http.Client().post('https://constroca-webservice-app.herokuapp.com/chat/1/mensagens/',
-          body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
+      print(appData.chat_id);
+      final response = await http.Client().post(
+          'https://constroca-webservice-app.herokuapp.com/chat/' + appData.chat_id.toString() + '/mensagens/',
+          body: json.encode(data),
+          headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
 
       const sentMessage = "pristine.mp3";
       player.play(sentMessage);

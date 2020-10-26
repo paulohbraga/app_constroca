@@ -25,7 +25,8 @@ class _MessagesState extends State<Messages> {
 
   @override
   Widget build(BuildContext context) {
-    final messageState = Provider.of<MessageProvider>(context, listen: true); // change to false
+    final messageState = Provider.of<MessageProvider>(context, listen: true);
+    // change to false
     // Timer(
     //   Duration(seconds: 1),
     //   () => _controller.jumpTo(_controller.position.maxScrollExtent),
@@ -52,8 +53,10 @@ class _MessagesState extends State<Messages> {
           leading: IconButton(
             icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => {
-              Navigator.of(context).pop(),
               appData.chat_id = null,
+              messageState.fetchMessages(0),
+              messageState.items.clear(),
+              Navigator.of(context).pop(),
             },
           ),
           title: Text(

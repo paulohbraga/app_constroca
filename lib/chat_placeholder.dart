@@ -56,6 +56,7 @@ class Chat_Placeholder extends StatelessWidget {
                               InkWell(
                                 splashColor: Colors.amber,
                                 onTap: () => {
+                                  messageState.items.clear(),
                                   messageState.fetchMessages(chatState.getResponseJsonMyChat()[index].id),
                                   appData.chat_id = chatState.getResponseJsonMyChat()[index].id,
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
@@ -70,7 +71,8 @@ class Chat_Placeholder extends StatelessWidget {
                                             child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
                                           ),
                                           Text(
-                                            chatState.getResponseJsonMyChat()[index].receiver.toString(),
+                                            "Nome do usuário: está vindo o id > " +
+                                                chatState.getResponseJsonMyChat()[index].receiver.toString(),
                                             style:
                                                 TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
                                           ),

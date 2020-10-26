@@ -156,7 +156,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                 ),
                 onPressed: () => {
                   Provider.of<MessageProvider>(context, listen: false)
-                      .createRoom(int.parse(appData.id_usuario), int.parse(appData.id_usuario)),
+                      .createRoom(int.parse(appData.id_usuario), appData.usuario_p_owner),
                   Navigator.pop(context)
                 },
               )
