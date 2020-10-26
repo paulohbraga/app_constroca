@@ -13,7 +13,7 @@ class Chat_Placeholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatState = Provider.of<ProdutosProvider>(context, listen: true);
-    final messageState = Provider.of<MessageProvider>(context, listen: false);
+    final messageState = Provider.of<MessageProvider>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -56,7 +56,6 @@ class Chat_Placeholder extends StatelessWidget {
                               InkWell(
                                 splashColor: Colors.amber,
                                 onTap: () => {
-                                  messageState.items.clear(),
                                   messageState.fetchMessages(chatState.getResponseJsonMyChat()[index].id),
                                   appData.chat_id = chatState.getResponseJsonMyChat()[index].id,
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))

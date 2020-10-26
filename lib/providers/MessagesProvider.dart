@@ -22,13 +22,9 @@ class MessageProvider extends ChangeNotifier {
   dynamic get getItems => items;
 
   Future<void> fetchMessages([int id]) async {
-    if (id == 0) {
-      fetchMessages();
-    }
     _isFetchingMyChat = true;
     //print(appData.id_usuario);
 
-    notifyListeners();
     var response = await http.get('https://constroca-webservice-app.herokuapp.com/mensagens/' + id.toString());
     //HACK to convert special chars from response
     if (response.statusCode == 200) {

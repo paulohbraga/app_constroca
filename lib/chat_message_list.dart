@@ -54,8 +54,8 @@ class _MessagesState extends State<Messages> {
             icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => {
               appData.chat_id = null,
-              messageState.fetchMessages(0),
               messageState.items.clear(),
+              messageState.fetchMessages(0),
               Navigator.of(context).pop(),
             },
           ),
@@ -206,10 +206,5 @@ class _MessagesState extends State<Messages> {
         _controller.jumpTo(_controller.position.maxScrollExtent);
       }
     });
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
   }
 }
