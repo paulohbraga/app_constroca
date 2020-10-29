@@ -70,8 +70,7 @@ class Chat_Placeholder extends StatelessWidget {
                                             child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
                                           ),
                                           Text(
-                                            "Nome do usuário: está vindo o id > " +
-                                                chatState.getResponseJsonMyChat()[index].receiver.toString(),
+                                            chatState.getResponseJsonMyChat()[index].mensagens[0].name_receiver,
                                             style:
                                                 TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
                                           ),

@@ -80,10 +80,10 @@ class MessageProvider extends ChangeNotifier {
     final response = await http.Client().post('https://constroca-webservice-app.herokuapp.com/chat',
         body: json.encode(data), headers: {'Content-type': 'application/json', 'Accept': 'application/json'});
 
-    print(json.decode(response.body)['id']);
+    print(json.decode(response.body)['id'].toString() + " json id room");
     const sentMessage = "pristine.mp3";
+    appData.chat_id = json.decode(response.body)['id'];
     //player.play(sentMessage);
-
     fetchMessages();
     getResponseJson();
 

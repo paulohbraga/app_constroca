@@ -83,9 +83,10 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                             icon: Icon(FeatherIcons.send),
                             color: Colors.blue,
                             onPressed: () => {
-                                  _showdialog(),
                                   Provider.of<MessageProvider>(context, listen: false)
                                       .createRoom(int.parse(appData.id_usuario), appData.usuario_p_owner),
+                                  // _showdialog(),
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Messages())),
                                 })
                       ])),
             Column(
@@ -140,6 +141,8 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
+          final messageState = Provider.of<MessageProvider>(context, listen: true);
+
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: <Widget>[
@@ -155,8 +158,7 @@ class _MyHomePageDetail extends State<MyHomePageDetail> {
                   style: TextStyle(color: Colors.green[900], fontFamily: 'Raleway'),
                 ),
                 onPressed: () => {
-                  Provider.of<MessageProvider>(context, listen: false)
-                      .createRoom(int.parse(appData.id_usuario), appData.usuario_p_owner),
+                  messageState.sendMessage(int.parse(appData.id_usuario), appData.usuario_p_owner, "message"),
                   Navigator.pop(context)
                 },
               )

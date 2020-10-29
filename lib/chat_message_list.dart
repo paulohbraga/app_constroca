@@ -40,7 +40,7 @@ class _MessagesState extends State<Messages> {
       var x = _controller.jumpTo(_controller.position.maxScrollExtent);
       setState(() => _controller.jumpTo(_controller.position.maxScrollExtent));
 
-      messageState.sendMessage(int.parse(appData.id_usuario), 1, messageController.text);
+      messageState.sendMessage(int.parse(appData.id_usuario), 50, messageController.text);
 
       setState(() => messageController.text = "");
     }
@@ -200,11 +200,11 @@ class _MessagesState extends State<Messages> {
   void initState() {
     super.initState();
     Timer.periodic(Duration(seconds: 2), (timer) {
-      if (mounted) {
-        timer.cancel();
-      } else {
-        _controller.jumpTo(_controller.position.maxScrollExtent);
-      }
+      // if (mounted) {
+      //   timer.cancel();
+      // } else {
+      //   //  _controller.jumpTo(_controller.position.maxScrollExtent);
+      // }
     });
   }
 }

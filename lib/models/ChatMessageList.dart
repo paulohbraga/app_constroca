@@ -15,8 +15,8 @@ class ChatMessageList {
   });
 
   String mensagem;
-  int sender;
-  int receiver;
+  String sender;
+  String receiver;
   DateTime instant;
 
   factory ChatMessageList.fromJson(Map<String, dynamic> json) => ChatMessageList(

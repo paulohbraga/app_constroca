@@ -49,7 +49,7 @@ class TransfterDataWidget extends State {
 
   Future<File> getImage() async {
     var file = await ImagePicker.pickImage(
-      imageQuality: 50,
+      imageQuality: 100,
       source: ImageSource.camera,
     );
     setState(() {
