@@ -40,7 +40,7 @@ class _MessagesState extends State<Messages> {
       var x = _controller.jumpTo(_controller.position.maxScrollExtent);
       setState(() => _controller.jumpTo(_controller.position.maxScrollExtent));
 
-      messageState.sendMessage(int.parse(appData.id_usuario), 88, messageController.text);
+      messageState.sendMessage(int.parse(appData.id_usuario), appData.usuario_p_owner, messageController.text);
       print(appData.id_usuario + " id usuario");
       print(appData.usuario_p_owner.toString() + " id owner");
       setState(() => messageController.text = "");
@@ -112,7 +112,10 @@ class _MessagesState extends State<Messages> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage("assets/avatar-default.png"),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ),
                                 ],
                               )
@@ -121,7 +124,10 @@ class _MessagesState extends State<Messages> {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: CircleAvatar(backgroundImage: AssetImage("assets/girl-avatar.png")),
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage("assets/avatar-default.png"),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ),
                                   Container(
                                     alignment: Alignment.centerLeft,

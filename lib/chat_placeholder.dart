@@ -58,6 +58,8 @@ class Chat_Placeholder extends StatelessWidget {
                                 onTap: () => {
                                   messageState.fetchMessages(chatState.getResponseJsonMyChat()[index].id),
                                   appData.chat_id = chatState.getResponseJsonMyChat()[index].id,
+                                  appData.usuario_p_owner = chatState.getResponseJsonMyChat()[index].receiver,
+                                  print(chatState.getResponseJsonMyChat()[index].receiver),
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Messages()))
                                 },
                                 child: chatState.getResponseJsonMyChat()[index].receiver.toString() ==
@@ -67,7 +69,10 @@ class Chat_Placeholder extends StatelessWidget {
                                         children: <Widget>[
                                           Padding(
                                             padding: const EdgeInsets.all(15.0),
-                                            child: CircleAvatar(backgroundImage: AssetImage("assets/avatar.png")),
+                                            child: CircleAvatar(
+                                              backgroundImage: AssetImage("assets/avatar-default.png"),
+                                              backgroundColor: Colors.white,
+                                            ),
                                           ),
                                           Text(
                                             chatState.getResponseJsonMyChat()[index].receiver.toString() ==
