@@ -40,8 +40,9 @@ class _MessagesState extends State<Messages> {
       var x = _controller.jumpTo(_controller.position.maxScrollExtent);
       setState(() => _controller.jumpTo(_controller.position.maxScrollExtent));
 
-      messageState.sendMessage(int.parse(appData.id_usuario), 50, messageController.text);
-
+      messageState.sendMessage(int.parse(appData.id_usuario), 88, messageController.text);
+      print(appData.id_usuario + " id usuario");
+      print(appData.usuario_p_owner.toString() + " id owner");
       setState(() => messageController.text = "");
     }
 
@@ -177,15 +178,18 @@ class _MessagesState extends State<Messages> {
                   ),
                 ),
                 SizedBox(width: 15),
-                Container(
-                  padding: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
-                  child: InkWell(
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.white,
+                InkWell(
+                  onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
+                  child: Container(
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(color: Colors.green, shape: BoxShape.circle),
+                    child: InkWell(
+                      child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                      onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
                     ),
-                    onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
                   ),
                 )
               ],

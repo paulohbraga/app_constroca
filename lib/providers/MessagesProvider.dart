@@ -53,11 +53,11 @@ class MessageProvider extends ChangeNotifier {
 
   Future<void> sendMessage(int id_sender, int id_receiver, String message) async {
     var data = {'mensagem': message, 'sender': id_sender, 'receiver': id_receiver};
-    print(id_receiver);
+    //print(id_receiver);
     if (message.isEmpty) {
       return;
     } else {
-      print(appData.chat_id);
+      // print(appData.chat_id);
       final response = await http.Client().post(
           'https://constroca-webservice-app.herokuapp.com/chat/' + appData.chat_id.toString() + '/mensagens/',
           body: json.encode(data),

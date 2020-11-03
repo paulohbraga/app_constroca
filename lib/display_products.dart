@@ -54,6 +54,7 @@ class DisplayProdutos extends StatelessWidget {
                                               appState.getResponseJson()[index].usuario.avatar,
                                               appState.getResponseJson()[index].usuario.id,
                                             ))),
+                                appData.usuario_p_owner = appState.getResponseJson()[index].usuario.id,
                                 appData.id_produto = appState.getResponseJson()[index].id,
                                 appData.name_produto = appState.getResponseJson()[index].nomeProduto,
                                 appData.img_produto = appState.getResponseJson()[index].imagem,
