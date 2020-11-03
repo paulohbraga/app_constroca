@@ -55,8 +55,8 @@ class _MessagesState extends State<Messages> {
             icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
             onPressed: () => {
               appData.chat_id = null,
-              messageState.items.clear(),
-              messageState.fetchMessages(0),
+              //messageState.items.clear(),
+              //messageState.fetchMessages(0),
               Navigator.of(context).pop(),
             },
           ),
@@ -72,11 +72,11 @@ class _MessagesState extends State<Messages> {
                       colors: <Color>[Colors.blue[800], Colors.blue])))),
       body: SingleChildScrollView(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 270,
+          Container(
+            height: MediaQuery.of(context).size.height - 250,
             child: ListView.builder(
               controller: _controller,
               itemCount: messageState.items.length,
@@ -93,6 +93,7 @@ class _MessagesState extends State<Messages> {
                                 children: <Widget>[
                                   Spacer(),
                                   Container(
+                                    width: MediaQuery.of(context).size.width * 0.7,
                                     alignment: Alignment.centerLeft,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
@@ -101,9 +102,9 @@ class _MessagesState extends State<Messages> {
                                             topLeft: Radius.circular(30),
                                             topRight: Radius.circular(30),
                                             bottomLeft: Radius.circular(30))),
-                                    height: 40,
+                                    //height: 40,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Text(
                                         messageState.getResponseJson()[index].mensagem,
                                         style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
@@ -130,6 +131,8 @@ class _MessagesState extends State<Messages> {
                                     ),
                                   ),
                                   Container(
+                                    width: MediaQuery.of(context).size.width * 0.7,
+
                                     alignment: Alignment.centerLeft,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
@@ -138,12 +141,12 @@ class _MessagesState extends State<Messages> {
                                             topLeft: Radius.circular(30),
                                             topRight: Radius.circular(30),
                                             bottomRight: Radius.circular(30))),
-                                    height: 40,
-                                    width: MediaQuery.of(context).size.width - 100,
+                                    // height: 40,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Text(
                                         messageState.getResponseJson()[index].mensagem,
+                                        overflow: TextOverflow.fade,
                                         style: TextStyle(fontSize: 18, fontFamily: 'Raleway', color: Colors.black87),
                                       ),
                                     ),
@@ -197,10 +200,12 @@ class _MessagesState extends State<Messages> {
                       onTap: () => {_send(), () => _controller.jumpTo(_controller.position.maxScrollExtent)},
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
+
+          ///Text("fffff")
         ],
       )),
     );

@@ -70,11 +70,7 @@ class TransfterDataWidget extends State {
   String errMessage = 'Erro ao carregar imagem';
 
   Future<File> getImage() async {
-    var file = await ImagePicker.pickImage(
-        source: ImageSource.camera,
-        imageQuality: 100,
-        maxHeight: 500, // <- reduce the image size
-        maxWidth: 500);
+    var file = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 100);
     setState(() {
       status = file.path.split('/').last;
       tmpFile = file;
@@ -83,11 +79,7 @@ class TransfterDataWidget extends State {
   }
 
   Future<File> getImageGallery() async {
-    var file = await ImagePicker.pickImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxHeight: 500, // <- reduce the image size
-        maxWidth: 500);
+    var file = await ImagePicker.pickImage(source: ImageSource.gallery, imageQuality: 100);
     setState(() {
       status = file.path.split('/').last;
       tmpFile = file;
@@ -359,7 +351,7 @@ class TransfterDataWidget extends State {
                     constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
                     alignment: Alignment.center,
                     child: Text(
-                      "Cadastrar novo item",
+                      "Salvar",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),

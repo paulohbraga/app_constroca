@@ -75,8 +75,8 @@ class PerfilUserState extends State {
                         borderRadius: BorderRadius.circular(50),
                         child: Image.network(
                           'http://www.someletras.com.br/paulo/' + appData.message['avatar'],
-                          height: 100,
-                          width: 100,
+                          height: 50,
+                          width: 50,
                           fit: BoxFit.cover,
                         ),
                       )),
@@ -101,7 +101,7 @@ class PerfilUserState extends State {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(left: 5, top: 25),
+                          padding: EdgeInsets.only(left: 5, top: 10),
                           child: Text(
                             "Cidade: " + appData.message['cidade'],
                             style: TextStyle(fontSize: 20, color: Colors.black),
@@ -149,7 +149,7 @@ class PerfilUserState extends State {
                           constraints: BoxConstraints(maxWidth: 150.0, minHeight: 40.0),
                           alignment: Alignment.center,
                           child: Text(
-                            "Novo produto",
+                            "Cadastrar novo produto",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white),
                           ),

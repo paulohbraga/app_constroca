@@ -110,8 +110,8 @@ class LoginUserState extends State {
                       teclado ? 'assets/avatar_expressions.gif' : 'assets/closing_eyes.gif',
                       gaplessPlayback: true,
                       fit: BoxFit.cover,
-                      width: 120.0,
-                      height: 120.0,
+                      width: 100.0,
+                      height: 100.0,
                     ))),
                 Container(
                     width: 290,
@@ -123,7 +123,6 @@ class LoginUserState extends State {
                       decoration: InputDecoration(
                         // hintText: 'e-mail',
                         labelText: 'Digite seu e-mail',
-                        border: OutlineInputBorder(),
                       ),
                     )),
                 Padding(padding: const EdgeInsets.only(top: 20)),
@@ -143,7 +142,6 @@ class LoginUserState extends State {
                       decoration: InputDecoration(
                         //hintText: 'Senha',
                         labelText: 'Senha',
-                        border: OutlineInputBorder(),
                       ),
                     )),
                 Padding(
