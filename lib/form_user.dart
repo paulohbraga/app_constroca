@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cpfcnpj/cpfcnpj.dart';
 import 'package:dio/dio.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class TransfterDataWidget extends State {
   final snackBar = SnackBar(
       content: Text('Usuário cadastrado com sucesso!', style: TextStyle(color: Colors.white)),
       backgroundColor: Colors.blue[900]);
+  final snackBarError = SnackBar(
+      content: Text('Usuário já cadastrado no sistema!', style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.red[900]);
 
   Future<File> file;
   String status = '';
@@ -159,7 +163,12 @@ class TransfterDataWidget extends State {
 
     // Getting Server response into variable.
     var message = jsonDecode(response.body);
-
+    if (response.statusCode == 500) {
+      setState(() {
+        visible = false;
+      });
+      Scaffold.of(context).showSnackBar(snackBarError);
+    }
     // If Web call Success than Hide the CircularProgressIndicator.
     if (response.statusCode == 201) {
       setState(() {
@@ -438,7 +447,7 @@ class TransfterDataWidget extends State {
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Informe o cpf";
-      //} else if (!CPF.isValid(value)) {
+    } else if (!CPF.isValid(value)) {
     } else if (value.length != 14) {
       return "CPF Inválido";
     }

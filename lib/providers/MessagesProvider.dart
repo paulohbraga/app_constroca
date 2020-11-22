@@ -31,7 +31,6 @@ class MessageProvider extends ChangeNotifier {
 
       _jsonResonse = source;
     }
-
     items = getResponseJson();
 
     _isFetchingMyChat = false;
@@ -44,13 +43,14 @@ class MessageProvider extends ChangeNotifier {
     if (_jsonResonse.isNotEmpty) {
       List<ChatMessageList> parseProdutos =
           List<ChatMessageList>.from(json.decode(_jsonResonse).map((x) => ChatMessageList.fromJson(x)));
-      if (_jsonResonse.isNotEmpty) {
-        if (items.length < parseProdutos.length) {
-          const sentMessage = "pristine.mp3";
-          player.play(sentMessage);
-          print("novas");
-        }
-      }
+      // if (_jsonResonse.isNotEmpty) {
+      //   if (items.length < parseProdutos.length) {
+      //     const sentMessage = "pristine.mp3";
+      //     player.play(sentMessage);
+      //     print("novas");
+      //   }
+      // }
+      //print(_jsonResonse);
       items = parseProdutos;
       return parseProdutos;
     }

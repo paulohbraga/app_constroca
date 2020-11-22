@@ -9,6 +9,13 @@ class AppData {
   String email;
   dynamic message;
 
+  //Update Product
+
+  String produto_nome_edit = "";
+  String produto_desc_edit = "";
+  String produto_tipo_edit = "";
+  String produto_image_edit = "";
+
   // Product data
   String count_produtos;
   String id_produto = "";

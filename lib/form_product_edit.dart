@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/home_bar.dart';
+import 'package:app_constroca/user_products.dart';
 import 'package:app_constroca/user_profile.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
 import 'package:dio/dio.dart';
@@ -20,10 +21,10 @@ class Tipo {
   final String tipo;
 }
 
-class CadastroProduto extends StatelessWidget {
+class EditarProduto extends StatelessWidget {
   final dynamic message = appData.message;
 
-  CadastroProduto();
+  EditarProduto();
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +49,8 @@ class TransfterDataWidget extends State {
 
   // Getting value from TextField widget.
   String tipoProduto = '';
-  final nomeController = TextEditingController();
-  final descricaoController = TextEditingController();
+  final nomeController = TextEditingController(text: appData.produto_nome_edit);
+  final descricaoController = TextEditingController(text: appData.produto_desc_edit);
   final emailController = TextEditingController();
   final telefoneController = TextEditingController();
   final cidadeController = TextEditingController();
@@ -125,7 +126,9 @@ class TransfterDataWidget extends State {
                   height: 120,
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
-                    image: new DecorationImage(fit: BoxFit.cover, image: AssetImage('assets/camera.png')),
+                    image: new DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage('http://www.someletras.com.br/paulo/' + appData.produto_image_edit)),
                   ))),
     );
   }
@@ -221,9 +224,9 @@ class TransfterDataWidget extends State {
                       begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
           leading: IconButton(
             icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyProducts())),
           ),
-          title: Text('Cadastro de produtos'),
+          title: Text('Edite o produto'),
           centerTitle: true,
           backgroundColor: APP_BAR_COLOR,
         ),
@@ -353,7 +356,7 @@ class TransfterDataWidget extends State {
                     constraints: BoxConstraints(maxWidth: 180.0, minHeight: 40.0),
                     alignment: Alignment.center,
                     child: Text(
-                      "Salvar",
+                      "Atualizar produto",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),

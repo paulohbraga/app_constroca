@@ -95,7 +95,7 @@ class Chat_Placeholder extends StatelessWidget {
                       ),
                     ),
                   )
-                : Text("Você deve estar logado para ter acesso ao chat"),
+                : Text(""),
       ),
     );
   }

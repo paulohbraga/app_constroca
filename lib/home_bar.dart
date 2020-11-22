@@ -1,4 +1,5 @@
 import 'package:app_constroca/chat_empty.dart';
+import 'package:app_constroca/form_product.dart';
 import 'package:app_constroca/list_products.dart';
 import 'package:app_constroca/appdata.dart';
 import 'package:app_constroca/chat_placeholder.dart';
@@ -94,7 +95,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   debugShowCheckedModeBanner: false,
                   home: appData.id_usuario == null
                       //? Chat_Placeholder()
-                      ? Chat_Placeholder()
+                      ? Chat_Empty()
                       : Chat_Placeholder()), // Agora deve ir para a pagina de perfil
             ),
           ),

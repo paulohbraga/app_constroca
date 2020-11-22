@@ -1,4 +1,7 @@
+import 'package:app_constroca/appdata.dart';
+import 'package:app_constroca/form_product_edit.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:app_constroca/user_profile.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -24,7 +27,7 @@ class _MyProductsState extends State<MyProducts> {
                       begin: Alignment.topLeft, end: Alignment.bottomRight, colors: APP_BAR_GRADIENT_COLOR))),
           leading: IconButton(
             icon: Icon(FeatherIcons.arrowLeftCircle, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUser())),
           ),
           backgroundColor: APP_BAR_COLOR,
           centerTitle: true,
@@ -64,14 +67,22 @@ class _MyProductsState extends State<MyProducts> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 IconButton(
-                                  onPressed: () => {},
-                                  icon: Icon(Icons.edit),
+                                  color: Colors.green,
+                                  onPressed: () => {
+                                    appData.produto_nome_edit = appState.getResponseJsonMy()[index].nomeProduto,
+                                    appData.produto_desc_edit = appState.getResponseJsonMy()[index].descricaoProduto,
+                                    appData.produto_tipo_edit = appState.getResponseJsonMy()[index].tipo,
+                                    appData.produto_image_edit = appState.getResponseJsonMy()[index].imagem,
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => EditarProduto())),
+                                  },
+                                  icon: Icon(FeatherIcons.edit3),
                                 ),
                                 IconButton(
+                                  color: Colors.red,
                                   onPressed: () => {
                                     _confirmDelete(appState.getResponseJsonMy()[index].id),
                                   },
-                                  icon: Icon(Icons.delete),
+                                  icon: Icon(FeatherIcons.trash),
                                 )
                               ],
                             ),

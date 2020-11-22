@@ -1,5 +1,6 @@
 import 'package:app_constroca/providers/MessagesProvider.dart';
 import 'package:app_constroca/providers/ProdutosProvider.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,17 @@ class Chat_Empty extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
-        body: Center(
-          child: Text("Em breve"),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(FeatherIcons.user),
+            ),
+            Center(
+              child: Text("Faca login para bater papo com outros usuários"),
+            ),
+          ],
         ));
   }
 }
