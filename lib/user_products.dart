@@ -69,6 +69,7 @@ class _MyProductsState extends State<MyProducts> {
                                 IconButton(
                                   color: Colors.green,
                                   onPressed: () => {
+                                    appData.produto_id_edit = appState.getResponseJsonMy()[index].id,
                                     appData.produto_nome_edit = appState.getResponseJsonMy()[index].nomeProduto,
                                     appData.produto_desc_edit = appState.getResponseJsonMy()[index].descricaoProduto,
                                     appData.produto_tipo_edit = appState.getResponseJsonMy()[index].tipo,

@@ -30,15 +30,24 @@ class Chat_Empty extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.blue[800], Colors.blue])))),
-        body: Row(
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(FeatherIcons.user),
+            Image(
+              image: AssetImage('assets/chat.png'),
+              width: 150,
             ),
-            Center(
-              child: Text("Faca login para bater papo com outros usuários"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Center(
+                    child: Text("Faca login para bater papo com outros usuários",
+                        style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ],
             ),
           ],
         ));

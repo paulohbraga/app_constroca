@@ -11,6 +11,7 @@ class AppData {
 
   //Update Product
 
+  String produto_id_edit = "";
   String produto_nome_edit = "";
   String produto_desc_edit = "";
   String produto_tipo_edit = "";

@@ -56,7 +56,7 @@ class TransfterDataWidget extends State {
   final cidadeController = TextEditingController();
   final passwordController = TextEditingController();
   int contador;
-  String nome_imagem = 'default.png';
+  String nome_imagem = appData.produto_image_edit;
   // Boolean variable for CircularProgressIndicator.
   bool visible = false;
 
@@ -140,7 +140,7 @@ class TransfterDataWidget extends State {
     });
     final appState = Provider.of<ProdutosProvider>(context, listen: false);
     final snackBar = SnackBar(
-        content: Text('Produto cadastrado com sucesso!', style: TextStyle(color: Colors.white)),
+        content: Text('Produto atualizado com sucesso!', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue[900]);
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -157,7 +157,7 @@ class TransfterDataWidget extends State {
     String password = passwordController.text;
     String id_user = appData.id_usuario;
     // API URL
-    var url = 'https://constroca-webservice-app.herokuapp.com/usuarios/' + id_user + '/produtos';
+    var url = 'https://constroca-webservice-app.herokuapp.com/produtos/' + appData.produto_id_edit + '';
     // Store all data with Param Name.
     var data = {
       'nome_produto': nome,
