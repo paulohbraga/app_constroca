@@ -85,8 +85,8 @@ class Chat_Placeholder extends StatelessWidget {
                                         ],
                                       )
                                     : Padding(
-                                        padding: const EdgeInsets.only(top: 230.0),
-                                        child: Container(child: Text("Você deve estar logado para ter acesso ao chat")),
+                                        padding: const EdgeInsets.only(top: 0),
+                                        child: Container(child: Text("")),
                                       ),
                               )
                             ],
