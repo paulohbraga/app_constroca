@@ -448,6 +448,7 @@ class TransfterDataWidget extends State {
     if (value.length == 0) {
       return "Informe o cpf";
     } else if (!CPF.isValid(value)) {
+      return "Informe o cpf válido";
     } else if (value.length != 14) {
       return "CPF Inválido";
     }
