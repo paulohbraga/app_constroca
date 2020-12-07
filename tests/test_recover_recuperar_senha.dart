@@ -21,7 +21,7 @@ void main() {
     // Checar se o botão existe e é clicável
     final Finder txtEmail = find.byKey(Key("txtEmail"));
 
-    await tester.enterText(find.byType(TextFormField), 'marciocolunga@gmail.com');
+    await tester.enterText(find.byType(TextFormField), 'mail@');
 
     await tester.tap(botao);
 

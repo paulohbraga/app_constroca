@@ -53,7 +53,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     var email = prefs.getString('id');
     String result = (prefs.getString("id")) ?? "";
     email_logado = result;
-    print(email_logado + "=================================");
   }
 
   int index = 0;
