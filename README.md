@@ -20,13 +20,11 @@ Linguagem: Dart
 
 # Capturas
 
-<p align="center">
-<img alt="0" src="http://www.someletras.com.br/paulo/gifs/0.gif" width="200"/> <img alt="1" src="http://www.someletras.com.br/paulo/gifs/1.gif" width="200"/> <img alt="2" src="http://www.someletras.com.br/paulo/gifs/2.gif" width="200"/>
-</p>
-
-<p align="center">
-<img alt="3" src="http://www.someletras.com.br/paulo/gifs/3.gif" width="200" /> <img alt="4" src="http://www.someletras.com.br/paulo/gifs/4.gif" width="200"/>
-</p>
+![Tela 1](../master/src/assets/captures/0.gif)
+![Tela 1](../master/src/assets/captures/1.gif)
+![Tela 2](../master/src/assets/captures/2.gif)
+![Tela 3](../master/src/assets/captures/3.gif)
+![Tela 4](../master/src/assets/captures/4.gif)
 
 # app_constroca 
 
