@@ -19,12 +19,11 @@ Linguagem: Dart
 
 
 # Capturas
-
-![Tela 1](../master/src/assets/captures/0.gif)
-![Tela 1](../master/src/assets/captures/1.gif)
-![Tela 2](../master/src/assets/captures/2.gif)
-![Tela 3](../master/src/assets/captures/3.gif)
-![Tela 4](../master/src/assets/captures/4.gif)
+![Tela 1](../master/assets/captures/0.gif)
+![Tela 1](../master/assets/captures/1.gif)
+![Tela 2](../master/assets/captures/2.gif)
+![Tela 3](../master/assets/captures/3.gif)
+![Tela 4](../master/assets/captures/4.gif)
 
 # app_constroca 
 
